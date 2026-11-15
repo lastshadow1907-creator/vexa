@@ -124,6 +124,44 @@ button:not(.link):not(.back):not(.secondary):not(.theme-choice):not(.reaction-ch
 .v16-incoming{position:fixed;z-index:99999;top:max(12px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:min(440px,calc(100vw - 24px));background:#1d2b24;color:#f5fff7;border:1px solid #486452;border-radius:22px;box-shadow:0 20px 70px #0009;padding:16px;display:flex;align-items:center;gap:12px;animation:v16slide .25s ease-out}
 .v16-incoming.hide{display:none!important}.v16-incoming .v16-avatar{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#395543;font-size:25px;flex-shrink:0}.v16-incoming .v16-info{flex:1;min-width:0}.v16-incoming .v16-info strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.v16-incoming .v16-info small{color:#b7cbbc}.v16-incoming .v16-actions{display:flex;gap:8px}.v16-incoming button{width:45px;height:45px;border:0;border-radius:50%;font-size:21px;display:grid;place-items:center;padding:0;cursor:pointer}.v16-accept{background:#27c568!important;color:white!important}.v16-reject{background:#ef4c55!important;color:white!important}
 .v16-call-overlay{position:fixed;z-index:99998;inset:0;background:radial-gradient(ellipse at 50% 0%,#335641 0%,#14231b 53%,#0b1510 100%);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:calc(35px + env(safe-area-inset-top)) 18px calc(30px + env(safe-area-inset-bottom))}.v16-call-overlay.hide{display:none!important}.v16-call-head{text-align:center;display:grid;justify-items:center;gap:13px}.v16-call-avatar{height:108px;width:108px;border-radius:50%;background:#4e725b;display:grid;place-items:center;font-size:45px;box-shadow:0 0 0 10px #ffffff12}.v16-call-head h2{margin:0;font-size:27px;color:white}.v16-call-head p{margin:0;color:#c8d8ce}.v16-call-video{width:min(850px,100%);flex:1;min-height:0;position:relative;display:flex;align-items:center;justify-content:center}.v16-call-video video.remote{width:100%;height:100%;max-height:65vh;object-fit:contain;border-radius:20px;background:#050b07}.v16-call-video video.local{position:absolute;right:10px;bottom:10px;width:105px;height:145px;object-fit:cover;border:2px solid #ffffff77;border-radius:16px;background:#233529;z-index:2}.v16-call-controls{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;padding:15px 18px;border-radius:25px;background:#ffffff13;backdrop-filter:blur(14px)}.v16-call-controls button{width:62px;height:62px;border:0;border-radius:50%;background:#ffffff24!important;color:#fff!important;font-size:23px;display:grid;place-items:center;cursor:pointer}.v16-call-controls button.off{background:#fff!important;color:#18291e!important}.v16-call-controls button.hangup{background:#ef4c55!important;color:#fff!important}.v16-toast{position:fixed;z-index:100000;top:max(14px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:min(420px,calc(100vw - 24px));padding:15px 18px;border-radius:16px;background:#263b2e;color:#fff;box-shadow:0 12px 35px #0007;border:1px solid #55725d}.v16-toast.hide{display:none!important}@keyframes v16slide{from{opacity:0;transform:translate(-50%,-30px)}to{opacity:1;transform:translate(-50%,0)}}
+
+/* Vexa 2.6 — modern compact sidebar, gentle hover expansion */
+@media (min-width: 651px) {
+  .app {width:100%;max-width:none;margin:0}
+  .layout {grid-template-columns: 238px minmax(0,1fr);transition:grid-template-columns .32s cubic-bezier(.2,.8,.2,1);border-left:0;border-right:0}
+  .layout:has(.side:hover),.layout:has(.side:focus-within) {grid-template-columns: 302px minmax(0,1fr)}
+  .side {padding:17px 11px 18px;scrollbar-width:thin;scrollbar-color:var(--v-border) transparent;overflow-x:hidden;transition:padding .3s ease}
+  .side:hover,.side:focus-within {padding-left:15px;padding-right:15px}
+  .side h2 {font-size:16px;margin:17px 7px 12px;letter-spacing:-.35px}
+  .side .tabs {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;padding:5px;border-radius:15px;margin-bottom:15px}
+  .side .tabs button {font-size:11px;padding:10px 4px;overflow:hidden;text-overflow:ellipsis;min-width:0;transition:background .2s ease,transform .2s ease}
+  .side .user {padding:10px 8px;gap:9px;border-radius:13px}
+  .side .user .avatar {width:39px;height:39px;min-width:39px;font-size:13px}
+  .side .user strong {font-size:12.5px}
+  .side .user .tiny,.side .user .muted {font-size:11px}
+  .side .vexa-ai-entry {min-width:0;width:100%;padding:11px 9px}
+  .side .v15-toolbar {gap:6px}
+  .side .v15-toolbar button {padding:8px 9px;font-size:11px}
+  .side .vexa-extra {margin-top:13px}
+  .side .vexa-extra h3 {font-size:14px}
+  .side .vexa-extra > button {font-size:12px;padding:10px}
+  .chat {min-width:0}
+}
+/* Refined surface details, preserve customizable user theme */
+.side {box-shadow:inset -1px 0 0 #ffffff07}
+.side .tabs,.side .vexa-ai-entry,.side .user {transition:background-color .2s ease,border-color .2s ease,box-shadow .2s ease}
+.side .user:hover {box-shadow:inset 0 0 0 1px var(--v-border)}
+.side .tabs button:focus-visible,.side .user:focus-visible {outline:2px solid var(--v-accent);outline-offset:2px}
+/* Subtle animated Vexa wordmark */
+.brand {display:inline-block;position:relative;isolation:isolate;animation:vexaWordEnter .7s cubic-bezier(.2,.8,.2,1) both}
+.brand span {background:linear-gradient(110deg,var(--v-accent,#b4c8aa) 10%,#fff 42%,var(--v-accent,#b4c8aa) 73%);background-size:230% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:vexaWordShimmer 5.8s ease-in-out infinite}
+.brand::after {content:'';position:absolute;left:2px;right:2px;bottom:-5px;height:2px;border-radius:5px;background:var(--v-accent,#b4c8aa);transform-origin:left;animation:vexaUnderline 1.05s .25s both;opacity:.7}
+@keyframes vexaWordEnter {from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes vexaWordShimmer {0%,30%,100%{background-position:100% 0}55%{background-position:0% 0}}
+@keyframes vexaUnderline {from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:.7}}
+@media (prefers-reduced-motion:reduce){.brand,.brand span,.brand::after{animation:none!important}.layout{transition:none!important}}
+@media (max-width:650px){.brand{animation-duration:.5s}.side .tabs{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
 </style>
 <style id="vexa19-bubble-only">
 /* Vexa 1.9: onceki gorunumu koru; sadece balon ve tepkileri duzenle */
