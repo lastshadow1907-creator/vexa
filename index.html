@@ -57,6 +57,14 @@ async function loadMessages(){
  if(!selected||!session)return;const other=selected.id,meId=session.user.id,token=roomToken;
  const {data,error}=await db.from('messages').select('id,sender_id,recipient_id,body,media_path,media_type,created_at,read_at,reply_to,deleted_at,edited_at').or(`and(sender_id.eq.${meId},recipient_id.eq.${other}),and(sender_id.eq.${other},recipient_id.eq.${meId})`).order('created_at',{ascending:true}).limit(200);
  if(token!==roomToken)return;const box=$('messages');box.replaceChildren();if(error){box.textContent=error.message;return}
+ const messageIds=(data||[]).map(m=>m.id);
+ let reactions=[];
+ if(messageIds.length){
+  const {data:reactionData,error:reactionError}=await db.from('vexa_message_reactions').select('message_id,user_id,emoji').in('message_id',messageIds);
+  if(token!==roomToken)return;
+  if(reactionError){console.warn('Tepkiler yüklenemedi:',reactionError.message);err('uploadStatus','Tepkiler yüklenemedi: '+reactionError.message)}
+  else reactions=reactionData||[];
+ }
  const byId=new Map((data||[]).map(m=>[m.id,m]));
  for(const m of data||[]){const b=document.createElement('div');b.className='bubble'+(m.sender_id===meId?' mine':'');
  if(m.reply_to){const original=byId.get(m.reply_to);const quote=document.createElement('div');quote.className='reply-quote';quote.textContent=original?(original.deleted_at?'Silinmiş mesaj':original.body||'📎 Medya'):'↩ Yanıtlanan mesaj';b.append(quote)}
