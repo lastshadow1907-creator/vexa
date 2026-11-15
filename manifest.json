@@ -1,0 +1,14 @@
+{
+  "id": "/",
+  "name": "Vexa Messenger",
+  "short_name": "Vexa",
+  "description": "Vexa ile arkadaşlarınla sohbet et.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090d18",
+  "theme_color": "#101727",
+  "icons": [
+    {"src":"/vexa-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
