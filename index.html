@@ -165,6 +165,8 @@ $('newPasswordForm').onsubmit=async e=>{
  if(pw.length<6)return err('newPasswordStatus','Şifre en az 6 karakter olmalı.');
  const btn=$('newPasswordSubmit');btn.disabled=true;
  try{
+  const {data:authData,error:sessionError}=await db.auth.getSession();
+  if(sessionError||!authData.session)throw Error('Sıfırlama oturumu bulunamadı. Yeni şifre sıfırlama e-postası iste ve en son bağlantıyı aç.');
   const {error}=await db.auth.updateUser({password:pw});
   if(error)throw error;
   err('newPasswordStatus','Şifren başarıyla değiştirildi. Giriş ekranına yönlendiriliyorsun...');
@@ -199,17 +201,50 @@ $('vexaViewStories').onclick=async()=>{const body=vexaModal('24 saatlik hikâyel
 for(const t of ['Chats','Find','Requests','Profile'])$('tab'+t).addEventListener('click',()=>{$('vexaExtras').classList.toggle('hide',t!=='Chats')});
 // Sadece sayfa açıkken gelen mesaj bildirimleri; arka plan push ayrıca sunucu gerektirir.
 
+// Şifre sıfırlama: bağlantıdaki token/PKCE kodu doğrulanmadan şifre değiştirmeye izin verme.
+const recoveryParams=new URLSearchParams(location.search);
+const recoveryHash=new URLSearchParams(location.hash.replace(/^#/,''));
+const recoveryHint=recoveryParams.has('vexa_recovery')||recoveryParams.has('code')||recoveryHash.get('type')==='recovery';
+let recoveryVerified=false;
+function recoveryStatus(ok,message){
+ recoveryVerified=ok;
+ $('newPasswordSubmit').disabled=!ok;
+ err('newPasswordStatus',message);
+}
+async function checkRecoverySession(){
+ try{
+  const {data,error}=await db.auth.getSession();
+  if(error)throw error;
+  if(data.session){
+   openNewPasswordScreen();
+   recoveryStatus(true,'Bağlantı doğrulandı. Yeni şifreni yazabilirsin.');
+   return true;
+  }
+ }catch(e){console.warn('Recovery session:',e.message)}
+ return false;
+}
 db.auth.onAuthStateChange((event)=>{
- if(event==='PASSWORD_RECOVERY')openNewPasswordScreen();
+ if(event==='PASSWORD_RECOVERY'){
+  openNewPasswordScreen();
+  // Auth callback içinde Supabase çağrısı yapma; oturum olaydan sonra kontrol edilir.
+  setTimeout(()=>checkRecoverySession(),0);
+ }
 });
-const recoveryHint=new URLSearchParams(location.search).has('vexa_recovery');
 if(recoveryHint){
- // Bağlantıdan dönüldüğünde normal sohbet ekranının açılmasını engelle.
  recoveryActive=true;
  openNewPasswordScreen();
- db.auth.getSession().then(({data:{session:s}})=>{
-  if(!s)err('newPasswordStatus','Bağlantı doğrulanıyor. Ekran değişmezse e-postadaki en son bağlantıyı yeniden aç.');
- });
+ recoveryStatus(false,'Sıfırlama bağlantısı doğrulanıyor...');
+ // Supabase istemcisi yönlendirmedeki oturumu işleyene kadar kısa süre tanı.
+ (async()=>{
+  for(let i=0;i<6;i++){
+   if(await checkRecoverySession())return;
+   await new Promise(resolve=>setTimeout(resolve,450));
+  }
+  recoveryStatus(false,'Bağlantı geçersiz, süresi dolmuş veya farklı tarayıcıda açılmış olabilir. Vexa giriş ekranından yeni bir şifre sıfırlama bağlantısı iste.');
+  const back=document.createElement('button');back.type='button';back.className='link';back.textContent='← Giriş ekranına dön';
+  back.onclick=()=>{recoveryActive=false;history.replaceState(null,'',location.pathname);setAuthMode('login');showAuth()};
+  $('newPasswordScreen').append(back);
+ })();
 }else{
  init().catch(e=>err('authError',e.message));
 }
