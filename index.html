@@ -19,23 +19,19 @@ $('search').oninput=()=>loadUsers();async function openChat(u){selected=u;$('cha
 $('back').onclick=()=>{$('chat').classList.add('mobile-hide');$('side').classList.remove('mobile-hide')};async function loadMessages(){if(!selected)return;const other=selected.id,me=session.user.id;const {data,error:err}=await supabase.from('messages').select('id,sender_id,body,created_at').or(`and(sender_id.eq.${me},recipient_id.eq.${other}),and(sender_id.eq.${other},recipient_id.eq.${me})`).order('created_at',{ascending:true}).limit(200);const box=$('messages');box.replaceChildren();if(err){box.textContent=err.message;return}for(const m of data||[]){const b=document.createElement('div');b.className='bubble'+(m.sender_id===me?' mine':'');b.textContent=m.body;const t=document.createElement('small');t.textContent=new Date(m.created_at).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});b.append(t);box.append(b)}box.scrollTop=box.scrollHeight}
 async function subscribe(){if(channel)await supabase.removeChannel(channel);channel=supabase.channel('messages-'+session.user.id+'-'+selected.id).on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},payload=>{if(!selected)return;const m=payload.new;if((m.sender_id===session.user.id&&m.recipient_id===selected.id)||(m.recipient_id===session.user.id&&m.sender_id===selected.id))loadMessages()}).subscribe()}
 $('compose').onsubmit=async e=>{e.preventDefault();const body=$('messageInput').value.trim();if(!body||!selected||!session)return;const to=selected.id;$('send').disabled=true;const {error:err}=await supabase.from('messages').insert({sender_id:session.user.id,recipient_id:to,body});$('send').disabled=false;if(err){alert('Mesaj gönderilemedi: '+err.message);return}$('messageInput').value='';await loadMessages()};$('logout').onclick=async()=>{if(channel)await supabase.removeChannel(channel);selected=null;await supabase.auth.signOut();session=null;showAuth()};
-function loadScript(src){return new Promise((resolve,reject)=>{const tag=document.createElement('script');tag.src=src;tag.onload=()=>resolve();tag.onerror=()=>reject(new Error('CDN erişim hatası: '+src));document.head.appendChild(tag)})}
-async function loadSupabase(){
- error('authError','Bağlantı hazırlanıyor...');
- const sources=[
-  'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js',
-  'https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js'
- ];
+async function loadSdk(){
+ const sources=['https://esm.sh/@supabase/supabase-js@2?bundle','https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'];
  const failures=[];
  for(const src of sources){
-  try{
-   await loadScript(src);
-   if(!window.supabase?.createClient)throw new Error('Kütüphane yüklendi ama createClient bulunamadı');
-   supabase=window.supabase.createClient(URL,KEY);
-   break;
-  }catch(e){failures.push(e.message);console.warn('Vexa SDK yüklenemedi:',src,e)}
+  try{const sdk=await import(src);if(typeof sdk.createClient!=='function')throw new Error('createClient bulunamadı');return sdk.createClient(URL,KEY)}
+  catch(e){failures.push(src+': '+(e?.message||String(e)));console.warn('Vexa SDK hatası:',src,e)}
  }
- if(!supabase){error('authError','Supabase kütüphanesi yüklenemedi. F12 → Console ekranındaki kırmızı hatayı gönder. CDN bağlantısı engellenmiş olabilir.');console.error('Vexa CDN hataları:',failures);return}
+ throw new Error(failures.join(' | '));
+}
+async function loadSupabase(){
+ error('authError','Bağlantı hazırlanıyor...');
+ try{supabase=await loadSdk()}
+ catch(e){error('authError','Supabase yüklenemedi: '+e.message);console.error('Vexa SDK yükleme hatası:',e);return}
  try{await init();if($('authError').textContent==='Bağlantı hazırlanıyor...')error('authError','')}catch(e){error('authError','Supabase bağlantı hatası: '+e.message)}
  supabase.auth.onAuthStateChange((event)=>{if(event==='PASSWORD_RECOVERY'){
   showAuth();setAuthMode('reset');$('password').classList.remove('hide');$('password').required=true;
