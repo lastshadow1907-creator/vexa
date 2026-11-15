@@ -1,45 +1,1158 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0e1020"><title>Vexa</title><style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
-:root{font-family:'DM Sans',system-ui,-apple-system,sans-serif;color:#edf0fb;background:#090d18;--surface:#101727;--surface2:#172033;--line:#253047;--accent:#8175ff;--accent2:#a292ff;--sub:#96a3bc;--radius:18px}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 3% 1%,#23234b 0,transparent 30%),#090d18}button,input,textarea{font:inherit}button{cursor:pointer;border:0;color:white;background:linear-gradient(135deg,#7667f5,#9b75f7);border-radius:13px;padding:11px 16px;font-weight:700;transition:background .2s,transform .15s}button:hover:not(:disabled){filter:brightness(1.1)}button:active:not(:disabled){transform:scale(.98)}button:disabled{opacity:.45;cursor:not-allowed}input,textarea{width:100%;padding:13px 15px;background:#172033;color:#f4f5ff;border:1px solid #303c55;border-radius:13px;outline:0}input:focus,textarea:focus{border-color:#8c82ff;box-shadow:0 0 0 3px #8075ff1c}input::placeholder,textarea::placeholder{color:#8290ab}.app{width:min(1320px,100%);margin:auto;min-height:100dvh;display:flex;flex-direction:column}.brand{font-size:28px;font-weight:800;letter-spacing:-1.4px;white-space:nowrap}.brand span{color:#a59cff}header{height:76px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;background:#101727ec;border-bottom:1px solid var(--line);box-shadow:0 3px 20px #0002;flex-shrink:0}header>div:last-child{display:flex;align-items:center;gap:13px}.muted{color:var(--sub);font-size:13px}.auth{max-width:420px;width:calc(100% - 32px);margin:clamp(30px,10vh,100px) auto;padding:32px;border:1px solid #303b56;border-radius:26px;background:linear-gradient(155deg,#1b2440,#111827);box-shadow:0 25px 90px #0008}.auth .brand{font-size:38px}.auth h1{margin:25px 0 8px;font-size:26px;line-height:1.25}.stack{display:grid;gap:13px;margin-top:25px}.stack button{padding:15px}.link{background:transparent;color:#c5c1ff;padding:9px 11px}.layout{display:grid;grid-template-columns:355px minmax(0,1fr);flex:1;min-height:0;height:calc(100dvh - 76px);border-left:1px solid #1d2638;border-right:1px solid #1d2638}.side{border-right:1px solid var(--line);padding:22px 15px 22px 19px;overflow:auto;min-width:0;background:#101727;max-height:calc(100dvh - 76px)}.side h2{font-size:20px;letter-spacing:-.5px;margin:19px 8px 15px}.side #search{margin:10px 3px 15px;width:calc(100% - 6px);border-radius:13px}.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;background:#192238;border:1px solid #28324b;border-radius:16px;padding:5px;margin:2px 0 19px}.tabs button{background:transparent;padding:11px 3px;border-radius:11px;color:#9ba8c3;font-size:11px;font-weight:700;white-space:nowrap;letter-spacing:-.2px}.tabs button.on{background:#7569ed;color:#fff;box-shadow:0 4px 14px #6054dc55}.user{display:flex;align-items:center;gap:13px;padding:13px 11px;border-radius:15px;cursor:pointer;min-width:0;margin:3px 0;transition:background .15s}.user:hover,.user.active{background:#202c45}.user.active{box-shadow:inset 3px 0 0 #9b8dff}.user .user-text{min-width:0;overflow-wrap:anywhere;flex:1}.user strong{font-size:14px}.avatar{display:grid;place-items:center;width:49px;height:49px;border-radius:50%;background:linear-gradient(145deg,#655ce4,#b76fe6);font-weight:800;flex-shrink:0;overflow:hidden;color:#fff;box-shadow:0 0 0 2px #333f5b}.avatar img{width:100%;height:100%;object-fit:cover;border-radius:inherit}.user button{margin-left:auto;padding:8px 10px;font-size:11px;border-radius:10px}.chat{display:flex;flex-direction:column;min-height:0;min-width:0;background:radial-gradient(ellipse at 70% 5%,#1b2340 0,transparent 44%),#0c1220}.chat-head{display:flex;align-items:center;gap:13px;padding:15px 24px;border-bottom:1px solid var(--line);background:#131c2eeb;min-height:77px;font-weight:800;font-size:16px;box-shadow:0 3px 14px #0002}.chat-head .avatar{width:43px;height:43px;border-radius:50%}.messages{flex:1;overflow:auto;padding:25px clamp(15px,4%,45px);display:flex;flex-direction:column;gap:12px;min-height:0;max-height:none;background-image:radial-gradient(#a7a0ff0a 1px,transparent 1px);background-size:24px 24px}.bubble{max-width:min(78%,490px);padding:12px 16px;border-radius:17px 17px 17px 5px;background:#222e45;align-self:flex-start;overflow-wrap:anywhere;white-space:pre-wrap;line-height:1.5;font-size:14px;box-shadow:0 5px 15px #0002}.bubble.mine{align-self:flex-end;background:linear-gradient(140deg,#6d63d9,#7565d6);border-radius:17px 17px 5px 17px;color:white}.bubble small{display:block;opacity:.7;text-align:right;margin-top:6px;font-size:10px}.compose{display:flex;gap:11px;padding:15px 23px 20px;border-top:1px solid var(--line);align-items:center;background:#121a2a}.compose input[type=text],.compose #messageInput{flex:1;min-width:0;background:#202b40;border-radius:24px;padding:14px 18px;border:1px solid #34415c}.compose button{border-radius:24px;padding:14px 19px}.compose input[type=file]{display:none}.attach{background:#26344c;padding:12px 15px;border-radius:50%;cursor:pointer;font-size:19px;line-height:1}.empty{margin:auto;text-align:center;color:#9ba8c2;padding:25px;max-width:320px;line-height:1.7}.notice{color:#ffb2c2;font-size:13px;min-height:20px}.hide{display:none!important}.back{display:none;background:transparent;padding:8px 12px 8px 0;font-size:22px}.panel{background:#172237;border:1px solid #303d56;border-radius:19px;padding:20px;margin-bottom:12px}.panel h2{margin:0 0 17px}.profile-preview{display:flex;align-items:center;gap:15px;margin:15px 0 22px}.profile-preview .avatar{width:75px;height:75px}.profile label{display:block;margin:16px 0 7px;color:#b9c5da;font-size:12px;font-weight:700}.profile input{margin:0}.profile textarea{min-height:95px;resize:vertical}.profile #saveProfile{width:100%;margin-top:18px}.request{padding:14px 7px;border-bottom:1px solid #303d56}.request button{margin:5px;padding:9px 12px}.chat-media{display:block;max-width:min(300px,65vw);max-height:320px;border-radius:12px;margin:6px 0}.bubble video{max-width:min(300px,65vw)}.status{font-size:12px;color:#c8baff;padding:5px 20px;margin:0}.empty-list{color:#a4b1c9;font-size:13px;padding:18px 10px}.tiny{font-size:11px;color:#b8c4d9}#logout{border:1px solid #36405c;border-radius:11px}#me{font-weight:700;color:#d1d5ed}
-@media(max-width:760px){.layout{grid-template-columns:300px minmax(0,1fr)}.side{padding:15px 10px}.tabs button{font-size:10px}}
-@media(max-width:650px){body{background:#0c1220}.app{min-height:100dvh}header{height:65px;padding:0 17px}header .brand{font-size:25px}#me{max-width:125px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}.layout{display:block;height:calc(100dvh - 65px);border:0}.side{height:calc(100dvh - 65px);max-height:none;border:0;padding:15px 14px 85px}.side h2{margin:20px 8px 16px;font-size:23px}.tabs{position:fixed;bottom:0;left:0;right:0;z-index:5;margin:0;border-radius:18px 18px 0 0;border:0;border-top:1px solid #33405b;background:#151f32;padding:10px 9px max(12px,env(safe-area-inset-bottom));box-shadow:0 -7px 35px #0007}.tabs button{font-size:11px;padding:12px 3px}.user{padding:15px 12px}.avatar{width:53px;height:53px}.chat{height:calc(100dvh - 65px)}.chat-head{min-height:68px;padding:10px 15px}.messages{padding:18px 13px;max-height:none}.bubble{max-width:85%}.compose{padding:10px 10px max(13px,env(safe-area-inset-bottom));gap:7px}.compose button{padding:13px 12px;font-size:12px}.compose #messageInput{padding:13px 13px}.attach{padding:11px}.mobile-hide{display:none!important}.back{display:inline-block!important}.side.mobile-hide{display:none!important}.chat:not(.mobile-hide)~.tabs{display:none}.auth{margin:6vh auto;padding:27px 23px}.auth h1{font-size:24px}}
-</style></head><body><div class="app"><section id="auth" class="auth"><div class="brand">V<span>exa.</span></div><h1>Bağlantı burada başlar.</h1><div class="muted">Hesabına giriş yap veya aramıza katıl.</div><form id="authForm" class="stack"><input id="email" type="email" placeholder="E-posta" required autocomplete="email"><input id="password" type="password" placeholder="Şifre (en az 6 karakter)" minlength="6" required><input id="username" placeholder="Kullanıcı adı (3–20 karakter)" pattern="[a-z0-9_]{3,20}" class="hide"><button id="authSubmit">Giriş yap</button></form><button class="link" id="toggleAuth" type="button">Hesabın yok mu? Kayıt ol</button><button class="link" id="forgotPassword" type="button">Şifremi unuttum</button><button class="link hide" id="backToLogin" type="button">← Giriş ekranına dön</button><p id="authError" class="notice"></p></section><section id="main" class="hide" style="flex:1;display:flex;flex-direction:column"><header><div class="brand">V<span>exa.</span></div><div><span id="me" class="muted"></span> <button id="logout" class="link">Çıkış</button></div></header><div class="layout"><aside id="side" class="side"><div class="tabs"><button id="tabChats" class="on" type="button">Sohbetler</button><button id="tabFind" type="button">Kişi ara</button><button id="tabRequests" type="button">İstekler <span id="requestCount"></span></button><button id="tabProfile" type="button">Profilim</button></div><div id="viewChats"><h2>Mesajlar 💬</h2><div id="friends"></div></div><div id="viewFind" class="hide"><input id="search" placeholder="Kullanıcı adı ara..."><div id="users"></div></div><div id="viewRequests" class="hide"><h2>Gelen istekler</h2><div id="incoming"></div><h2>Gönderilen istekler</h2><div id="outgoing"></div></div><div id="viewProfile" class="hide profile"><div class="panel"><h2>Profil düzenle</h2><div class="profile-preview"><div id="myAvatar" class="avatar">V</div><span id="profileUsername"></span></div><label>Profil fotoğrafı (en fazla 5 MB)</label><input id="avatarFile" type="file" accept="image/jpeg,image/png,image/webp"><label>Görünen ad</label><input id="displayName" maxlength="40" placeholder="Görünen ad"><label>Biyografi</label><textarea id="bio" maxlength="160" placeholder="Hakkında..."></textarea><button id="saveProfile" type="button">Profili kaydet</button><p id="profileStatus" class="status"></p></div></div></aside><section id="chat" class="chat mobile-hide"><div id="chatHead" class="chat-head"><button id="back" class="back">←</button><div id="chatAvatar" class="avatar hide"></div><span id="chatTitle">Sohbet seç</span></div><div id="messages" class="messages"><div class="empty">Arkadaşını seçerek sohbete başla ✨</div></div><p id="uploadStatus" class="status"></p><form id="compose" class="compose"><label class="attach" title="Fotoğraf veya video ekle">＋<input id="mediaFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/quicktime" disabled></label><input id="messageInput" placeholder="Bir mesaj yaz..." maxlength="2000" disabled><button id="send" disabled>Gönder</button></form></section></div></div>
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#b86d88"><title>Love Call Muly ♡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#654554;--rose:#ad637b;--rose-dark:#8d405e;--cream:#fffaf4;--line:#efdde0;--blush:#f6e3e7;--soft:#fff8f8;font-family:'DM Sans',sans-serif;color:var(--ink);background:#fcf5f2}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 10% 12%,#fbe5e9 0,transparent 33%),radial-gradient(ellipse at 90% 30%,#f9ece1 0,transparent 40%),#fcf7f3;overflow-x:hidden}body:before,body:after{content:'✿';position:fixed;color:#d8a5b0;opacity:.14;pointer-events:none;font-size:250px;z-index:0}body:before{top:13%;left:-100px;transform:rotate(-25deg)}body:after{right:-95px;bottom:-80px;transform:rotate(20deg)}header{position:relative;z-index:2;max-width:1080px;margin:auto;padding:24px 28px;display:flex;justify-content:space-between;align-items:center;gap:12px}h1,h2,h3{font-family:'Playfair Display',Georgia,serif}h1{font-size:31px;margin:0;color:var(--rose-dark);letter-spacing:.2px}h1 span{font-family:'Great Vibes',cursive;font-size:43px;font-weight:400}h2{margin:0 0 15px;font-size:clamp(23px,3.4vw,30px);font-weight:500;color:#754759}h3{font-size:19px}main{position:relative;z-index:1;max-width:940px;margin:0 auto 90px;padding:0 22px}.hero{text-align:center;padding:24px 12px 32px;position:relative}.hero .eyebrow{letter-spacing:4px;text-transform:uppercase;font-size:11px;font-weight:700;color:#af7d8c}.hero h2{font-family:'Great Vibes',cursive;font-size:clamp(60px,11vw,105px);font-weight:400;line-height:1.05;margin:12px 0 5px;color:#a65371}.hero p{margin:0;color:#98747e;font-size:14px}.ornament{display:flex;align-items:center;gap:15px;justify-content:center;color:#b47a8e;margin:22px auto 0;max-width:340px}.ornament:before,.ornament:after{content:'';height:1px;background:#e4bfc7;flex:1}.ornament span{font-size:21px}.card{background:rgba(255,253,250,.91);border:1px solid rgba(223,181,190,.65);border-radius:25px;padding:30px 32px;margin:18px 0;box-shadow:0 12px 40px #8b4d5810,0 2px 5px #8b4d5805;backdrop-filter:blur(7px)}.card-heading{display:flex;align-items:center;gap:12px;margin-bottom:8px}.flower{font-size:23px;color:#b5788d}.intro{color:#967681;font-size:14px;line-height:1.7}input,textarea,button{font:inherit}input,textarea{width:100%;padding:14px 15px;border:1px solid #e7cdd1;border-radius:13px;margin:7px 0 15px;background:#fffaf9;color:#694858;outline:none;transition:border-color .2s,box-shadow .2s}input:focus,textarea:focus{border-color:#c8879b;box-shadow:0 0 0 3px #eecfd980}textarea{min-height:116px;resize:vertical}button{background:linear-gradient(120deg,#b96d86,#99526d);color:#fff;border:0;border-radius:14px;padding:13px 21px;cursor:pointer;box-shadow:0 6px 15px #a6537124;transition:transform .18s,filter .18s}button:hover{transform:translateY(-2px);filter:brightness(1.04)}button.secondary{background:#f8e9eb;color:#8b4b64;box-shadow:none;border:1px solid #ead1d7}button:disabled{opacity:.5;cursor:wait}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.muted{color:#9b7e89;font-size:14px;line-height:1.65}.hidden{display:none!important}.tabs{display:flex;gap:10px;flex-wrap:wrap}.tabs button{flex:1;min-width:130px}.item{padding:18px 0;border-top:1px solid #f1e0e3;overflow-wrap:anywhere}.item:first-child{border-top:0}.item h3{margin:0 0 8px}.item p{white-space:pre-wrap;margin:8px 0;line-height:1.7}.timer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.timer>div{background:linear-gradient(135deg,#fff2f3,#fbe9e7);padding:25px 16px;border:1px solid #f2dce0;border-radius:19px;text-align:center}.timer strong{display:block;font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,35px);font-weight:500;color:#a75572;margin-top:8px}#notice{padding:15px 18px;border-radius:15px;background:#fff0f3;border:1px solid #eecdd6;margin:12px 0;white-space:pre-wrap}small{color:#987784}label{display:block;font-size:13px;font-weight:700;margin-top:8px;color:#805968}.section-kicker{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#bc8594;font-weight:700}.date-ribbon{display:inline-block;margin-top:12px;background:#f7e7e8;border:1px solid #ebcdd3;padding:9px 20px;border-radius:100px;color:#995f72;font-size:12px;letter-spacing:1.2px}.footer{text-align:center;color:#ae8b96;font-size:12px;padding:28px 10px 12px}.footer strong{font-family:'Great Vibes',cursive;font-size:25px;font-weight:400;color:#b06b83}#auth,#pair,#setup{max-width:600px;margin:10px auto 35px}#auth h2,#pair h2{text-align:center}.auth-mark{text-align:center;font-size:34px;margin-bottom:12px}.tab{animation:rise .35s ease}@keyframes rise{from{opacity:.5;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}@media(max-width:600px){header{padding:17px 18px}h1{font-size:24px}h1 span{font-size:35px}main{padding:0 14px}.card{padding:22px 18px;border-radius:21px}.hero{padding:15px 0 24px}.timer{grid-template-columns:1fr}.row>*{flex-basis:100%}.tabs button{min-width:100%;}.hero h2{font-size:67px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Muly gece modu */
+.theme-toggle{white-space:nowrap;padding:11px 16px}.header-actions{display:flex;gap:9px;align-items:center}.night-message{display:none;text-align:center;margin:12px auto 25px;max-width:650px;padding:22px 16px;color:#ffe7ca;font-family:'Playfair Display',Georgia,serif;font-size:clamp(21px,4vw,34px);line-height:1.5;text-shadow:0 0 22px #f7d4a94d;animation:rise .6s ease}.night-message span{display:block;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;color:#d3bdd3;margin-top:8px}.stars{display:none;position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff5d7;box-shadow:0 0 8px #ffe6a9;animation:twinkle 3s ease-in-out infinite alternate}@keyframes twinkle{from{opacity:.15;transform:scale(.7)}to{opacity:1;transform:scale(1.5)}}
+body.night{--ink:#e9dce6;--rose:#e9adc6;--rose-dark:#f5c6d9;--cream:#161a31;--line:#51435c;--blush:#312a47;--soft:#26253d;background:radial-gradient(ellipse at 20% 12%,#303252 0,transparent 42%),radial-gradient(ellipse at 90% 75%,#34243e 0,transparent 48%),#101426;color:#e9dce6}body.night:before,body.night:after{color:#d5a5c2;opacity:.08}body.night .stars,body.night .night-message{display:block}body.night h1,body.night h2,body.night h3{color:#f8d7e3}body.night .hero h2{color:#f5b8d3}body.night .hero p,body.night .hero .eyebrow,body.night .intro,body.night .muted,body.night small,body.night .footer{color:#c6b5c9}body.night .card{background:rgba(28,29,51,.91);border-color:#57465e;box-shadow:0 15px 45px #05071340}body.night .timer>div{background:linear-gradient(135deg,#34314e,#2b2845);border-color:#584760}body.night .timer strong{color:#ffd1df}body.night input,body.night textarea{background:#22243d;color:#f7e9f2;border-color:#65506a}body.night input::placeholder,body.night textarea::placeholder{color:#b5a1b5}body.night label{color:#e4bfd0}body.night .item{border-color:#53435b}body.night .section-kicker,body.night .date-ribbon{color:#f1bcd0}body.night .date-ribbon{background:#332a43;border-color:#66506b}body.night button.secondary{background:#39304d;color:#f6d7e6;border-color:#715774}body.night #notice{background:#3c2d46;border-color:#805c78;color:#f9e1e9}body.night .ornament{color:#e8b8ce}body.night .ornament:before,body.night .ornament:after{background:#68536b}body.night .footer strong{color:#ffd0e0}@media(max-width:600px){.header-actions{gap:6px}.theme-toggle{padding:10px 12px;font-size:13px}#logout{padding:10px 12px;font-size:13px}}
+
+/* Muly v2 */
+.feature-nav{display:flex;flex-wrap:wrap;gap:9px}.feature-nav button{flex:1 1 140px;padding:11px 12px;font-size:13px}.feature-nav button.active{background:linear-gradient(120deg,#b96d86,#99526d);color:white}.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}.mini{background:var(--soft);border:1px solid var(--line);padding:18px;border-radius:18px}.mini strong{display:block;font-family:'Playfair Display',serif;font-size:22px;margin:8px 0;color:var(--rose-dark)}.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}.photo-card{background:var(--soft);border:1px solid var(--line);border-radius:17px;padding:12px;overflow:hidden}.photo-card img,.item-photo{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block;margin-bottom:10px}.sky-box{position:relative;min-height:340px;border-radius:24px;overflow:hidden;background:radial-gradient(circle at 50% 115%,#5b436e 0,transparent 55%),linear-gradient(160deg,#111832,#28254a 70%,#17162c);border:1px solid #716080}.sky-star{position:absolute;background:none;border:0;box-shadow:none;color:#ffeab8;text-shadow:0 0 12px #ffdd9b;cursor:pointer;font-size:25px;padding:5px;transform:translate(-50%,-50%)}.sky-star:hover{transform:translate(-50%,-50%) scale(1.25)}.sky-caption{position:absolute;bottom:16px;left:12px;right:12px;text-align:center;color:#f5d9e9;font-size:13px;pointer-events:none}.pill{display:inline-block;padding:7px 12px;border-radius:99px;background:var(--blush);color:var(--rose-dark);font-size:12px;margin:4px}.note{padding:15px;border:1px solid var(--line);border-radius:14px;background:var(--soft);margin:10px 0;white-space:pre-wrap}.compact-form{margin-top:12px}select{width:100%;padding:14px;border:1px solid var(--line);border-radius:13px;background:var(--soft);color:var(--ink);margin:7px 0 15px}body.night .mini,body.night .photo-card,body.night .note,body.night select{background:#29263f;border-color:#64526b;color:#f3ddea}body.night .pill{background:#493650;color:#ffe0ec}body.night .feature-nav button.active{background:#a45d82;color:white}.anniversary{background:linear-gradient(135deg,#f7e1e6,#fff9ed);text-align:center}.anniversary h2{font-family:'Great Vibes',cursive;font-size:clamp(40px,8vw,70px)}body.night .anniversary{background:linear-gradient(135deg,#332944,#232c4c)}.image-help{font-size:12px;color:var(--rose)}
+
+/* Muly 3.0: romantik mikro-etkileşimler */
+#introCurtain{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 40%,#fff4f3,#eac8d5);display:grid;place-items:center;animation:introFade .9s ease 1.5s forwards;pointer-events:none}#introCurtain div{text-align:center;color:#a15374;font-family:'Great Vibes',cursive;font-size:clamp(55px,12vw,105px);animation:introPulse 1.5s ease}#introCurtain small{display:block;font:13px 'DM Sans',sans-serif;letter-spacing:3px;color:#98657c}@keyframes introFade{to{opacity:0;visibility:hidden}}@keyframes introPulse{0%{opacity:0;transform:scale(.7)}65%{opacity:1;transform:scale(1.08)}100%{transform:scale(1)}}
+body.night.rainy:after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:repeating-linear-gradient(105deg,transparent 0 29px,#b7c6ed1a 30px,#b7c6ed1a 31px,transparent 33px 66px);animation:rainfall 1.8s linear infinite;font-size:0} @keyframes rainfall{to{background-position:-65px 200px}}
+.shooting-star{position:fixed;top:12%;left:70%;width:110px;height:2px;transform:rotate(-30deg);background:linear-gradient(90deg,transparent,#fff5c8);filter:drop-shadow(0 0 6px #fff3b2);z-index:1;pointer-events:none;animation:shoot 2.2s ease-in forwards}@keyframes shoot{from{opacity:0;translate:90px -70px}25%{opacity:1}to{opacity:0;translate:-300px 260px}}
+.heart-burst{position:fixed;pointer-events:none;z-index:40;font-size:27px;animation:heartFloat 1.5s ease-out forwards}@keyframes heartFloat{to{transform:translateY(-180px) rotate(20deg);opacity:0}}
+.celebration{padding:22px;border:1px solid var(--line);border-radius:22px;background:var(--soft);margin:12px 0;text-align:center}.celebration strong{font-family:'Playfair Display',serif;font-size:23px;color:var(--rose-dark)}
+#notifCount{display:inline-block;min-width:20px;padding:2px 5px;background:#b85778;color:white;border-radius:99px;font-size:11px} .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}.summary-grid .mini{text-align:center}.summary-grid strong{font-size:27px}
+@media(prefers-reduced-motion:reduce){#introCurtain{display:none}.shooting-star,.heart-burst{display:none}body.night.rainy:after{animation:none}}
+
+/* Muly romantic refresh — presentation only, original feature IDs and handlers preserved */
+:root{--ink:#583d4b;--rose:#a75a74;--rose-dark:#7d3855;--cream:#fffaf7;--line:#eed9df;--blush:#f9e5e9;--soft:#fff8f8}
+body{background:radial-gradient(ellipse at 8% 4%,#fbe1e9 0,transparent 37%),radial-gradient(ellipse at 92% 18%,#f8e9d8 0,transparent 39%),linear-gradient(160deg,#fffaf6,#fdf0f1 55%,#fff9f6);}
+header{max-width:1180px;padding:20px 28px;position:sticky;top:0;z-index:15;background:rgba(255,248,247,.83);backdrop-filter:blur(20px);border-bottom:1px solid #e9d4db80;border-radius:0 0 22px 22px}
+header h1 span{font-size:clamp(23px,3.8vw,38px)}main{max-width:1080px}.hero{padding:52px 12px 34px}.hero h2{font-size:clamp(66px,10vw,112px);text-shadow:0 8px 35px #e7b7c577}.hero .eyebrow{font-size:11px;letter-spacing:5px}.hero p{font-size:15px}.date-ribbon{font-weight:700;background:#fff8f8b8;box-shadow:0 8px 22px #ae718416}
+.card{border-radius:27px;border-color:#e7cbd3b5;background:rgba(255,253,251,.9);box-shadow:0 16px 45px #8b4d5810,0 3px 10px #8b4d5806;padding:30px 34px}
+.card h2{letter-spacing:-.45px}.relationship-card{position:relative;overflow:hidden;text-align:center;background:linear-gradient(130deg,#fffafa,#fff1f4 55%,#fff9f0)}.relationship-card:after{content:'♡';position:absolute;right:20px;top:-45px;font-size:210px;color:#cf81931a;pointer-events:none}.relationship-card h2{font-family:'Great Vibes',cursive;font-size:clamp(42px,7vw,68px);margin:10px 0}.relationship-card .intro{margin-bottom:22px}
+.live-timer{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;position:relative;z-index:1}.live-timer>div{padding:18px 9px;background:#fffdfcbd;box-shadow:0 6px 22px #c889a01a}.live-timer strong{font-family:'DM Sans',sans-serif;font-size:clamp(24px,4vw,40px);font-weight:700;font-variant-numeric:tabular-nums}.anniversary-countdown{font-size:14px;color:#926879;margin:22px 0 8px}.anniversary-countdown strong{color:#873e5b}
+.feature-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.feature-nav button{min-width:0;min-height:53px;border:1px solid #edd3db;border-radius:15px;background:#fff8f9;color:#87516a;box-shadow:none;font-weight:600;transition:transform .2s,background .2s,box-shadow .2s}.feature-nav button:hover{box-shadow:0 6px 20px #9e5d7820}.feature-nav button.active{box-shadow:0 8px 20px #9e5d7833}
+button{font-weight:600}input,textarea,select{background:#fffdfc}input:focus,textarea:focus{outline:none}.tab{animation:rise .4s ease}.footer{padding:32px 10px}
+body.night header{background:rgba(20,21,39,.88);border-color:#55445b}body.night .relationship-card{background:linear-gradient(130deg,#30243c,#252941 65%,#372c42)}body.night .live-timer>div{background:#3a304b}body.night .anniversary-countdown{color:#dec1d0}body.night .anniversary-countdown strong{color:#ffd3e1}body.night .feature-nav button{background:#352b43;color:#f5d5e4;border-color:#6a526e}
+@media(max-width:760px){.feature-nav{grid-template-columns:repeat(3,minmax(0,1fr))}.card{padding:24px 20px}.hero{padding:32px 8px 26px}}
+@media(max-width:480px){header{padding:12px 15px}.hero h2{font-size:62px}.feature-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.feature-nav button{font-size:12px;min-height:49px;padding:10px 7px}.live-timer{gap:7px}.live-timer>div{padding:14px 3px;border-radius:14px}.live-timer strong{font-size:25px}.live-timer small{font-size:11px}.card{padding:21px 16px}.relationship-card h2{font-size:45px}}
+
+/* Muly × Olcay — yeni romantik başlık; mevcut uygulama işlevlerine dokunmaz */
+.love-hero{isolation:isolate;overflow:hidden;margin:8px auto 20px;padding:45px 16px 38px;border:1px solid #f0d6dd;border-radius:32px;background:radial-gradient(circle at 50% 0%,#ffe7ee 0,transparent 65%),linear-gradient(155deg,rgba(255,255,255,.85),rgba(255,242,242,.7));box-shadow:0 16px 46px #9e5b7520}
+.love-hero-glow{position:absolute;inset:auto 0 -82px;text-align:center;font-size:290px;line-height:1;color:#e9b6c5;opacity:.17;z-index:-1;pointer-events:none}
+.love-names{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:clamp(9px,2.5vw,24px);margin:14px auto 13px;color:#91435e}
+.love-name{font-family:'Great Vibes',cursive;font-size:clamp(58px,10vw,105px);line-height:1.25;text-shadow:0 4px 22px #b96b8a25}
+.love-heart{font-size:clamp(26px,4vw,43px);color:#d36d8d;filter:drop-shadow(0 3px 8px #d36d8d55);animation:loveBeat 2.4s ease-in-out infinite}
+.love-quote{max-width:460px;margin:0 auto!important;line-height:1.8!important;font-size:clamp(13px,2.5vw,16px)!important;color:#906476!important}
+.love-hero .date-ribbon{margin-top:22px;font-weight:700;letter-spacing:1.7px;background:#fff9f9;border-color:#e9cad2}
+.love-hero .date-ribbon span{padding:0 8px;color:#d58ca2}
+@keyframes loveBeat{0%,100%{transform:scale(1)}15%{transform:scale(1.17)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+body.night .love-hero{background:radial-gradient(circle at 50% 0%,#5a3754 0,transparent 65%),linear-gradient(155deg,#29233e,#201d33);border-color:#76516c}
+body.night .love-names{color:#ffd4e3}body.night .love-heart{color:#ff9fbd}body.night .love-quote{color:#e4c1d0!important}body.night .love-hero .date-ribbon{background:#3b2b44;border-color:#78546d}
+@media(max-width:600px){.love-hero{padding:36px 12px 30px;border-radius:25px}.love-name{font-size:clamp(50px,13vw,75px)}.love-names{gap:9px}}
+@media(prefers-reduced-motion:reduce){.love-heart{animation:none}}
+
+/* Muly mobile overflow fix — layout only */
+html,body{width:100%;max-width:100%;overflow-x:clip}
+header,main,#app,.card,.tab,.mini,.note,.item{min-width:0;max-width:100%}
+header{width:100%;box-sizing:border-box}
+.header-actions{min-width:0;flex-wrap:wrap;justify-content:flex-end}
+.header-actions button{white-space:normal;overflow-wrap:anywhere}
+.row,.tabs,.feature-nav,.timer,.live-timer,.feature-grid,.photo-grid,.summary-grid{min-width:0;max-width:100%}
+.row>*{min-width:0}
+.card input,.card textarea,.card select,.card button{max-width:100%}
+.card,.note,.item,.intro,.muted{overflow-wrap:anywhere;word-break:normal}
+img,video,iframe{max-width:100%;height:auto}
+.love-names{min-width:0;max-width:100%;gap:clamp(5px,1.8vw,14px)}
+.love-name{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.love-hero{max-width:100%;box-sizing:border-box}
+@media(max-width:600px){
+ header{position:relative;align-items:flex-start;gap:7px;padding:12px 12px}
+ header h1{flex:0 0 auto;font-size:19px;line-height:1.2}
+ header h1 span{font-size:clamp(20px,3.4vw,30px)}
+ .header-actions{flex:1 1 0;gap:5px}
+ .header-actions button{font-size:11px!important;padding:8px 9px!important;line-height:1.25;flex:0 1 auto}
+ main{width:100%;padding:0 10px;margin-bottom:55px}
+ .card{padding:18px 14px;border-radius:20px}
+ .love-hero{padding:28px 8px 24px;margin:8px 0 15px}
+ .love-name{font-size:clamp(36px,10vw,58px);line-height:1.18}
+ .love-heart{font-size:clamp(19px,6vw,30px)}
+ .love-names{flex-wrap:nowrap;gap:5px}
+ .love-hero .date-ribbon{letter-spacing:.4px;font-size:11px;padding:8px 10px}
+ .live-timer{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .live-timer strong{font-size:clamp(22px,7vw,32px)}
+ .feature-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ .feature-nav button{min-width:0;overflow-wrap:anywhere;font-size:12px}
+ .photo-grid,.feature-grid,.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .row>*{flex-basis:100%}
+}
+@media(max-width:360px){.love-name{font-size:34px}.love-heart{font-size:19px}.photo-grid,.feature-grid{grid-template-columns:1fr}.header-actions button{font-size:10px!important;padding:7px!important}}
+
+/* Muly Chat */
+.muly-chat-feed{height:min(58vh,510px);min-height:300px;overflow-y:auto;padding:15px;background:linear-gradient(150deg,#fff5f7,#fffaf5);border:1px solid var(--line);border-radius:20px;display:flex;flex-direction:column;gap:10px}
+.muly-chat-msg{max-width:82%;padding:11px 14px;border-radius:17px 17px 17px 5px;background:#fff;border:1px solid #eddce1;align-self:flex-start;overflow-wrap:anywhere;white-space:pre-wrap;box-shadow:0 2px 8px #8b4d580b}
+.muly-chat-msg.mine{align-self:flex-end;border-radius:17px 17px 5px 17px;background:#f5d9e3;border-color:#e8bfce}
+.muly-chat-msg small{display:block;text-align:right;margin-top:5px;font-size:10px}
+.muly-chat-compose{display:flex;align-items:flex-end;gap:8px;margin-top:12px}.muly-chat-compose textarea{flex:1;min-width:0;min-height:48px;max-height:130px;margin:0;resize:vertical}.muly-chat-compose button{flex:0 0 auto;min-height:48px}
+body.night .muly-chat-feed{background:#252238;border-color:#65506a}body.night .muly-chat-msg{background:#393048;border-color:#69536c;color:#f9e8f2}body.night .muly-chat-msg.mine{background:#75445f}
+@media(max-width:480px){.muly-chat-msg{max-width:90%}.muly-chat-compose button{padding:12px}}
+
+/* Muly baby */
+.baby-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px}.baby-stage{height:350px;border-radius:22px;background:radial-gradient(circle at 50% 45%,#fff,#fbe3e8 75%);overflow:hidden;position:relative}.baby-stage canvas{width:100%;height:100%;display:block}.baby-stats .mini{margin-bottom:9px}.baby-stat{height:9px;background:#eadde2;border-radius:20px;overflow:hidden;margin-top:8px}.baby-stat>i{display:block;height:100%;background:#c97896;border-radius:20px;transition:width .4s}.baby-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}.baby-actions button{padding:12px 7px}.baby-name-controls{margin:12px 0}.baby-name-controls input{margin-bottom:8px}@media(max-width:650px){.baby-layout{grid-template-columns:1fr}.baby-stage{height:310px}}
+
+/* Muly ortak ev */
+.house-hud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:12px 0}.house-hud .mini{padding:13px;text-align:center}.house-hud strong{font-size:20px}.house-stage{height:410px;border-radius:21px;overflow:hidden;background:linear-gradient(#fff3f4,#f7d9df);position:relative}.house-stage canvas{display:block;width:100%;height:100%}.house-shop{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.house-product{border:1px solid var(--line);border-radius:15px;padding:13px;background:var(--soft)}.house-product button{width:100%;margin-top:8px;padding:9px}.house-controls{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.house-controls button{padding:9px 12px}body.night .house-stage{background:#28243e}@media(max-width:560px){.house-hud{grid-template-columns:1fr 1fr}.house-stage{height:320px}.house-shop{grid-template-columns:1fr}}
+
+/* Muly sade arayüz: yalnızca görünüm ve gezinme */
+:root{--ink:#604956;--rose:#a96c83;--rose-dark:#884e67;--line:#f0e1e4;--soft:#fffaf9}
+body{background:linear-gradient(180deg,#fff9f8 0%,#fdf5f4 52%,#fffaf7 100%)}
+body:before,body:after{display:none}
+header{max-width:900px;border-radius:0 0 18px 18px;padding:13px 22px;box-shadow:none;background:#fffaf9ed}
+header h1 span{font-size:clamp(21px,3.6vw,34px)}main{max-width:850px;padding:0 18px}
+.love-hero{padding:25px 16px 21px;margin:12px auto 12px;border-radius:24px;box-shadow:none;background:linear-gradient(135deg,#fff5f6,#fffaf8)}
+.love-hero-glow,.love-hero .ornament,.love-hero .eyebrow{display:none}
+.love-name{font-size:clamp(45px,7vw,70px)}.love-heart{font-size:26px}.love-quote{font-size:13px!important}
+.card{margin:12px 0;padding:22px 24px;border-radius:22px;box-shadow:0 5px 24px #8b4d5809;background:#fffefd}
+.relationship-card{background:#fffefd}.relationship-card:after{display:none}.relationship-card h2{font-size:clamp(34px,5vw,48px);margin:5px 0}
+.live-timer{gap:8px}.live-timer>div{padding:12px 6px;border-radius:13px;box-shadow:none;background:#fff6f7}.live-timer strong{font-size:clamp(23px,4vw,33px)}
+.anniversary-countdown{margin:12px 0 4px}.anniversary{display:none}
+#pushSettings{display:none}#pushSettings.muly-settings-open{display:block}
+.muly-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px}
+.muly-topline h2{font-size:21px;margin:0}.muly-settings-btn{padding:9px 12px!important;font-size:12px}
+.muly-shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:0 0 12px}
+.muly-shortcut{display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:center;min-height:87px;border:1px solid #f0dce2;background:#fffefd;color:#80546a;border-radius:18px;box-shadow:none;padding:12px 5px;font-size:12px}
+.muly-shortcut .emoji{font-size:25px}.muly-shortcut:hover{background:#fff3f6}
+.muly-nav-card{padding:14px 16px}.muly-nav-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;background:transparent;color:#80546a;box-shadow:none;padding:9px 7px;text-align:left}
+.muly-nav-toggle:hover{background:#fff7f8;transform:none}.muly-nav-panel{display:none;margin-top:10px}.muly-nav-panel.open{display:block}
+.muly-nav-category{font-size:11px;font-weight:700;letter-spacing:1.2px;color:#a77b8d;text-transform:uppercase;margin:14px 4px 8px}
+.feature-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.feature-nav button{min-height:42px;padding:9px 6px;font-size:12px;border-radius:12px;background:#fff9fa}
+.feature-nav button.active{background:#a96c83;color:white}
+.muly-nav-group{display:contents}.muly-nav-group-heading{grid-column:1/-1}
+#specialCelebrations:empty{display:none}.night-message{font-size:20px;padding:10px}
+body.night .muly-shortcut,body.night .muly-nav-card{background:#29263f;border-color:#64526b;color:#f5d5e4}
+body.night .muly-nav-toggle{color:#f5d5e4}body.night .muly-nav-toggle:hover{background:#352b43}
+body.night .muly-shortcut:hover{background:#3d314c}body.night .muly-nav-category{color:#e5b4ca}
+@media(max-width:600px){header{padding:10px 12px}.love-hero{padding:19px 10px}.love-name{font-size:clamp(35px,10vw,52px)}.love-quote{font-size:12px!important}.card{padding:17px 15px;margin:10px 0}.relationship-card h2{font-size:35px}.muly-shortcuts{gap:6px}.muly-shortcut{min-height:77px;padding:8px 2px;font-size:11px}.muly-shortcut .emoji{font-size:22px}.feature-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.live-timer{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}.live-timer>div{padding:10px 2px}.live-timer strong{font-size:20px}.live-timer small{font-size:10px}}
+
+/* App-style navigation: one view at a time */
+body.muly-app-mode header{position:sticky;top:0;border-radius:0;max-width:none;padding:10px max(16px,calc((100vw - 950px)/2));}
+body.muly-app-mode main{padding-bottom:100px;max-width:900px}
+body.muly-app-mode .love-hero{display:none}
+body.muly-app-mode .night-message{display:none!important}
+body.muly-app-mode #app>.relationship-card,body.muly-app-mode #app>#anniversaryCard,body.muly-app-mode #app>#specialCelebrations,body.muly-app-mode #app>.muly-topline,body.muly-app-mode #app>#mulyShortcuts{display:none}
+body.muly-app-mode.muly-home #app>.relationship-card,body.muly-app-mode.muly-home #app>#anniversaryCard,body.muly-app-mode.muly-home #app>#specialCelebrations,body.muly-app-mode.muly-home #app>.muly-topline,body.muly-app-mode.muly-home #app>#mulyShortcuts{display:revert}
+body.muly-app-mode .muly-nav-card{display:none}
+body.muly-app-mode.muly-menu .muly-nav-card{display:block;margin-top:16px}
+body.muly-app-mode.muly-menu .muly-nav-panel{display:block!important}
+body.muly-app-mode.muly-menu .muly-nav-toggle{display:none}
+body.muly-app-mode.muly-menu .feature-nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+body.muly-app-mode .tab{margin-top:16px}
+body.muly-app-mode.muly-home .tab,body.muly-app-mode.muly-menu .tab{display:none!important}
+body.muly-app-mode #pushSettings{display:none}
+body.muly-app-mode.muly-settings #pushSettings{display:block}
+.muly-bottom-bar{display:none}
+body.muly-app-mode .muly-bottom-bar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;bottom:0;left:0;right:0;z-index:90;padding:9px max(8px,calc((100vw - 700px)/2)) calc(10px + env(safe-area-inset-bottom));background:rgba(255,250,251,.96);backdrop-filter:blur(18px);border-top:1px solid #ead1d8;box-shadow:0 -8px 28px #6d3e5314}
+.muly-bottom-bar button{display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;color:#956b7d;box-shadow:none;border-radius:12px;padding:7px 2px;font-size:11px;font-weight:700;min-width:0}
+.muly-bottom-bar button span{font-size:22px;line-height:1.2}
+.muly-bottom-bar button.active{background:#f9e6ec;color:#913f61}
+.muly-screen-heading{display:none;font-family:'Playfair Display',serif;font-size:24px;margin:20px 4px 10px;color:var(--rose-dark)}
+body.muly-app-mode .muly-screen-heading{display:block}
+body.muly-app-mode.muly-home .muly-screen-heading{display:none}
+body.night .muly-bottom-bar{background:rgba(28,25,44,.97);border-color:#604962}
+body.night .muly-bottom-bar button{color:#e5bdd0}
+body.night .muly-bottom-bar button.active{background:#5a3b55;color:#fff0f5}
+@media(max-width:600px){body.muly-app-mode main{padding:0 12px 100px}body.muly-app-mode .relationship-card{padding:24px 14px}body.muly-app-mode .card{margin:12px 0}body.muly-app-mode header{padding:10px 14px}body.muly-app-mode .muly-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Evimiz 2.0 */
+.ev2-panel{padding:17px;border:1px solid #e9ceda;border-radius:22px;margin-top:17px;background:linear-gradient(145deg,#fffafc,#fff2f7)}
+.ev2-panel h3{margin:0 0 8px}.ev2-tasks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ev2-task{padding:13px 9px;border:1px solid #edd4de;border-radius:15px;background:white;text-align:center}.ev2-task strong{display:block;margin:7px 0}.ev2-task button{width:100%;font-size:12px;padding:9px 5px}
+.ev2-filters{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}.ev2-filters input{flex:1;min-width:130px;margin:0}.ev2-filters select{flex:1;min-width:140px;margin:0}
+#houseShop{grid-template-columns:repeat(3,minmax(0,1fr))}#houseShop .house-product{background:#fff;border:1px solid #eed7e1;display:flex;flex-direction:column;gap:5px;min-width:0}#houseShop .house-product .ev2-emoji{font-size:30px}#houseShop .house-product strong{font-size:13px;min-height:32px}#houseShop .house-product button{margin-top:auto}
+.ev2-room-hint{padding:9px;border-radius:12px;background:#fff0f6;margin:8px 0}
+@media(max-width:680px){.ev2-tasks{grid-template-columns:1fr}#houseShop{grid-template-columns:repeat(2,minmax(0,1fr))}.ev2-task{display:flex;align-items:center;gap:8px;text-align:left}.ev2-task strong{flex:1}.ev2-task button{width:auto;min-width:105px}}
+
+/* Muly 5.0 — City, avatar studio, newspaper */
+.m5-banner{background:linear-gradient(120deg,#ffe5ef,#fff5e8);border:1px solid #f0cdd9;border-radius:19px;padding:15px;margin:12px 0;color:#7b405d}.m5-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.m5-panel{background:#fff9fb;border:1px solid #efd4df;border-radius:20px;padding:15px;margin:13px 0}.m5-panel h3{margin:0 0 10px}.m5-stage{height:clamp(310px,56vw,530px);position:relative;overflow:hidden;border-radius:23px;background:linear-gradient(#c9e9f4,#fce3ec);touch-action:pan-y}.m5-stage canvas{width:100%;height:100%;display:block}.m5-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.m5-actions button{flex:1;min-width:95px}.m5-places{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.m5-place{background:#fff;border:1px solid #ebcddd;border-radius:16px;padding:12px 6px;min-width:0}.m5-place span{display:block;font-size:24px}.m5-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.m5-form label{font-size:12px;font-weight:700}.m5-form input,.m5-form select{width:100%;margin-top:5px}.m5-paper{background:#fffdf5;color:#60483e;border:1px solid #e4d4bc;padding:22px;border-radius:8px;box-shadow:0 10px 24px #6b4a4a18}.m5-paper h3{font-family:Georgia,serif;font-size:29px;text-align:center;margin:4px 0;border-bottom:double 4px #b8a38d;padding-bottom:10px}.m5-paper .m5-stat{background:#f7efe2;border-radius:12px;padding:14px;text-align:center}.m5-paper .m5-stat strong{display:block;font-size:27px}.m5-help{font-size:12px;color:#8d6478}.m5-avatars{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}.m5-avatar-preview{min-width:130px;flex:1;text-align:center;background:#fff;border:1px solid #eacdda;border-radius:18px;padding:15px}.m5-avatar-icon{font-size:64px;line-height:1.2}.m5-status{min-height:20px;color:#8e4c6a}.m5-visit{font-weight:700;color:#9e5373}@media(max-width:500px){.m5-places{grid-template-columns:repeat(2,minmax(0,1fr))}.m5-form{grid-template-columns:1fr}.m5-paper{padding:14px}.m5-paper h3{font-size:24px}}
+body.night .m5-panel,body.night .m5-avatar-preview{background:#30283e;border-color:#66506a}body.night .m5-banner{background:#4c354d;color:#ffe1e9}body.night .m5-paper{background:#f9f2e7;color:#60483e}
+</style>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png"><link rel="icon" type="image/png" href="/love-call-muly-logo.png">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Love Call Muly">
+<style>
+.muly-achievements{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.muly-achievement{padding:17px;border:1px solid var(--line);border-radius:20px;background:var(--soft)}
+.muly-achievement .medal{font-size:28px}.muly-achievement h3{margin:7px 0;font-size:17px}.muly-achievement p{font-size:13px;margin:5px 0;color:var(--ink)}
+.muly-achievement .progress{height:8px;background:#eedce2;border-radius:9px;overflow:hidden;margin:12px 0}.muly-achievement .progress i{display:block;height:100%;background:#bc7591;border-radius:9px}
+.muly-achievement button{width:100%;padding:10px 8px;font-size:13px}.muly-achievement.done{border-color:#d6b4c3}
+@media(max-width:520px){.muly-achievements{grid-template-columns:1fr}}
+body.night .muly-achievement{background:#29263f}
+</style><style>/* Bebek marketi — uygulama görünümüne uyumlu */
+.baby-market{margin-top:22px;padding-top:14px;border-top:1px solid var(--line)}
+.baby-market-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+.baby-product{border:1px solid var(--line);border-radius:18px;padding:14px;background:var(--soft);display:flex;flex-direction:column;gap:7px}
+.baby-product .emoji{font-size:29px}.baby-product strong{font-size:14px}.baby-product small{line-height:1.5}
+.baby-product button{width:100%;padding:10px 7px;margin-top:auto;font-size:12px}
+body.night .baby-product{background:#29263f}
+@media(max-width:390px){.baby-market-grid{grid-template-columns:1fr}}
+
+/* Muly 3D yaşam dünyası - responsive visual refresh */
+.baby-stage{height:480px;background:radial-gradient(circle at 50% 32%,#fffdfa 0%,#ffe8f1 52%,#e9c5da 100%);border:1px solid #e9c8d8;box-shadow:inset 0 0 60px #fff8,0 16px 35px #ad789425}
+.house-stage{height:520px;background:linear-gradient(145deg,#fce9ef,#e7d8f2);border:1px solid #e7c5d8;box-shadow:0 14px 35px #ad789422}
+.baby-layout{grid-template-columns:minmax(0,1.4fr) minmax(230px,1fr)}
+.baby-stage:after{content:'✦  BİZİM MİNİK DÜNYAMIZ  ✦';position:absolute;bottom:12px;left:0;right:0;text-align:center;color:#9b607c;font-size:10px;letter-spacing:2px;pointer-events:none}
+@media(max-width:650px){.baby-layout{grid-template-columns:1fr}.baby-stage{height:390px}.house-stage{height:410px}}
+body.night .baby-stage{background:radial-gradient(circle at 50% 30%,#675068,#352c4e)}
+</style><style id="muly-visual-v3">
+.muly-upgrade-banner{padding:12px 15px;border-radius:15px;background:linear-gradient(110deg,#ffe3ed,#fff4d9);color:#8a3c62;font-size:12px;font-weight:800;letter-spacing:.7px;margin:10px 0 18px}
+#baby .baby-layout{grid-template-columns:minmax(0,1.6fr) minmax(250px,1fr)}
+#baby .baby-stage{height:560px;background:radial-gradient(circle at 50% 30%,#fffdf9,#f5c5d9 85%);border:5px solid #f7dce5;box-shadow:inset 0 0 45px #fff8,0 18px 38px #c26c8d22}
+#house .house-stage{height:590px;border:5px solid #f4d6e1;box-shadow:0 18px 38px #c26c8d22}
+#baby .baby-actions button{min-height:58px;font-size:15px}
+#baby .baby-market{margin-top:22px;padding:18px;border:2px solid #f1d8e1;border-radius:24px;background:#fff8fa}
+body.night .muly-upgrade-banner{background:#51354d;color:#ffe1ed}
+@media(max-width:700px){#baby .baby-layout{grid-template-columns:1fr}#baby .baby-stage{height:440px}#house .house-stage{height:460px}}
+</style><style>
+/* MULY Otomati — mevcut PWA ve genel temayla uyumlu */
+.mv-hero{display:grid;grid-template-columns:minmax(145px,1fr) minmax(150px,1fr);gap:16px;align-items:center;margin:18px 0}.mv-machine{border:9px solid #e79fba;border-radius:27px;background:linear-gradient(145deg,#ffcbdc,#f7a8c4);padding:13px;box-shadow:inset 0 0 0 3px #fff8,0 15px 25px #a94f7825;max-width:280px;margin:auto;width:100%}.mv-sign{text-align:center;font-family:Georgia,serif;font-size:24px;font-weight:bold;color:#8d345c;letter-spacing:2px}.mv-window{background:linear-gradient(160deg,#fff8fc,#e7f4ff);border:5px solid #fff;border-radius:17px;min-height:165px;display:grid;place-content:center;text-align:center;margin:10px 0;box-shadow:inset 0 3px 18px #9b8aa02e}.mv-window #mvGift{font-size:80px;display:block;filter:drop-shadow(0 7px 5px #d57c9744)}.mv-window #mvGift.mv-pop{animation:mvpop .65s ease}.mv-sparkles{color:#d783a5;font-size:18px;letter-spacing:9px}.mv-slot{background:#9b4b70;border-radius:12px;padding:10px;color:white;font-size:11px;text-align:center;letter-spacing:1px}.mv-controls{display:flex;flex-direction:column;gap:9px}.mv-controls button{width:100%;padding:13px 8px}.mv-balance{background:#fff4f8;border:1px solid #efcad8;border-radius:15px;padding:10px 12px;color:#7b4763}.mv-balance strong{font-size:25px}.mv-balance small{display:block}.mv-odds{border:1px solid #e8cbd7;border-radius:18px;padding:16px;background:#fff8fb;margin:18px 0}.mv-odds>div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f1e2e9}.mv-collection{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:10px}.mv-item{border:1px solid #ebcbd8;background:#fff9fc;border-radius:15px;padding:12px;text-align:center}.mv-item .mv-emoji{font-size:37px}.mv-item strong{display:block;font-size:13px;margin:5px 0}.mv-item small{display:block}.mv-history{display:grid;gap:8px}.mv-history>div{padding:10px 12px;background:#fff8fb;border:1px solid #efdae3;border-radius:12px}.mv-result{font-weight:700;color:#9b456f}.mv-legendary{border-color:#e0b75c;background:#fff7df}.mv-rare{border-color:#ac9add}.mv-controls .muted{min-height:36px}body.night .mv-balance,body.night .mv-odds,body.night .mv-item,body.night .mv-history>div{background:#30283e;color:#ffe4ee;border-color:#6a5268}@keyframes mvpop{0%{transform:scale(.5) rotate(-15deg)}60%{transform:scale(1.23) rotate(8deg)}100%{transform:scale(1) rotate(0)}}@media(max-width:540px){.mv-hero{grid-template-columns:1fr}.mv-machine{max-width:235px}.mv-window{min-height:140px}}
+</style>
+
+<style id="muly-polish-v7">
+/* Progressive visual polish: preserves existing layout, PWA and features */
+:root{--muly-ease:cubic-bezier(.2,.8,.2,1)}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit}
+button{touch-action:manipulation;transition:transform .16s var(--muly-ease),box-shadow .2s ease,filter .2s ease}
+button:not(:disabled):active{transform:scale(.975)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #b54d87;outline-offset:3px}
+button:disabled{cursor:not-allowed;opacity:.65}
+.card,.muly-nav-card{min-width:0}
+.tab:not(.hidden){animation:mulyTabEnter .28s var(--muly-ease) both}
+@keyframes mulyTabEnter{from{opacity:.3;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.mv-machine{transform:translateZ(0);will-change:auto}
+.mv-machine.muly-celebrate{animation:mulyMachineCelebrate .65s var(--muly-ease)}
+.mv-machine.muly-celebrate .mv-window{animation:mulyWindowGlow .8s ease}
+@keyframes mulyMachineCelebrate{0%,100%{transform:translateY(0) rotate(0)}24%{transform:translateY(-5px) rotate(-1.5deg)}50%{transform:translateY(2px) rotate(1.5deg)}74%{transform:translateY(-2px) rotate(-.6deg)}}
+@keyframes mulyWindowGlow{0%,100%{filter:brightness(1)}40%{filter:brightness(1.25) saturate(1.2)}}
+.mv-item{transition:transform .2s var(--muly-ease),box-shadow .2s ease}
+@media(hover:hover){.mv-item:hover{transform:translateY(-3px);box-shadow:0 8px 24px #a34e7926}}
+@media(max-width:640px){
+  .card{max-width:100%;overflow-wrap:anywhere}
+  .tab input,.tab textarea,.tab select{max-width:100%;box-sizing:border-box;font-size:max(16px,1em)}
+  .muly-bottom-bar{padding-bottom:max(7px,env(safe-area-inset-bottom))}
+  .mv-controls button{min-height:44px}
+  .mv-hero{max-width:100%}
+  #m5Paper{overflow-wrap:anywhere}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+<style id="muly-ui-v8">
+/* Muly 8: focused, touch-friendly application interface */
+:root{--m8-bg:#fff8fa;--m8-surface:#fff;--m8-text:#503446;--m8-accent:#ad5278;--m8-border:#f0dfe6}
+body:not(.night){background:linear-gradient(165deg,#fff9fb,#fff4f7 48%,#fffaf6)!important;color:var(--m8-text)}
+body:before,body:after{display:none!important}
+header{max-width:1080px;border-radius:0!important;box-shadow:0 4px 24px #7f3f5810}
+header h1{font-size:clamp(20px,4vw,27px)}
+main{max-width:1040px!important}
+.card{border-radius:24px;box-shadow:0 8px 28px #7f3f580b;border-color:var(--m8-border);margin:14px 0}
+body:not(.night) .card{background:#fffdfef5}
+button{min-height:44px;touch-action:manipulation}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #b95c84!important;outline-offset:2px}
+button:active{transform:scale(.975)}
+.muly-topline{align-items:center;gap:10px}
+.muly-shortcuts{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.muly-shortcut{border-radius:20px!important;min-height:96px!important;background:linear-gradient(150deg,#fff,#fff0f5)!important;border:1px solid #efd7e1!important;box-shadow:0 5px 14px #a24b7310!important;color:#83435e!important}
+.muly-shortcut .emoji{font-size:29px!important;margin-bottom:4px}
+.relationship-card{background:linear-gradient(130deg,#fff1f6,#fffdfc 60%,#fff5eb)!important;border:1px solid #f0d7e0!important}
+.live-timer>div{border-radius:16px;box-shadow:none}
+.muly-bottom-bar{gap:4px!important}
+body.muly-app-mode .muly-bottom-bar{border-top:1px solid #f0dbe3;background:#fffcfdf7;box-shadow:0 -8px 28px #78374f12;padding-top:8px}
+body.muly-app-mode .muly-bottom-bar button{min-height:53px;border-radius:16px;transition:background .16s,color .16s,transform .16s}
+body.muly-app-mode .muly-bottom-bar button.active{background:#f7e1eb;color:#913c61}
+body.muly-app-mode .muly-bottom-bar button span{font-size:24px}
+body.muly-app-mode .tab{scroll-margin-top:100px}
+body.muly-app-mode.muly-menu .muly-nav-card{padding:20px!important}
+body.muly-app-mode.muly-menu .feature-nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.feature-nav button{min-height:68px!important;padding:12px 8px!important;background:#fff6f9!important;border-radius:16px!important;border:1px solid #f0d9e2!important;color:#7c415b!important;font-size:13px!important;line-height:1.4}
+.feature-nav button:hover{background:#fbe9f0!important}
+.feature-nav button.active{background:#b05b7c!important;color:#fff!important}
+#m8Search{margin:4px 0 14px;padding:14px 16px 14px 44px;border-radius:16px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23a16b81' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 15px center}
+#m8Empty{padding:16px;color:#8f6b7a;text-align:center}
+.muly-screen-heading{font-size:clamp(22px,5vw,31px);margin:22px 2px 8px}
+#chat .muly-chat-compose{position:sticky;bottom:80px;z-index:3;background:var(--m8-bg);border-radius:16px;padding:8px}
+body.night .muly-shortcut{background:#392d44!important;color:#f9dce9!important;border-color:#684e64!important}
+body.night .relationship-card{background:linear-gradient(120deg,#352a44,#282940)!important;border-color:#624d63!important}
+body.night .feature-nav button{background:#352b43!important;color:#f7dce9!important;border-color:#6a526e!important}
+body.night #m8Search{background-color:#30283d;color:#fff}
+body.night .card{border-color:#55455f}
+@media(max-width:700px){header{padding:12px 14px!important}main{padding:0 12px!important}.hero{padding:14px 4px!important}.love-names{margin-top:5px}.muly-shortcuts{gap:8px}.muly-shortcut{min-height:82px!important;font-size:11px!important;padding:8px 3px!important}.muly-shortcut .emoji{font-size:24px!important}.card{padding:18px 15px!important;border-radius:20px!important}.feature-nav{gap:8px!important}body.muly-app-mode.muly-menu .feature-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.feature-nav button{min-height:61px!important}body.muly-app-mode main{padding-bottom:112px!important}.muly-bottom-bar button{font-size:10px!important}.live-timer strong{font-size:clamp(18px,5vw,25px)!important}}
+@media(max-width:360px){.muly-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}.muly-bottom-bar button span{font-size:20px!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+<style id="muly-clean-v9">
+/* Focused redesign; keeps original sections, IDs, handlers, Supabase and PWA intact. */
+:root{--m8-bg:#15121c;--m8-surface:#211a29;--m8-text:#f6eaf0;--m8-accent:#e5a1b8;--m8-border:#463344;--ink:#f4e6ee;--rose:#e5a1b8;--rose-dark:#ffd5e4;--line:#483546;--blush:#392938;--soft:#29212f}
+body:not(.night),body.night{background:radial-gradient(ellipse at 75% -10%,#3b253e 0,transparent 42%),#15121c!important;color:#f6eaf0!important}
+header,body.night header{background:#19141fef!important;border-color:#493446!important;color:#fff;box-shadow:none!important;max-width:none!important}
+header h1,header h1 span{color:#f8c5d8!important}
+main{max-width:960px!important}
+.card,body:not(.night) .card,body.night .card{background:#211a29!important;border:1px solid #453346!important;box-shadow:none!important;border-radius:22px!important}
+.card h2,.card h3,.muly-topline h2,.muly-screen-heading{color:#f6d6e3!important}
+.card .intro,.card .muted,.card small,.card p,body.night .card p{color:#c8b5c3}
+.card input,.card textarea,.card select,body.night .card input,body.night .card textarea,body.night .card select{background:#18131e!important;color:#fff2f7!important;border-color:#554052!important}
+.card input::placeholder,.card textarea::placeholder{color:#b8a5b2}
+button:not(.secondary){background:#d88eab;color:#291725;box-shadow:none}
+button.secondary,body.night button.secondary{background:#34283a!important;color:#f3d6e3!important;border-color:#574254!important;box-shadow:none}
+.relationship-card,body.night .relationship-card{background:linear-gradient(135deg,#3b293a,#241d2d)!important;border-color:#65435b!important;padding:30px 24px!important}
+.relationship-card h2{color:#ffcedf!important}
+.live-timer>div,body.night .live-timer>div{background:#281f30!important;border:1px solid #483648!important}
+.live-timer strong{color:#f9c3d7!important}
+.anniversary-countdown{color:#e1bdcd!important}
+.muly-shortcuts{display:none!important}
+.muly-topline{margin-top:20px}
+.muly-nav-card{background:#211a29!important;border-color:#493547!important}
+.feature-nav button,body.night .feature-nav button{background:#2d2334!important;border-color:#513c50!important;color:#f2dce7!important;min-height:60px!important}
+.feature-nav button.active{background:#9f5b7a!important;color:#fff!important}
+.muly-bottom-bar,body.muly-app-mode .muly-bottom-bar,body.night .muly-bottom-bar{background:#211a29f7!important;border-color:#493748!important;box-shadow:0 -8px 30px #0004!important}
+.muly-bottom-bar button{color:#bba7b7!important;background:transparent!important}
+.muly-bottom-bar button.active{background:#483044!important;color:#ffd2e4!important}
+.mini,.note,.photo-card,.house-product,.baby-product,.m5-panel,.muly-achievement,.mv-item,.mv-odds,.mv-balance,body.night .mini{background:#2a2130!important;color:#f7e8ef!important;border-color:#503c4e!important}
+.mini strong,.muly-achievement h3{color:#f6c2d6!important}
+#chat .muly-chat-compose{background:#211a29!important}
+.muly-chat-feed{background:#191520!important;border-color:#493748!important}
+.muly-chat-msg{background:#312538!important;color:#f6e8ee!important;border-color:#5b4258!important}
+.muly-chat-msg.mine{background:#644057!important}
+.m5-paper{background:#fff9ed!important;color:#55443b!important}
+.m5-paper *{color:inherit}
+#notice{background:#3a2838!important;color:#ffe3ec!important;border-color:#704c66!important}
+#introCurtain{background:radial-gradient(circle,#34283d,#16121d)}
+#introCurtain div{color:#f2b9d0}
+body.muly-app-mode.muly-home #app>.muly-topline{display:none!important}
+body.muly-app-mode.muly-home #app>.relationship-card{margin-top:24px!important}
+body.muly-app-mode.muly-menu .muly-nav-card{margin-top:24px!important}
+body.muly-app-mode .tab{margin-top:22px!important}
+#baby .baby-market{background:#2b2230!important;border-color:#503c4e!important}
+.muly-upgrade-banner{background:#382a39!important;color:#f4ccdd!important}
+@media(max-width:700px){.relationship-card{padding:25px 14px!important}.live-timer{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}.live-timer strong{font-size:clamp(23px,6vw,34px)!important}.card{padding:20px 16px!important}body.muly-app-mode.muly-menu .feature-nav{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+</style>
+<style id="muly-premium-v10">
+/* Visual-only refinement: no database, game, or feature handlers changed */
+:root{--premium-rose:#f0a9c2;--premium-glow:#d782a8}
+body{font-family:'DM Sans',sans-serif;letter-spacing:.005em}
+body.muly-app-mode header{background:rgba(22,17,29,.88)!important;border-bottom:1px solid #ffffff16!important;backdrop-filter:blur(24px);box-shadow:0 6px 30px #0003!important}
+header h1 span{font-family:'Great Vibes',cursive!important;color:#ffd4e4!important;text-shadow:0 0 24px #f18bad44}
+body.muly-app-mode main{max-width:950px!important}
+body.muly-app-mode.muly-home #app>.relationship-card{margin-top:20px!important;border-radius:28px!important;padding:35px 28px!important;background:radial-gradient(ellipse at 80% 0%,#74445a48,transparent 55%),linear-gradient(135deg,#362539,#211b2b)!important;box-shadow:0 20px 55px #09040d55!important}
+.relationship-card h2{color:#ffd8e5!important;text-shadow:0 0 22px #f0a5c030}
+.live-timer>div{background:#ffffff09!important;border:1px solid #ffffff17!important;backdrop-filter:blur(10px);border-radius:18px!important}
+.live-timer strong{color:#ffe1eb!important;font-variant-numeric:tabular-nums}
+body.muly-app-mode .card{border-radius:25px!important;border-color:#ffffff15!important;box-shadow:0 12px 38px #08040d38!important}
+body.muly-app-mode .tab{max-width:100%;margin-top:18px!important}
+body.muly-app-mode .tab h2{font-size:clamp(23px,4vw,32px);letter-spacing:-.5px}
+body.muly-app-mode .muly-shortcuts{gap:11px!important}
+body.muly-app-mode .muly-shortcut{border-radius:20px!important;min-height:105px!important;background:linear-gradient(145deg,#332639,#271e30)!important;border:1px solid #ffffff17!important;color:#f9e6ee!important;box-shadow:0 8px 24px #0002!important;transition:transform .2s,border-color .2s,background .2s}
+body.muly-app-mode .muly-shortcut:hover{transform:translateY(-3px);border-color:#e79fba77!important;background:#3b2a40!important}
+body.muly-app-mode .muly-bottom-bar{background:#1a1421ed!important;border-top:1px solid #ffffff1b!important;backdrop-filter:blur(22px)}
+body.muly-app-mode .muly-bottom-bar button.active{background:#e9a0bd25!important;color:#ffcade!important}
+body.muly-app-mode .feature-nav button{border-radius:16px!important;transition:transform .18s,border-color .18s}
+body.muly-app-mode .feature-nav button:hover{transform:translateY(-2px);border-color:#e7a0c06b!important}
+.night-message{display:none!important}
+body.night.muly-app-mode.muly-home #app .muly-night-greeting{display:block!important}
+.muly-night-greeting{display:none;margin:18px 0 8px;padding:27px 24px;border:1px solid #d98fb34d;border-radius:26px;text-align:center;background:radial-gradient(ellipse at 50% -20%,#aa6c9940,transparent 75%),linear-gradient(145deg,#34263d,#211c31);box-shadow:0 14px 40px #0b07124a;position:relative;overflow:hidden}
+.muly-night-greeting:before{content:'✦     ·     ✧     ·     ✦';display:block;color:#ffd5ab;font-size:20px;letter-spacing:14px;margin-bottom:13px;text-shadow:0 0 16px #fbd7acaa}
+.muly-night-greeting .night-quote{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,4vw,36px);line-height:1.42;color:#ffe4ed;text-shadow:0 0 22px #f6b4d06b}
+.muly-night-greeting .night-signature{display:block;font-size:11px;letter-spacing:2.3px;color:#eab5cf;margin-top:15px;font-weight:700}
+body:not(.night) .muly-night-greeting{display:none!important}
+@media(max-width:600px){body.muly-app-mode.muly-home #app>.relationship-card{padding:25px 16px!important}.muly-night-greeting{margin:14px 0;padding:23px 14px;border-radius:21px}.muly-night-greeting:before{letter-spacing:8px}.muly-night-greeting .night-signature{font-size:10px;letter-spacing:1.3px}body.muly-app-mode .muly-shortcut{min-height:85px!important}}
+@media(prefers-reduced-motion:reduce){body.muly-app-mode .muly-shortcut{transition:none}}
+</style>
+<style>header h1{display:flex;align-items:center;gap:8px;line-height:1.15}header h1::before{content:"";display:inline-block;flex:0 0 34px;width:34px;height:34px;background:url("/love-call-muly-logo.png") center/cover;border-radius:10px}header h1 span{font-family:"DM Sans",sans-serif!important;font-style:normal;font-size:clamp(17px,3.2vw,25px)!important;letter-spacing:-.5px} @media(max-width:400px){header h1::before{flex-basis:28px;width:28px;height:28px}header h1 span{font-size:17px!important}}</style><style id="muly-widget-style">.mw-preview{width:min(100%,390px);margin:18px auto 23px;padding:23px;border-radius:32px;color:#ffe9f2;background:radial-gradient(circle at 75% 12%,#7c456e 0,transparent 42%),linear-gradient(145deg,#39233f,#191a32 75%);box-shadow:0 18px 40px #160b2645;border:1px solid #b47b9b55;text-align:center}.mw-top{display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:1.6px;font-weight:700;color:#f7b6d4}.mw-photo{margin:24px auto 12px;width:120px;height:120px;border-radius:25px;background:linear-gradient(145deg,#d977a4,#7956a8);display:grid;place-items:center;overflow:hidden;font-size:58px;box-shadow:0 8px 30px #e77bb04a}.mw-photo img{width:100%;height:100%;object-fit:cover}.mw-names{font-family:Georgia,serif;font-size:29px;color:#ffe2ef}.mw-caption{font-size:12px;color:#d5b6cd;margin-top:7px}.mw-time{display:flex;justify-content:center;align-items:baseline;gap:7px;margin:23px 0 16px;flex-wrap:wrap}.mw-time strong{font-size:32px;font-variant-numeric:tabular-nums;color:#fff}.mw-time span{font-size:12px;color:#eab5d0;margin-right:5px}.mw-divider{height:1px;background:#ffffff35;margin:8px 0 18px}.mw-anniv{font-size:13px;color:#f9c5dc}.mw-note{margin-top:16px;background:#ffffff13;border:1px solid #ffffff24;border-radius:16px;padding:14px 10px;font-size:14px;overflow-wrap:anywhere}#mwStatus{font-size:12px}</style></head>
+<body><div id="introCurtain" aria-hidden="true"><div><img src="/love-call-muly-logo.png" alt="Love Call Muly logosu" style="width:110px;height:110px;object-fit:cover;border-radius:25px;display:block;margin:0 auto 16px"><span style="font-family:DM Sans,sans-serif;font-size:clamp(25px,6vw,42px);font-weight:700">Love Call Muly</span><small>İKİ KALP · TEK HİKÂYE</small></div></div><div class="stars" id="stars" aria-hidden="true"></div>
+<header><h1><span>Love Call Muly</span> ♡</h1><div class="header-actions"><button id="rainToggle" class="secondary theme-toggle" type="button" style="display:none">🌧️ Yağmur</button><button id="themeToggle" class="secondary theme-toggle" type="button" aria-pressed="false">🌙 Gece modu</button><button id="logout" class="secondary hidden">Çıkış yap</button></div></header>
+<main>
+<div class="hero love-hero"><div class="love-hero-glow" aria-hidden="true">♡</div><div class="eyebrow">SADECE BİZE AİT BİR DÜNYA</div><div class="love-names" aria-label="Muly kalp Olcay"><span class="love-name">Muly</span><span class="love-heart" aria-hidden="true">♥</span><span class="love-name">Olcay</span></div><p class="love-quote">Seninle başlayan, her gün yeniden güzelleşen bir sonsuzluk.</p><div class="date-ribbon">14 MART 2026 <span aria-hidden="true">✦</span> 00:08</div><div class="ornament"><span>✧ ♡ ✧</span></div></div>
+<div class="night-message" aria-live="polite">✨ Parlaklığınla gecemi aydınlatıyorsun, Muly’m. ✨<span>GÖKYÜZÜMÜN EN GÜZEL YILDIZI ♡</span></div>
+<div id="notice" class="hidden" role="status"></div>
+<section id="setup" class="card"><h2>Önce bağlantıyı tamamla</h2><p>Bu dosyada <code>SUPABASE_URL</code> ve <code>SUPABASE_KEY</code> alanlarını kendi Supabase proje bilgilerinle değiştir.</p></section>
+<section id="auth" class="card hidden"><div class="auth-mark">❀</div><h2>Bizim hikâyemize hoş geldin ❤️</h2><form id="authForm"><label>E-posta</label><input id="email" type="email" required autocomplete="email"><label>Şifre</label><input id="password" type="password" required minlength="6" autocomplete="current-password"><div class="row"><button type="submit" id="loginBtn">Giriş yap</button><button type="button" class="secondary" id="signupBtn">Hesap oluştur</button></div></form><p class="muted">Kayıt sonrası e-posta doğrulaması gerekebilir.</p></section>
+<section id="pair" class="card hidden"><div class="auth-mark">♡</div><h2>İkinizin alanını oluşturun 💌</h2><p>Biriniz çift alanı oluşturup davet kodunu diğerine göndersin. Diğeri kendi hesabından kodla katılsın.</p><button id="createPair">Davet kodu oluştur</button><hr style="border:0;border-top:1px solid #f5d7e3;margin:22px 0"><label>Davet kodu</label><input id="inviteInput" placeholder="Davet kodunu yaz"><button id="joinPair">Koda katıl</button></section>
+<section id="app" class="hidden"><div class="muly-night-greeting" aria-live="polite"><div class="night-quote">✨ Parlaklığınla gecemi aydınlatıyorsun, Muly’m. ✨</div><span class="night-signature">GÖKYÜZÜMÜN EN GÜZEL YILDIZI ♡</span></div><div class="card" id="pushSettings"><h2>🔔 Telefon bildirimleri</h2><p class="intro">Sevgilinden kalp geldiğinde telefonunda bildirim görmek için bu cihazda izin ver.</p><button id="enablePush" type="button">🔔 Bildirimleri Aç</button><p class="muted" id="pushStatus" aria-live="polite">Henüz kontrol edilmedi.</p></div><div class="card relationship-card"><div class="section-kicker">♡ 14.03.2026 · 00:08 ♡</div><h2>Seninle geçen her saniye</h2><p class="intro">Birlikte yazdığımız hikâyenin başladığı o güzel andan beri…</p><div class="timer live-timer"><div><small>Gün</small><strong id="elapsed">—</strong></div><div><small>Saat</small><strong id="elapsedHours">—</strong></div><div><small>Dakika</small><strong id="elapsedMinutes">—</strong></div><div><small>Saniye</small><strong id="elapsedSeconds">—</strong></div></div><p class="anniversary-countdown">İlk yıl dönümümüze <strong id="remaining">—</strong></p><p class="muted" id="pairStatus"></p></div>
+<section class="card anniversary" id="anniversaryCard"><div class="section-kicker">14 MART · BİZİM GÜNÜMÜZ</div><h2 id="anniversaryTitle">İyi ki sen ♡</h2><p id="anniversaryText">Birlikte yazacağımız daha nice güzel yıllara...</p></section><div id="specialCelebrations"></div>
+<div class="muly-topline"><h2>Bizim dünyamız ♡</h2><button type="button" class="secondary muly-settings-btn" id="mulySettingsToggle">⚙️ Ayarlar</button></div>
+<div class="muly-shortcuts" id="mulyShortcuts"><button class="muly-shortcut" data-open-tab="chat"><span class="emoji">💌</span>Sohbet</button><button class="muly-shortcut" data-open-tab="baby"><span class="emoji">🍼</span>Bebeğimiz</button><button class="muly-shortcut" data-open-tab="house"><span class="emoji">🏠</span>Evimiz</button><button class="muly-shortcut" data-open-tab="memories"><span class="emoji">📸</span>Anılar</button></div>
+<div class="card muly-nav-card"><button type="button" class="muly-nav-toggle" id="mulyNavToggle" aria-expanded="false" aria-controls="mulyNavPanel"><span>♡ Tüm bölümler</span><span id="mulyNavArrow">⌄</span></button><div class="muly-nav-panel" id="mulyNavPanel"><div class="feature-nav" id="featureNav"><button class="secondary" data-tab="widget">📱 Muly Widget</button><button class="secondary" data-tab="chat">💌 Muly Chat</button><button class="secondary" data-tab="baby">🍼 Bebeğimiz</button><button class="secondary" data-tab="house">🏠 Evimiz</button><button class="secondary" data-tab="vending">🎁 Muly Otomatı</button><button class="secondary" data-tab="newspaper">📰 Muly Gazetesi</button><button class="secondary active" data-tab="memories">📸 Anılar</button><button class="secondary" data-tab="sky">✨ Gökyüzümüz</button><button class="secondary" data-tab="calendar">📅 Takvim</button><button class="secondary" data-tab="wishes">🎀 Hayaller</button><button class="secondary" data-tab="miss">❤️ Seni özledim</button><button class="secondary" data-tab="moods">🥹 Ruh halimiz</button><button class="secondary" data-tab="music">🎵 Şarkımız</button><button class="secondary" data-tab="letters">💌 Mektuplar</button><button class="secondary" data-tab="firsts">🌸 İlklerimiz</button><button class="secondary" data-tab="achievements">🏆 Başarımlar</button><button class="secondary" data-tab="summary">📊 Aylık özet</button><button class="secondary" data-tab="hearts">💗 Kalp gönder</button><button class="secondary" data-tab="notifications">🔔 Bildirimler <span id="notifCount">0</span></button></div></div></div>
+<section id="baby" class="card tab hidden"><h2>👶 Bebeğimiz · Yeni 3D Dünya</h2><div class="muly-upgrade-banner">✨ YENİ GÖRÜNÜM · BÜYÜK 3D BEBEK · CANLI BEBEK ODASI</div><p class="intro">Birlikte büyüttüğünüz minik mutluluk. İsmini ikiniz de koyabilirsiniz 💗</p><h3 id="babyNameDisplay">İsmini bekliyorum 🍼</h3><p id="babyInfo" class="muted">Bebek hazırlanıyor…</p><div id="babySpeech" class="baby-speech" role="status">Merhaba! 💗</div><div id="babyXp" class="baby-xp"></div><div class="baby-name-controls hidden" id="babyNameControls"><label>Bebeğimize bir isim ver 💗</label><input id="babyNameInput" maxlength="35" placeholder="Bebeğin adı"><button type="button" id="babySaveName">💗 İsmini kaydet</button></div><div class="baby-layout"><div class="baby-stage" id="babyStage"><p class="muted" id="baby3dStatus" style="padding:15px">3D bebek yükleniyor…</p></div><div><div class="baby-stats" id="babyStats"></div><div class="baby-actions"><button type="button" data-baby-action="feed">🍼 Besle</button><button type="button" data-baby-action="wash">🛁 Yıka</button><button type="button" data-baby-action="sleep">😴 Uyut</button><button type="button" data-baby-action="play">🧸 Oyna</button></div><p class="muted" id="babyActionStatus" aria-live="polite"></p></div></div><div class="baby-market"><h3>🛒 Bebek marketi</h3><p class="muted">Ortak aşk paranızla mama ve bakım ürünleri alın. Satın aldıklarınız ikinizin ortak çantasında saklanır.</p><div id="babyWallet" class="note">🪙 Bakiye yükleniyor…</div><div id="babyMarketList" class="baby-market-grid"></div><h3>🎒 Ortak çantamız</h3><div id="babyInventory" class="baby-market-grid"></div><p id="babyMarketStatus" class="muted" role="status"></p></div></section>
+<section id="house" class="card tab hidden"><h2>🏡 Evimiz 2.0 · Ortak Yaşam</h2><div class="muly-upgrade-banner">✨ 56 MOBİLYA · 4 ODA · ORTAK DEKORASYON · GÜNLÜK GÖREVLER</div><p class="intro">Birlikte aşk parası biriktirin, seviye atlayın ve evinizi döşeyin. Gerçek para kullanılmaz. 💗</p><div class="house-hud"><div class="mini">💗 Aşk seviyesi<strong id="houseLevel">—</strong></div><div class="mini">⭐ Aşk XP<strong id="houseXp">—</strong></div><div class="mini">🪙 Ortak para<strong id="houseCoins">—</strong></div></div><div class="house-stage" id="houseStage"><p class="muted" id="house3dStatus" style="padding:14px">3D ev hazırlanıyor…</p></div><div class="house-controls"><button type="button" id="houseDaily">🎁 Günlük ödülü al (+20 XP, +50 🪙)</button><button type="button" id="houseRotate" class="secondary">🔄 Kamerayı çevir</button></div><div class="house-controls"><select id="houseRoom" aria-label="Oda seçimi" style="flex:1;min-width:160px;margin:0"><option value="salon">🛋️ Salon · Seviye 1</option><option value="yatak">🛏️ Yatak odası · Seviye 4</option><option value="mutfak">🍳 Mutfak · Seviye 6</option><option value="bebek">🍼 Bebek odası · Seviye 8</option></select><button type="button" id="houseEdit" class="secondary">🪑 Düzenle</button><button type="button" id="houseTurn" class="secondary">↻ Eşyayı döndür</button><button type="button" id="houseSave">💾 Kaydet</button></div><p class="muted" id="houseEditHint">Düzenle ile eşyaya dokunup sürükle. Odalar aşk seviyesiyle açılır.</p><p class="muted" id="houseStatus" role="status">Ortak ev yükleniyor…</p><div class="note" id="houseRewardInfo">💗 XP: Günlük giriş +10, ilk kalp +15, anı/fotoğraf +20 (günde 2), bebek bakımı +5 (günde 4), günlük ödül +20. Para daha yavaş birikir.</div><div class="ev2-panel"><h3>🎯 Günlük ev görevleri</h3><p class="muted">Her görev günde bir kez yapılır. Ödüller ortak hesaba eklenir.</p><div id="ev2Tasks" class="ev2-tasks"></div></div><div class="ev2-panel"><h3>🛍️ Mobilya mağazası <small>56 eşya</small></h3><div class="ev2-filters"><input id="ev2Search" placeholder="Mobilya ara…" aria-label="Mobilya ara"><select id="ev2Filter" aria-label="Mağaza odası"><option value="all">🏡 Tüm odalar</option><option value="salon">🛋️ Salon</option><option value="yatak">🛏️ Yatak</option><option value="mutfak">🍳 Mutfak</option><option value="bebek">🍼 Bebek</option><option value="owned">✓ Aldıklarımız</option></select></div><div id="ev2ShopCount" class="muted"></div><div id="houseShop" class="house-shop"></div></div></section>
+
+<section id="vending" class="card tab hidden"><h2>🎁 Muly Otomatı</h2><p class="intro">İkinize özel sürpriz koleksiyonu! Her kutu <strong>40 aşk parası</strong>. Günde çift olarak en fazla <strong>3 kutu</strong> açabilirsiniz. Kutular yalnızca sanal koleksiyon eşyası verir; gerçek para veya nakit ödül yoktur.</p><div class="mv-hero"><div class="mv-machine" aria-hidden="true"><div class="mv-sign">MULY ♡</div><div class="mv-window"><span id="mvGift">🎁</span><div class="mv-sparkles">✦ ♡ ✦</div></div><div class="mv-slot">♡ SÜRPRİZ KUTUSU ♡</div></div><div class="mv-controls"><div class="mv-balance">🪙 <strong id="mvCoins">—</strong><small>Ortak aşk paranız</small></div><div class="mv-balance">🎟️ <strong id="mvRemaining">—</strong><small>Bugün kalan hak</small></div><button id="mvOpen" type="button">🎁 40 paraya kutu aç</button><button id="mvRefresh" type="button" class="secondary">🔄 Yenile</button><p id="mvStatus" role="status" class="muted">Otomat hazırlanıyor…</p></div></div><div class="mv-odds"><h3>🎲 Şeffaf ödül olasılıkları</h3><div><span>🌸 Yaygın</span><b>%60</b></div><div><span>💎 Özel</span><b>%25</b></div><div><span>🌟 Nadir</span><b>%12</b></div><div><span>👑 Efsanevi</span><b>%3</b></div><p class="muted">Olasılıklar her kutu için bağımsızdır. Her kategorideki dört hediyeden biri eşit ihtimalle seçilir. Aynı hediye tekrar çıkabilir.</p></div><h3>🎀 Ortak koleksiyonumuz</h3><div id="mvCollection" class="mv-collection"><p class="muted">Henüz hediye yok.</p></div><h3>📜 Son açılan kutular</h3><div id="mvHistory" class="mv-history"><p class="muted">Henüz kutu açılmadı.</p></div></section>
+<section id="newspaper" class="card tab hidden"><h2>📰 Muly Gazetesi</h2><p class="intro">İkinizin haftalık dijital gazetesi. İstatistikler Supabase'den okunur, rastgele oluşturulmaz.</p><div class="m5-actions"><button id="m5PaperRefresh" type="button">📰 Bu haftanın sayısını hazırla</button><button id="m5PaperPrint" class="secondary" type="button">🖨️ Yazdır / PDF kaydet</button></div><p id="m5PaperStatus" class="m5-status" role="status"></p><div id="m5Paper" class="m5-paper"><h3>THE MULY TIMES ♡</h3><p style="text-align:center">Haftalık sayınız hazırlanıyor…</p></div></section>
+<section id="chat" class="card tab hidden"><h2>Bizim sohbetimiz 💌</h2><p class="intro">Sadece ikinizin görebildiği özel mesajlar ♡</p><div id="mulyChatStatus" class="muted" role="status">Sohbet hazırlanıyor…</div><div id="mulyChatFeed" class="muly-chat-feed" aria-live="polite"></div><form id="mulyChatForm" class="muly-chat-compose"><textarea id="mulyChatText" rows="1" maxlength="5000" required placeholder="Kalbinden geçenleri yaz… 💗" aria-label="Mesajın"></textarea><button id="mulyChatSend" type="submit">Gönder 💌</button></form></section>
+<section id="widget" class="card tab hidden"><h2>📱 Muly Widget</h2><p class="intro">İkinizin küçük aşk ekranı. Canlı sayaç, yıl dönümü ve ortak anılar bir arada.</p><div class="mw-preview" id="mwPreview"><div class="mw-top"><span>♡ LOVE CALL MULY</span><span id="mwClock">--:--</span></div><div class="mw-photo" id="mwPhoto"><span>💗</span></div><div class="mw-names">Olcay ♡ Muly</div><div class="mw-caption">Seninle geçen güzel zaman</div><div class="mw-time"><strong id="mwDays">0</strong><span>gün</span><strong id="mwHours">00</strong><span>saat</span><strong id="mwMins">00</strong><span>dk</span></div><div class="mw-divider"></div><div class="mw-anniv" id="mwAnniv">İlk yıl dönümümüze…</div><div class="mw-note" id="mwNote">İyi ki sen, iyi ki biz. ♡</div></div><label for="mwMessageInput">Widget mesajı (bu cihazda saklanır)</label><input id="mwMessageInput" maxlength="100" placeholder="İyi ki sen, iyi ki biz. ♡"><div class="row"><button type="button" id="mwSave">💌 Mesajı değiştir</button><button type="button" class="secondary" id="mwShare">📤 Widget görselini paylaş</button></div><p class="muted" id="mwStatus">Görseli paylaşabilir veya telefonuna kaydedebilirsin. Bu ekran PWA içindedir; gerçek ana ekran widget'ı değildir.</p></section>
+<section id="memories" class="card tab"><h2>Ortak anılarımız 📸</h2><form id="memoryForm"><label>Başlık</label><input id="memoryTitle" maxlength="150" required><label>Anı</label><textarea id="memoryDescription" required></textarea><label>Tarih</label><input id="memoryDate" type="date" required><label>Fotoğraf (isteğe bağlı, en fazla 10 MB)</label><input id="memoryPhoto" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button>Yeni anı ekle</button></form><div id="memoryList"></div></section>
+<section id="wishes" class="card tab hidden"><h2>Birlikte yapacaklarımız ✨</h2><form id="wishForm"><label>Hayalimiz</label><input id="wishTitle" maxlength="200" required><label>Detaylar</label><textarea id="wishNotes" placeholder="Nerede, nasıl, ne zaman?" maxlength="3000"></textarea><label>Hedef tarih (isteğe bağlı)</label><input id="wishDate" type="date"><label>Fotoğraf (isteğe bağlı)</label><input id="wishPhoto" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button>Listeye ekle</button></form><div id="wishList"></div></section>
+
+<section id="sky" class="card tab hidden"><h2>Bizim gökyüzümüz ✨</h2><p class="intro">Her anımız gökyüzünde bir yıldız. Yıldızlara dokunup hikâyelerini hatırla.</p><div class="sky-box" id="skyBox"><div class="sky-caption">Yıldızlarımızı birlikte çoğaltalım ♡</div></div><div id="skyDetails" class="note">Bir yıldıza dokun ♡</div></section>
+<section id="calendar" class="card tab hidden"><h2>Aşk takvimimiz 📅</h2><p class="intro">Özel günler, buluşmalar ve küçük kutlamalar.</p><form id="eventForm"><label>Özel günün adı</label><input id="eventTitle" maxlength="180" required placeholder="İlk buluşmamız"><label>Tarih</label><input id="eventDate" type="date" required><label>Not (isteğe bağlı)</label><textarea id="eventNotes" maxlength="3000"></textarea><button>Takvime ekle</button></form><div id="eventList"></div></section>
+<section id="miss" class="card tab hidden"><h2>Seni özledim ❤️</h2><p class="intro">Bu kalbe bastığında ikinizin ortak alanında bir özlem izi bırakılır.</p><button id="missBtn" style="font-size:22px;padding:22px 30px">❤️ Seni özledim!</button><p class="muted" id="missSummary"></p><div id="missList"></div></section>
+<section id="moods" class="card tab hidden"><h2>Bugün nasıl hissediyoruz? 🥹</h2><form id="moodForm"><label>Ruh halim</label><select id="moodSelect"><option value="mutlu">😊 Mutluyum</option><option value="ozledim">🥹 Özledim</option><option value="heyecanli">✨ Heyecanlıyım</option><option value="yorgun">🌿 Yorgunum</option><option value="uzgun">🌧️ Üzgünüm</option><option value="asik">🥰 Âşığım</option></select><label>Küçük bir not (isteğe bağlı)</label><textarea id="moodNote" maxlength="1000"></textarea><button>Ruh halimi paylaş</button></form><div id="moodList"></div></section>
+<section id="music" class="card tab hidden"><h2>Bizim şarkımız 🎵</h2><p class="intro">Spotify, YouTube veya Apple Music bağlantısını ekleyin. İkiniz de aynı şarkıyı burada görürsünüz.</p><form id="songForm"><label>Şarkı adı</label><input id="songTitle" maxlength="180" placeholder="Bizim şarkımız" required><label>Şarkı bağlantısı</label><input id="songUrl" type="url" placeholder="https://open.spotify.com/..." required><button>Şarkımızı kaydet</button></form><div id="songDisplay" class="note">Henüz bir şarkı seçilmedi.</div></section>
+<section id="letters" class="card tab hidden"><h2>Kalbimizden mektuplar 💌</h2><p class="muted">Gönderdiğin mektubu sen görebilirsin; alıcısı yalnızca belirlediğin tarihten sonra okuyabilir.</p><form id="letterForm"><label>Başlık</label><input id="letterTitle" maxlength="150" required><label>Mektup</label><textarea id="letterContent" required></textarea><label>Açılacağı tarih ve saat</label><input id="unlockAt" type="datetime-local" required><button id="sendLetter">Mektubu gönder</button></form><div id="letterList"></div></section>
+
+<section id="firsts" class="card tab hidden"><h2>İlklerimiz 🌸</h2><p class="intro">İlk buluşmamız, ilk fotoğrafımız ve birlikte yaşadığımız bütün ilkler...</p><form id="firstForm"><label>İlkimizin adı</label><input id="firstTitle" maxlength="160" required placeholder="İlk buluşmamız"><label>Tarih</label><input id="firstDate" type="date" required><label>Hikâyesi</label><textarea id="firstDescription" maxlength="3000"></textarea><label>Fotoğraf (isteğe bağlı)</label><input id="firstPhoto" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button>İlk anımızı kaydet</button></form><div id="firstList"></div></section>
+<section id="achievements" class="card tab hidden"><h2>🏆 Aşk başarımlarımız</h2><p class="intro">Birlikte tamamladığınız görevleri görün ve ortak aşk parası ödüllerini bir kez alın. 💗</p><div id="mulyAchievementStatus" class="muted" role="status">Başarımlar yükleniyor…</div><div id="mulyAchievementGrid" class="muly-achievements"></div></section><section id="summary" class="card tab hidden"><h2>Bu ay bizim hikâyemiz 📊</h2><p class="intro">Bu ay eklenen anılar, tamamlanan hayaller, gönderilen kalpler ve paylaşılan ruh halleri.</p><div id="summaryDisplay" class="summary-grid"></div><h3>Geçen yıl bugün ♡</h3><div id="onThisDay" class="note"></div></section>
+<section id="hearts" class="card tab hidden"><h2>Bir kalp de benden sana 💗</h2><p class="intro">Dokunduğunda sevgiline bir kalp ve site içi bildirim gider.</p><button id="sendHeart" type="button" style="font-size:22px;padding:22px 28px">💗 Kalbimi gönder</button><div id="heartHistory"></div></section>
+<section id="notifications" class="card tab hidden"><h2>Kalbime gelenler 🔔</h2><p class="intro">Sevgilinden gelen kalpler burada birikir.</p><button type="button" id="markNotifications" class="secondary">Tümünü okundu işaretle</button><div id="notificationList"></div></section>
+</section>
+<div class="footer">Birlikte yazdığımız en güzel hikâye <strong>♡ Muly</strong></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+// Gece/gündüz seçimi yalnızca bu cihazda saklanır; Supabase verilerine dokunmaz.
+function applyTheme(night){document.body.classList.toggle('night',night);const b=document.getElementById('themeToggle');b.textContent=night?'☀️ Gündüz modu':'🌙 Gece modu';b.setAttribute('aria-pressed',String(night));document.querySelector('meta[name="theme-color"]').setAttribute('content',night?'#101426':'#fff0f5');}
+try{const savedTheme=localStorage.getItem('muly-theme');const hour=new Date().getHours();applyTheme(savedTheme==='night'||(!savedTheme&&(hour>=19||hour<7)));}catch(e){const hour=new Date().getHours();applyTheme(hour>=19||hour<7);}
+document.getElementById('themeToggle').addEventListener('click',()=>{const night=!document.body.classList.contains('night');applyTheme(night);try{localStorage.setItem('muly-theme',night?'night':'day');}catch(e){}});
+const sky=document.getElementById('stars');for(let i=0;i<65;i++){const star=document.createElement('i');star.style.left=((i*73.37+11)%100)+'%';star.style.top=((i*47.91+7)%100)+'%';star.style.animationDelay=(-(i%11)*.37)+'s';star.style.animationDuration=(2+(i%5)*.7)+'s';sky.append(star);}
+
+// SADECE Project URL ve publishable / anon key kullan. Secret veya service_role anahtarı koyma.
+// Web Push public key (bildirim gönderimini tek başına etkinleştirmez)
+const VAPID_PUBLIC_KEY = 'BMlMvXTyMMrq0fQZHZw8igfMC7zJ839wtRTsIEwe_oDal0H3kRP2omh5ZJ1XlXs2EjZdI0hn9LHlzSI-3Bim468';
+const SUPABASE_URL = 'https://gzccrqrjmrdrluqqmrrz.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Dhuz9-JfiMSpaScysEvfPA_0sFxZ4rH';
+const $ = id => document.getElementById(id);
+const show = (id,yes=true) => $(id).classList.toggle('hidden',!yes);
+const notice = msg => { $('notice').textContent=msg; show('notice',!!msg); };
+let db,user,partnerId=null,coupleInfo=null;
+const formatDate = x => new Date(x).toLocaleString('tr-TR');
+function el(tag,content,cls){const node=document.createElement(tag);if(content!==undefined)node.textContent=content;if(cls)node.className=cls;return node;}
+function fail(err){notice(err?.message || 'Bir hata oluştu.');console.error(err);}
+function tick(){const now=new Date();const start=new Date('2026-03-14T00:08:00+03:00');const anniversary=new Date('2027-03-14T00:08:00+03:00');const seconds=Math.max(0,Math.floor((now-start)/1000));$('elapsed').textContent=String(Math.floor(seconds/86400));$('elapsedHours').textContent=String(Math.floor(seconds%86400/3600)).padStart(2,'0');$('elapsedMinutes').textContent=String(Math.floor(seconds%3600/60)).padStart(2,'0');$('elapsedSeconds').textContent=String(seconds%60).padStart(2,'0');const diff=anniversary-now;$('remaining').textContent=diff>0?Math.ceil(diff/86400000)+' gün':'İlk yılımız kutlu olsun!';}
+async function init(){if(SUPABASE_URL.includes('BURAYA_')||SUPABASE_KEY.includes('BURAYA_'))return;show('setup',false);try{db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);const {data:{session},error}=await db.auth.getSession();if(error)throw error;await setSession(session);db.auth.onAuthStateChange((_event,s)=>{setTimeout(()=>setSession(s).catch(fail),0);});}catch(e){fail(e);}}
+async function setSession(session){user=session?.user||null;show('logout',!!user);show('auth',!user);show('pair',false);show('app',false);if(!user){partnerId=null;coupleInfo=null;return;}await loadCouple();}
+async function loadCouple(){const {data,error}=await db.rpc('get_my_couple_info');if(error)throw error;coupleInfo=data?.[0]||null;partnerId=coupleInfo?.partner_id||null;show('pair',!coupleInfo);show('app',!!coupleInfo);if(coupleInfo){$('pairStatus').textContent=partnerId?'İkiniz de bağlandınız ❤️':'Partnerin henüz katılmadı. Davet kodun: '+coupleInfo.invite_code;tick();await refresh();db.rpc('muly_house_login',{p_couple_id:coupleInfo.couple_id}).then(({error})=>{if(error)console.warn('Giriş XP:',error.message);window.mulyRefreshHouse?.();});updatePushStatus().catch(console.warn);}}
+$('authForm').onsubmit=async e=>{e.preventDefault();notice('');const {error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error)fail(error);};
+$('signupBtn').onclick=async()=>{notice('');if(!$('authForm').reportValidity())return;const {data,error}=await db.auth.signUp({email:$('email').value.trim(),password:$('password').value});if(error)fail(error);else notice(data.session?'Hesabın oluşturuldu.':'Kayıt alındı. E-posta doğrulama bağlantısını kontrol et, ardından giriş yap.');};
+$('logout').onclick=async()=>{const {error}=await db.auth.signOut();if(error)fail(error);else notice('Çıkış yapıldı.');};
+$('createPair').onclick=async()=>{const {data,error}=await db.rpc('create_couple');if(error)fail(error);else{notice('Davet kodun: '+data+'\nBu kodu partnerinle paylaş.');await loadCouple().catch(fail);}};
+$('joinPair').onclick=async()=>{const code=$('inviteInput').value.trim();if(!code)return notice('Davet kodunu yaz.');const {error}=await db.rpc('join_couple',{code});if(error)fail(error);else{notice('Artık aynı alandasınız ❤️');await loadCouple().catch(fail);}};
+document.querySelectorAll('[data-tab]').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.tab').forEach(section=>show(section.id,section.id===btn.dataset.tab));document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b===btn));});
+async function refresh(){await Promise.all([loadMemories(),loadWishes(),loadLetters(),loadEvents(),loadMiss(),loadMoods(),loadSong(),loadFirsts(),loadHearts(),loadNotifications(),loadMonthlySummary()]);}
+const escapeSafeDate = x => x ? new Date(x+'T12:00:00').toLocaleDateString('tr-TR') : '';
+async function uploadPhoto(file){
+ if(!file)return null;
+ if(!['image/jpeg','image/png','image/webp','image/gif'].includes(file.type))throw Error('Yalnızca JPG, PNG, WebP veya GIF yükleyebilirsin.');
+ if(file.size>10*1024*1024)throw Error('Fotoğraf en fazla 10 MB olabilir.');
+ const ext=({'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif'})[file.type];
+ const path=`${coupleInfo.couple_id}/${user.id}/${crypto.randomUUID()}.${ext}`;
+ const {error}=await db.storage.from('muly-photos').upload(path,file,{contentType:file.type,upsert:false});
+ if(error)throw error;return path;
+}
+async function addPhoto(node,path){if(!path)return;const {data,error}=await db.storage.from('muly-photos').createSignedUrl(path,3600);if(error){console.warn(error);return;}const img=el('img');img.src=data.signedUrl;img.alt='Ortak anımızın fotoğrafı';img.loading='lazy';img.className='item-photo';node.append(img);}
+let cachedMemories=[];
+async function loadMemories(){const {data,error}=await db.from('memories').select('id,title,description,event_date,photo_path,created_at').order('event_date',{ascending:false});if(error)return fail(error);cachedMemories=data||[];const root=$('memoryList');root.replaceChildren();for(const m of cachedMemories){const item=el('div',undefined,'item');item.append(el('h3',m.title),el('small',escapeSafeDate(m.event_date)));await addPhoto(item,m.photo_path);item.append(el('p',m.description||''));root.append(item);}if(!cachedMemories.length)root.append(el('p','Henüz anı eklenmedi.','muted'));drawSky();}
+$('memoryForm').onsubmit=async e=>{e.preventDefault();const btn=e.submitter;btn.disabled=true;try{const path=await uploadPhoto($('memoryPhoto').files[0]);const {error}=await db.from('memories').insert({title:$('memoryTitle').value.trim(),description:$('memoryDescription').value.trim(),event_date:$('memoryDate').value,photo_path:path,created_by:user.id});if(error)throw error;e.target.reset();notice('Anınız ve fotoğrafınız kaydedildi ❤️');await loadMemories();window.mulyRefreshHouse?.();}catch(err){fail(err);}finally{btn.disabled=false;}};
+function drawSky(){const root=$('skyBox');root.querySelectorAll('.sky-star').forEach(x=>x.remove());cachedMemories.forEach((m,i)=>{const star=el('button','✦','sky-star');star.type='button';star.style.left=(8+((i*37+19)%84))+'%';star.style.top=(12+((i*29+17)%66))+'%';star.style.fontSize=(21+(i%3)*7)+'px';star.title=m.title;star.onclick=async()=>{const d=$('skyDetails');d.replaceChildren(el('strong',m.title),el('p',escapeSafeDate(m.event_date)+' · '+(m.description||'')));await addPhoto(d,m.photo_path);};root.append(star);});}
+async function loadWishes(){const {data,error}=await db.from('wishes').select('id,title,completed,notes,due_date,photo_path,created_at').order('created_at',{ascending:false});if(error)return fail(error);const root=$('wishList');root.replaceChildren();for(const w of data){const item=el('div',undefined,'item');item.append(el('h3',(w.completed?'✅ ':'🎀 ')+w.title));if(w.due_date)item.append(el('small','Hedef: '+escapeSafeDate(w.due_date)));if(w.notes)item.append(el('p',w.notes));await addPhoto(item,w.photo_path);const button=el('button',w.completed?'Yeniden planla':'Gerçekleştirdik!','secondary');button.onclick=async()=>{const {error}=await db.from('wishes').update({completed:!w.completed}).eq('id',w.id);if(error)fail(error);else loadWishes();};item.append(button);root.append(item);}if(!data.length)root.append(el('p','İlk hayalinizi ekleyin.','muted'));}
+$('wishForm').onsubmit=async e=>{e.preventDefault();const btn=e.submitter;btn.disabled=true;try{const path=await uploadPhoto($('wishPhoto').files[0]);const {error}=await db.from('wishes').insert({title:$('wishTitle').value.trim(),completed:false,notes:$('wishNotes').value.trim()||null,due_date:$('wishDate').value||null,photo_path:path,created_by:user.id});if(error)throw error;e.target.reset();notice('Hayaliniz eklendi ✨');await loadWishes();}catch(err){fail(err);}finally{btn.disabled=false;}};
+async function loadEvents(){if(!coupleInfo)return;const {data,error}=await db.from('love_events').select('id,title,event_date,notes').eq('couple_id',coupleInfo.couple_id).order('event_date',{ascending:true});if(error)return fail(error);const root=$('eventList');root.replaceChildren();const items=[{title:'Bizim başlangıcımız ♡',event_date:'2026-03-14',notes:'00:08 · Her şeyin başladığı an'},{title:'İlk yıl dönümümüz 🎂',event_date:'2027-03-14',notes:'Birlikte ilk yılımız'} ,...data];for(const item of items){const div=el('div',undefined,'note');div.append(el('strong',item.title),el('p',escapeSafeDate(item.event_date)+(item.notes?' · '+item.notes:'')));if(item.id){const del=el('button','Sil','secondary');del.onclick=async()=>{if(!confirm('Bu özel günü silmek istiyor musun?'))return;const {error}=await db.from('love_events').delete().eq('id',item.id);if(error)fail(error);else loadEvents();};div.append(del);}root.append(div);}}
+$('eventForm').onsubmit=async e=>{e.preventDefault();const {error}=await db.from('love_events').insert({couple_id:coupleInfo.couple_id,created_by:user.id,title:$('eventTitle').value.trim(),event_date:$('eventDate').value,notes:$('eventNotes').value.trim()||null});if(error)return fail(error);e.target.reset();notice('Özel gün takvime eklendi 📅');await loadEvents();};
+async function loadMiss(){if(!coupleInfo)return;const {data,error}=await db.from('miss_signals').select('sender_id,created_at').eq('couple_id',coupleInfo.couple_id).order('created_at',{ascending:false}).limit(30);if(error)return fail(error);$('missSummary').textContent='Son '+data.length+' özlem mesajı (en fazla 30 gösterilir).';const root=$('missList');root.replaceChildren();for(const m of data){const item=el('div',(m.sender_id===user.id?'Sen':'Sevgilin')+' seni özledi ❤️ · '+formatDate(m.created_at),'note');root.append(item);}}
+$('missBtn').onclick=async()=>{const btn=$('missBtn');btn.disabled=true;try{const {error}=await db.from('miss_signals').insert({couple_id:coupleInfo.couple_id,sender_id:user.id});if(error)throw error;notice('Kalbinin mesajı bırakıldı ❤️');await loadMiss();}catch(err){fail(err);}finally{btn.disabled=false;}};
+const moodLabels={mutlu:'😊 Mutluyum',ozledim:'🥹 Özledim',heyecanli:'✨ Heyecanlıyım',yorgun:'🌿 Yorgunum',uzgun:'🌧️ Üzgünüm',asik:'🥰 Âşığım'};
+async function loadMoods(){if(!coupleInfo)return;const {data,error}=await db.from('love_moods').select('user_id,mood,note,created_at').eq('couple_id',coupleInfo.couple_id).order('created_at',{ascending:false}).limit(20);if(error)return fail(error);const root=$('moodList');root.replaceChildren();for(const m of data){const item=el('div',undefined,'note');item.append(el('strong',(m.user_id===user.id?'Sen':'Sevgilin')+' · '+(moodLabels[m.mood]||m.mood)),el('small',formatDate(m.created_at)));if(m.note)item.append(el('p',m.note));root.append(item);}if(!data.length)root.append(el('p','Henüz ruh hali paylaşılmadı.','muted'));}
+$('moodForm').onsubmit=async e=>{e.preventDefault();const {error}=await db.from('love_moods').insert({couple_id:coupleInfo.couple_id,user_id:user.id,mood:$('moodSelect').value,note:$('moodNote').value.trim()||null});if(error)return fail(error);e.target.reset();notice('Ruh halin paylaşıldı 🥹');await loadMoods();};
+function safeSongUrl(raw){try{const u=new URL(raw);if(u.protocol!=='https:')return null;const host=u.hostname.toLowerCase();if(!['open.spotify.com','music.apple.com','www.youtube.com','youtube.com','youtu.be','music.youtube.com'].includes(host))return null;return u.href;}catch{return null;}}
+async function loadSong(){if(!coupleInfo)return;const {data,error}=await db.from('couple_settings').select('song_title,song_url').eq('couple_id',coupleInfo.couple_id).maybeSingle();if(error)return fail(error);const root=$('songDisplay');root.replaceChildren();if(data?.song_url){const a=el('a','🎵 '+(data.song_title||'Bizim şarkımız')+' — dinlemek için aç');a.href=safeSongUrl(data.song_url)||'#';a.target='_blank';a.rel='noopener noreferrer';root.append(a);$('songTitle').value=data.song_title||'';$('songUrl').value=data.song_url||'';}else root.textContent='Henüz şarkı seçilmedi.';}
+$('songForm').onsubmit=async e=>{e.preventDefault();const url=safeSongUrl($('songUrl').value);if(!url)return notice('Spotify, YouTube veya Apple Music için geçerli bir HTTPS bağlantısı ekle.');const {error}=await db.from('couple_settings').upsert({couple_id:coupleInfo.couple_id,song_title:$('songTitle').value.trim(),song_url:url,updated_at:new Date().toISOString()},{onConflict:'couple_id'});if(error)return fail(error);notice('Şarkınız kaydedildi 🎵');await loadSong();};
+function updateAnniversary(){const today=new Date();const isDay=today.getMonth()===2&&today.getDate()===14;const years=today.getFullYear()-2026;$('anniversaryTitle').textContent=isDay&&years>0?`${years}. yılımız kutlu olsun, Muly'm! 🎂`:'İyi ki sen ♡';$('anniversaryText').textContent=isDay&&years>0?'Birlikte geçirdiğimiz her yıl, en güzel hediyem. Seni çok seviyorum. ❤️':'14 Mart geldiğinde burası size özel bir kutlama ekranına dönüşecek. ♡';}
+updateAnniversary();
+async function loadLetters(){const {data,error}=await db.from('letters').select('id,title,content,sender,recipient,unlock_at,created_at').order('created_at',{ascending:false});if(error)return fail(error);const root=$('letterList');root.replaceChildren();for(const l of data){const item=el('div',undefined,'item');const mine=l.sender===user.id;item.append(el('h3',l.title),el('small',(mine?'Gönderdiğin mektup':'Sana gelen mektup')+' · Açılma: '+formatDate(l.unlock_at)),el('p',l.content));root.append(item);}if(!data.length)root.append(el('p','Henüz okunabilir veya gönderilmiş mektup yok.','muted'));}
+$('letterForm').onsubmit=async e=>{e.preventDefault();if(!partnerId)return notice('Mektup göndermek için partnerinin davet koduyla katılması gerekiyor.');const local=$('unlockAt').value;const unlock=new Date(local);if(Number.isNaN(unlock.getTime()))return notice('Geçerli bir tarih seç.');const {error}=await db.from('letters').insert({title:$('letterTitle').value.trim(),content:$('letterContent').value.trim(),sender:user.id,recipient:partnerId,unlock_at:unlock.toISOString()});if(error)return fail(error);e.target.reset();notice('Mektubun kaydedildi 💌');await loadLetters();};
+setInterval(()=>{if(user&&coupleInfo)tick();},1000);setInterval(()=>{if(user&&coupleInfo)updateAnniversary();},60000);
+
+// Web Push subscription: only the signed-in user's own endpoint is stored.
+function pushKeyBytes(base64) {
+  const padding = '='.repeat((4 - base64.length % 4) % 4);
+  const raw = atob((base64 + padding).replace(/-/g, '+').replace(/_/g, '/'));
+  return Uint8Array.from(raw, c => c.charCodeAt(0));
+}
+function pushStatus(message) { $('pushStatus').textContent = message; }
+async function updatePushStatus() {
+  if (!user || !coupleInfo) return;
+  if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
+    pushStatus('Bu tarayıcı Web Push desteklemiyor.');
+    $('enablePush').disabled = true;
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    pushStatus('Bildirimler engellenmiş. Telefonun site/uygulama ayarlarından izin ver.');
+    return;
+  }
+  try {
+    const registration = await navigator.serviceWorker.ready;
+    const subscription = await registration.pushManager.getSubscription();
+    pushStatus(subscription ? 'Bu cihazda bildirim aboneliği var. Yenilemek için butona basabilirsin.' : 'Bu cihazda bildirimler henüz açılmadı.');
+    $('enablePush').textContent = subscription ? '🔔 Bildirim aboneliğini yenile' : '🔔 Bildirimleri Aç';
+  } catch (error) { pushStatus('Bildirim durumu kontrol edilemedi: ' + error.message); }
+}
+$('enablePush').onclick = async () => {
+  const button = $('enablePush');
+  button.disabled = true;
+  try {
+    if (!user || !coupleInfo) throw new Error('Önce hesabına giriş yapıp çift bağlantısını tamamla.');
+    if (!window.isSecureContext) throw new Error('Bildirimler için HTTPS bağlantısı gerekiyor.');
+    if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) throw new Error('Bu cihaz Web Push desteklemiyor.');
+    if (!VAPID_PUBLIC_KEY) throw new Error('VAPID Public Key eklenmemiş.');
+    const permission = await Notification.requestPermission();
+    if (permission !== 'granted') throw new Error('Bildirim izni verilmedi.');
+    const registration = await navigator.serviceWorker.register('/sw.js');
+    await navigator.serviceWorker.ready;
+    let subscription = await registration.pushManager.getSubscription();
+    const key = pushKeyBytes(VAPID_PUBLIC_KEY);
+    if (subscription) {
+      const existingKey = subscription.options?.applicationServerKey;
+      if (existingKey && Array.from(new Uint8Array(existingKey)).join(',') !== Array.from(key).join(',')) {
+        await subscription.unsubscribe();
+        subscription = null;
+      }
+    }
+    if (!subscription) subscription = await registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: key });
+    const payload = subscription.toJSON();
+    const record = {user_id: user.id, endpoint: subscription.endpoint, p256dh: payload.keys?.p256dh, auth_key: payload.keys?.auth};
+    if (!record.p256dh || !record.auth_key) throw new Error('Tarayıcı abonelik anahtarlarını vermedi.');
+    const {data: found, error: selectError} = await db.from('push_subscriptions').select('id').eq('user_id', user.id).eq('endpoint', record.endpoint).maybeSingle();
+    if (selectError) throw selectError;
+    if (found) {
+      const {error} = await db.from('push_subscriptions').delete().eq('id', found.id);
+      if (error) throw error;
+    }
+    const {error} = await db.from('push_subscriptions').insert(record);
+    if (error) throw error;
+    pushStatus('✅ Bu cihazın bildirim aboneliği Supabase’e kaydedildi.');
+    button.textContent = '🔔 Bildirim aboneliğini yenile';
+  } catch (error) {
+    pushStatus('❌ ' + (error?.message || 'Bildirimler açılamadı.'));
+    console.error('Muly push:', error);
+  } finally { button.disabled = false; }
+};
+
+init();
+if (new URLSearchParams(location.search).has('muly_heart')) {
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      if (typeof heartAnimation === 'function') heartAnimation();
+      const tab = document.querySelector('[data-tab="notifications"]');
+      if (tab && user && coupleInfo) tab.click();
+      history.replaceState(null, '', location.pathname);
+    }, 1600);
+  });
+}
+
+</script>
+<script>
+// Muly 3.0 — Yeni özellikler
+let cachedFirsts=[];
+function heartAnimation(){for(let i=0;i<12;i++){const n=el('span',i%3===0?'💗':'❤️','heart-burst');n.style.left=(35+Math.random()*30)+'vw';n.style.top=(45+Math.random()*25)+'vh';n.style.animationDelay=(i*.07)+'s';document.body.append(n);setTimeout(()=>n.remove(),2200);}}
+const rainButton=$('rainToggle');
+function syncRainButton(){rainButton.style.display=document.body.classList.contains('night')?'inline-block':'none';rainButton.textContent=document.body.classList.contains('rainy')?'☔ Yağmuru kapat':'🌧️ Yağmur';}
+try{if(localStorage.getItem('muly-rain')==='yes')document.body.classList.add('rainy');}catch(e){}
+syncRainButton();$('themeToggle').addEventListener('click',syncRainButton);
+rainButton.onclick=()=>{document.body.classList.toggle('rainy');syncRainButton();try{localStorage.setItem('muly-rain',document.body.classList.contains('rainy')?'yes':'no');}catch(e){}};
+function shootingStar(){if(!document.body.classList.contains('night')||document.hidden)return;const n=el('div',undefined,'shooting-star');n.style.top=(5+Math.random()*30)+'%';n.style.left=(50+Math.random()*40)+'%';document.body.append(n);setTimeout(()=>n.remove(),2400);}
+setInterval(shootingStar,18000);
+async function loadFirsts(){if(!coupleInfo)return;const {data,error}=await db.from('muly_firsts').select('id,title,first_date,description,photo_path').eq('couple_id',coupleInfo.couple_id).order('first_date',{ascending:false});if(error)return fail(error);cachedFirsts=data||[];const root=$('firstList');root.replaceChildren();for(const f of cachedFirsts){const d=el('div',undefined,'item');d.append(el('h3','🌸 '+f.title),el('small',escapeSafeDate(f.first_date)));await addPhoto(d,f.photo_path);if(f.description)d.append(el('p',f.description));const b=el('button','Sil','secondary');b.onclick=async()=>{if(!confirm('Bu ilk anıyı silmek istiyor musun?'))return;const {error}=await db.from('muly_firsts').delete().eq('id',f.id);if(error)fail(error);else loadFirsts();};d.append(b);root.append(d);}if(!cachedFirsts.length)root.append(el('p','İlk anınızı ekleyin ♡','muted'));showOnThisDay();}
+$('firstForm').onsubmit=async e=>{e.preventDefault();const b=e.submitter;b.disabled=true;try{const path=await uploadPhoto($('firstPhoto').files[0]);const {error}=await db.from('muly_firsts').insert({couple_id:coupleInfo.couple_id,created_by:user.id,title:$('firstTitle').value.trim(),first_date:$('firstDate').value,description:$('firstDescription').value.trim()||null,photo_path:path});if(error)throw error;e.target.reset();notice('İlk anınız kaydedildi 🌸');await loadFirsts();}catch(e){fail(e);}finally{b.disabled=false;}};
+function showOnThisDay(){const now=new Date(),m=now.getMonth()+1,d=now.getDate(),year=now.getFullYear();const all=[...cachedMemories.map(x=>({title:x.title,date:x.event_date})),...cachedFirsts.map(x=>({title:x.title,date:x.first_date}))];const matches=all.filter(x=>{const bits=(x.date||'').split('-').map(Number);return bits[0]<year&&bits[1]===m&&bits[2]===d;});$('onThisDay').textContent=matches.length?matches.map(x=>'💗 '+x.title+' · '+escapeSafeDate(x.date)).join('\n'):'Bugünün geçmiş yıllarına ait kayıtlı bir anınız henüz yok.';}
+const oldLoadMemories=loadMemories;loadMemories=async function(){await oldLoadMemories();showOnThisDay();};
+async function loadHearts(){if(!coupleInfo)return;const {data,error}=await db.from('muly_hearts').select('sender_id,created_at').eq('couple_id',coupleInfo.couple_id).order('created_at',{ascending:false}).limit(20);if(error)return fail(error);const root=$('heartHistory');root.replaceChildren();for(const h of data||[])root.append(el('div',(h.sender_id===user.id?'Sen kalp gönderdin':'Sevgilin sana kalp gönderdi')+' 💗 · '+formatDate(h.created_at),'note'));}
+$('sendHeart').onclick=async()=>{
+  const b=$('sendHeart');b.disabled=true;
+  try{
+    const {error}=await db.rpc('muly_send_heart');
+    if(error)throw error;
+    heartAnimation();
+    await loadHearts();window.mulyRefreshHouse?.();
+    // Kalp kaydı başarılı olsa bile push gönderimi başarısız olabilir.
+    try{
+      const {data,error:pushError}=await db.functions.invoke('send-heart-push',{body:{}});
+      if(pushError)throw pushError;
+      if(data?.error)throw new Error(data.error);
+      notice(data?.sent>0?'Kalbin gönderildi, telefon bildirimi de yollandı 💗':
+        'Kalbin gönderildi 💗 Telefon bildirimi gönderilemedi: '+(data?.message||'Alıcı cihazı kayıtlı olmayabilir.'));
+    }catch(pushErr){
+      console.warn('Muly push:',pushErr);
+      notice('Kalbin gönderildi 💗 Ancak telefon bildirimi gönderilemedi. Edge Function loglarını kontrol et.');
+    }
+  }catch(e){fail(e);}finally{b.disabled=false;}
+};
+async function loadNotifications(){if(!user||!coupleInfo)return;const {data,error}=await db.from('muly_notifications').select('id,body,read_at,created_at').eq('recipient_id',user.id).order('created_at',{ascending:false}).limit(60);if(error)return fail(error);$('notifCount').textContent=(data||[]).filter(x=>!x.read_at).length;const root=$('notificationList');root.replaceChildren();for(const n of data||[]){const div=el('div',undefined,'note');div.append(el('strong',n.read_at?'♡ ':'💗 '),document.createTextNode(n.body+' · '+formatDate(n.created_at)));root.append(div);}if(!data?.length)root.append(el('p','Henüz bildirim yok.','muted'));}
+$('markNotifications').onclick=async()=>{const {error}=await db.from('muly_notifications').update({read_at:new Date().toISOString()}).eq('recipient_id',user.id).is('read_at',null);if(error)fail(error);else await loadNotifications();};
+async function loadMonthlySummary(){if(!coupleInfo)return;const now=new Date();const start=new Date(now.getFullYear(),now.getMonth(),1).toISOString(),end=new Date(now.getFullYear(),now.getMonth()+1,1).toISOString();const queries=[db.from('memories').select('id',{count:'exact',head:true}).gte('created_at',start).lt('created_at',end),db.from('wishes').select('id',{count:'exact',head:true}).eq('completed',true),db.from('muly_hearts').select('id',{count:'exact',head:true}).eq('couple_id',coupleInfo.couple_id).gte('created_at',start).lt('created_at',end),db.from('love_moods').select('id',{count:'exact',head:true}).eq('couple_id',coupleInfo.couple_id).gte('created_at',start).lt('created_at',end)];const results=await Promise.all(queries);const labels=['Bu ay eklenen anılar','Tamamlanan hayaller (toplam)','Bu ay gönderilen kalpler','Bu ay paylaşılan ruh halleri'];const root=$('summaryDisplay');root.replaceChildren();results.forEach((r,i)=>{if(r.error){fail(r.error);return;}const box=el('div',undefined,'mini');box.append(el('small',labels[i]),el('strong',String(r.count??0)));root.append(box);});showOnThisDay();}
+function renderCelebrations(){const now=new Date(),day=now.getDate(),month=now.getMonth()+1,year=now.getFullYear();const root=$('specialCelebrations');root.replaceChildren();if(month===3&&day===14&&year>=2027){const c=el('div',undefined,'celebration');c.append(el('strong','🎂 '+(year-2026)+'. yılımız kutlu olsun!'),el('p','İyi ki yollarımız kesişti, Muly’m. Her yeni yılda yine sen. ❤️'));root.append(c);}const items=Array.from($('eventList').querySelectorAll('.note'));for(const item of items){const label=item.querySelector('strong')?.textContent||'';const text=item.querySelector('p')?.textContent||'';const dateText=text.split(' · ')[0];const match=dateText.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);if(!match)continue;const [,dd,mm,yyyy]=match.map(Number);const annual=/doğum günü|doğum günüm|yıl dönümü|yıldönümü/i.test(label);if(dd===day&&mm===month&&(annual?year>=yyyy:year===yyyy)){const c=el('div',undefined,'celebration');c.append(el('strong',/doğum/i.test(label)?'🎂 İyi ki doğdun!':'🎉 Bugün özel bir gün!'),el('p',label+' ♡'));root.append(c);}}}
+
+const oldLoadEvents=loadEvents;loadEvents=async function(){await oldLoadEvents();renderCelebrations();};
+// Yılda bir tekrarlanan doğum günleri ve özel günler: takvimdeki başlığa "Doğum günü" yazılabilir.
+
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(err => console.warn('Muly PWA:', err));
+  });
+}
+</script>
+
+<script>
+// Muly Chat: mevcut uygulama fonksiyonlarına dokunmadan çalışır.
+(() => {
+  let channel = null, activeCouple = null, loading = false, lastSignature = '';
+  const feed = document.getElementById('mulyChatFeed');
+  const status = document.getElementById('mulyChatStatus');
+  const form = document.getElementById('mulyChatForm');
+  const input = document.getElementById('mulyChatText');
+  const send = document.getElementById('mulyChatSend');
+  function setStatus(message) { status.textContent = message; }
+  function scrollToBottom() { feed.scrollTop = feed.scrollHeight; }
+  async function loadMessages(force = false) {
+    if (!(typeof db !== "undefined" && db) || !(typeof user !== "undefined" && user) || !(typeof coupleInfo !== "undefined" && coupleInfo?.couple_id) || loading) return;
+    loading = true;
+    try {
+      const { data, error } = await db.from('muly_messages')
+        .select('id,sender_id,content,created_at')
+        .eq('couple_id', coupleInfo.couple_id)
+        .order('created_at', { ascending: false }).limit(100);
+      if (error) throw error;
+      const messages = (data || []).reverse();
+      const signature = messages.map(m => m.id).join('|');
+      if (force || signature !== lastSignature) {
+        const atBottom = feed.scrollHeight - feed.scrollTop - feed.clientHeight < 90;
+        feed.replaceChildren();
+        for (const m of messages) {
+          const bubble = document.createElement('div');
+          bubble.className = 'muly-chat-msg' + (m.sender_id === user.id ? ' mine' : '');
+          const content = document.createElement('div');
+          content.textContent = m.content;
+          const stamp = document.createElement('small');
+          stamp.textContent = new Date(m.created_at).toLocaleString('tr-TR', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+          bubble.append(content, stamp); feed.append(bubble);
+        }
+        if (!messages.length) {
+          const empty = document.createElement('p'); empty.className = 'muted';
+          empty.textContent = 'İlk mesajınızı gönderin 💗'; feed.append(empty);
+        }
+        lastSignature = signature;
+        if (atBottom || force) scrollToBottom();
+      }
+      setStatus('💗 Sohbetiniz hazır');
+    } catch (e) { console.error('Muly Chat:', e); setStatus('❌ Mesajlar yüklenemedi: ' + e.message); }
+    finally { loading = false; }
+  }
+  async function syncChat() {
+    if (!(typeof db !== "undefined" && db) || !(typeof user !== "undefined" && user) || !(typeof coupleInfo !== "undefined" && coupleInfo?.couple_id)) {
+      if (channel && typeof db !== "undefined" && db) { await db.removeChannel(channel); channel = null; }
+      activeCouple = null; lastSignature = ''; feed.replaceChildren();
+      return;
+    }
+    const id = coupleInfo.couple_id;
+    if (activeCouple === id) return;
+    if (channel) { await db.removeChannel(channel); channel = null; }
+    activeCouple = id; lastSignature = '';
+    await loadMessages(true);
+    channel = db.channel('muly-chat-' + id)
+      .on('postgres_changes', { event:'INSERT', schema:'public', table:'muly_messages', filter:'couple_id=eq.' + id }, () => loadMessages())
+      .subscribe();
+  }
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const content = input.value.trim();
+    if (!content || !(typeof user !== "undefined" && user) || !(typeof coupleInfo !== "undefined" && coupleInfo?.couple_id)) return;
+    send.disabled = true;
+    try {
+      const { error } = await db.from('muly_messages').insert({
+        couple_id: coupleInfo.couple_id, sender_id: user.id, content
+      });
+      if (error) throw error;
+      input.value = ''; await loadMessages(true);
+    } catch (e) { console.error('Muly Chat:', e); setStatus('❌ Mesaj gönderilemedi: ' + e.message); }
+    finally { send.disabled = false; input.focus(); }
+  });
+  document.querySelector('[data-tab="chat"]').addEventListener('click', () => {
+    syncChat().then(() => loadMessages(true));
+  });
+  // Giriş ve çift bağlantısı sonradan tamamlanırsa da sohbet açılır.
+  setInterval(() => {
+    if (!(typeof user !== "undefined" && user) || !(typeof coupleInfo !== "undefined" && coupleInfo?.couple_id)) {
+      if (activeCouple) syncChat(); return;
+    }
+    if (activeCouple !== coupleInfo.couple_id) syncChat();
+    else if (!document.getElementById('chat').classList.contains('hidden')) loadMessages();
+  }, 4000);
+})();
+</script>
+
+<script>
+// Muly baby: ortak veri, bildirim göndermez.
+(() => {
+  const $b = id => document.getElementById(id);
+  let baby = null, babyCouple = null, babyChannel = null, busy = false;
+  let modelReady = false, animateAction = 'idle';
+  const stage = $b('babyStage');
+  const clamp = n => Math.min(100, Math.max(0, n));
+  function renderBaby() {
+    if (!baby) return;
+    $b('babyNameDisplay').textContent = baby.name === 'Mini Muly' ? 'İsmini bekliyorum 🍼' : baby.name;
+    $b('babyInfo').textContent = (baby.gender === 'girl' ? '👧 Kız' : '👦 Erkek') + ' · ⭐ Seviye ' + baby.level + ' · ' + baby.xp + ' XP';
+    // İki hesap da isim düzenleyebilir.
+    $b('babyNameControls').classList.toggle('hidden', !user || !coupleInfo);
+    const needs=[['hunger',35,'🍼 Karnım acıktı!'],['energy',30,'😴 Uykum geldi!'],['hygiene',30,'🛁 Banyo yapmak istiyorum!'],['happiness',30,'🥺 Benimle oynar mısınız?']];
+    const urgent=needs.filter(([key,limit])=>baby[key]<limit).sort((a,b)=>baby[a[0]]-baby[b[0]])[0];
+    $b('babySpeech').textContent=urgent?urgent[2]:(baby.happiness>75?'🥰 Sizi çok seviyorum!':'👶 Birlikte oyun oynayalım mı?');
+    const xpProgress=baby.xp%100;
+    $b('babyXp').innerHTML='';
+    const xpText=document.createElement('div');xpText.textContent='⭐ Sonraki seviyeye '+(100-xpProgress)+' XP';
+    const xpTrack=document.createElement('div'),xpFill=document.createElement('i');xpFill.style.width=xpProgress+'%';xpTrack.append(xpFill);$b('babyXp').append(xpText,xpTrack);
+    const labels = [['hunger','🍼 Tokluk'],['happiness','💗 Mutluluk'],['energy','⚡ Enerji'],['hygiene','🛁 Temizlik']];
+    const root = $b('babyStats'); root.replaceChildren();
+    for (const [key,label] of labels) {
+      const box = document.createElement('div'); box.className='mini';
+      const t=document.createElement('div');t.textContent=label+' · '+baby[key]+'/100';
+      const bar=document.createElement('div');bar.className='baby-stat';
+      const fill=document.createElement('i');fill.style.width=clamp(baby[key])+'%';bar.append(fill);box.append(t,bar);root.append(box);
+    }
+  }
+  let lastDecayCheck=0;
+  // İhtiyaç güncellemeleri artık sunucudaki bakım işleminde hesaplanır.
+  async function applyTimeDecay(record){return record;}
+  async function loadBaby() {
+    if (!db || !user || !coupleInfo?.couple_id) return;
+    const id=coupleInfo.couple_id;
+    const {data,error}=await db.from('muly_babies').select('*').eq('couple_id',id).maybeSingle();
+    if(error){$b('babyActionStatus').textContent='❌ '+error.message;return;}
+    if(data){baby=data;renderBaby();if(Date.now()-lastDecayCheck>60000){lastDecayCheck=Date.now();const updated=await applyTimeDecay(data);if(updated!==data){baby=updated;renderBaby();}}return;}
+    // İlk açan ortak bebeği oluşturur; UNIQUE couple_id iki eşzamanlı oluşturmayı önler.
+    const {error:insertError}=await db.from('muly_babies').insert({couple_id:id});
+    if(insertError && insertError.code!=='23505'){$b('babyActionStatus').textContent='❌ '+insertError.message;return;}
+    const result=await db.from('muly_babies').select('*').eq('couple_id',id).maybeSingle();
+    if(result.data){baby=result.data;renderBaby();}
+  }
+  async function syncBaby(){
+    if (!db || !user || !coupleInfo?.couple_id) return;
+    if(babyCouple!==coupleInfo.couple_id){
+      if(babyChannel) await db.removeChannel(babyChannel);
+      babyCouple=coupleInfo.couple_id;
+      babyChannel=db.channel('muly-baby-'+babyCouple).on('postgres_changes',{event:'*',schema:'public',table:'muly_babies',filter:'couple_id=eq.'+babyCouple},()=>loadBaby()).subscribe();
+    }
+    await loadBaby();await loadBabyMarket();
+    if(!modelReady) init3D();
+  }
+  async function act(action){
+    if(!baby||busy)return;
+    busy=true;
+    document.querySelectorAll('[data-baby-action]').forEach(b=>b.disabled=true);
+    animateAction=action;
+    try{
+      const {data,error}=await db.rpc('muly_baby_care_v2',{p_couple_id:coupleInfo.couple_id,p_action:action});
+      if(error)throw error;
+      await loadBaby();await loadBabyMarket();window.mulyRefreshHouse?.();
+      $b('babyActionStatus').textContent='💗 '+(data?.message||'Bakım tamamlandı')+' · +'+(data?.xp||0)+' XP';
+    }catch(e){$b('babyActionStatus').textContent='❌ '+e.message;}
+    finally{busy=false;document.querySelectorAll('[data-baby-action]').forEach(b=>b.disabled=false);setTimeout(()=>animateAction='idle',1500);}
+  }
+  document.querySelectorAll('[data-baby-action]').forEach(b=>b.addEventListener('click',()=>act(b.dataset.babyAction)));
+  $b('babySaveName').onclick=async()=>{
+    const name=$b('babyNameInput').value.trim();if(!name||name.length>35||!baby)return;
+    if(!user || !coupleInfo)return;
+    const {data,error}=await db.rpc('muly_baby_rename_v2',{p_couple_id:coupleInfo.couple_id,p_name:name});
+    if(error){$b('babyActionStatus').textContent='❌ '+error.message;return;}
+    await loadBaby();$b('babyActionStatus').textContent='💗 Bebeğimizin adı '+name+' oldu!';
+  };
+  const catalog=[
+    {id:'milk',icon:'🍼',name:'Süt',price:10,detail:'Tokluk +16'},
+    {id:'formula',icon:'🥣',name:'Bebek maması',price:20,detail:'Tokluk +28'},
+    {id:'fruit',icon:'🍌',name:'Meyve püresi',price:30,detail:'Tokluk +38'},
+    {id:'soap',icon:'🫧',name:'Bebek şampuanı',price:15,detail:'Temizlik +30'},
+    {id:'toy',icon:'🧸',name:'Oyuncak',price:45,detail:'Mutluluk +30'}
+  ];
+  let marketBusy=false;
+  async function loadBabyMarket(){
+    if(!db||!coupleInfo?.couple_id)return;
+    const {data,error}=await db.rpc('muly_baby_market_state_v2',{p_couple_id:coupleInfo.couple_id});
+    if(error){$b('babyMarketStatus').textContent='❌ '+error.message;return;}
+    const balance=Number(data?.coins||0),inventory=data?.inventory||{};
+    $b('babyWallet').textContent='🪙 Ortak aşk parası: '+balance;
+    const root=$b('babyMarketList'),bag=$b('babyInventory');root.replaceChildren();bag.replaceChildren();
+    for(const item of catalog){
+      const card=document.createElement('div');card.className='baby-product';
+      const emoji=document.createElement('span');emoji.className='emoji';emoji.textContent=item.icon;
+      const name=document.createElement('strong');name.textContent=item.name;
+      const info=document.createElement('small');info.textContent=item.detail+' · '+item.price+' 🪙';
+      const btn=document.createElement('button');btn.textContent=balance<item.price?'🪙 Yetersiz':'Satın al';btn.disabled=balance<item.price||marketBusy;
+      btn.onclick=()=>marketAction('buy',item.id);
+      card.append(emoji,name,info,btn);root.append(card);
+      const owned=Number(inventory[item.id]||0);
+      if(owned>0){const box=document.createElement('div');box.className='baby-product';const label=document.createElement('strong');label.textContent=item.icon+' '+item.name+' ×'+owned;const use=document.createElement('button');use.className='secondary';use.textContent='Kullan';use.disabled=marketBusy;use.onclick=()=>marketAction('use',item.id);box.append(label,use);bag.append(box);}
+    }
+    if(!bag.children.length){const empty=document.createElement('p');empty.className='muted';empty.textContent='Çantanız boş. Markette alışveriş yapın 💗';bag.append(empty);}
+  }
+  async function marketAction(kind,id){
+    if(marketBusy)return;marketBusy=true;
+    try{
+      const rpc=kind==='buy'?'muly_baby_buy_v2':'muly_baby_use_v2';
+      const {data,error}=await db.rpc(rpc,{p_couple_id:coupleInfo.couple_id,p_item:id});
+      if(error)throw error;
+      $b('babyMarketStatus').textContent='💗 '+(data?.message||'İşlem tamamlandı');
+      await loadBaby();await loadBabyMarket();window.mulyRefreshHouse?.();
+    }catch(e){$b('babyMarketStatus').textContent='❌ '+e.message;}
+    finally{marketBusy=false;}
+  }
+
+  document.querySelector('[data-tab="baby"]').addEventListener('click',syncBaby);
+  setInterval(()=>{if(user && coupleInfo?.couple_id && !$b('baby').classList.contains('hidden'))syncBaby();},8000);
+  async function init3D(){
+    modelReady=true;
+    try{
+      const THREE=await import('https://esm.sh/three@0.170.0');
+      const scene=new THREE.Scene();
+      const camera=new THREE.PerspectiveCamera(37,1,.1,100);camera.position.set(0,1.35,5.9);camera.lookAt(0,.55,0);
+      const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+      renderer.outputColorSpace=THREE.SRGBColorSpace;
+      renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+      stage.append(renderer.domElement);$b('baby3dStatus')?.remove();
+      scene.add(new THREE.HemisphereLight(0xffffff,0xe6a4b8,2.1));
+      const light=new THREE.DirectionalLight(0xffffff,3.0);light.position.set(3,7,5);light.castShadow=true;light.shadow.mapSize.set(1024,1024);scene.add(light);
+      const material=(color,roughness=.78)=>new THREE.MeshStandardMaterial({color,roughness});
+      const skin=material(0xffd1b5),hair=material(0x684339),dark=material(0x282238,.22),pink=material(0xf29aab),outfit=material(0xe8a4b9),outfitLight=material(0xffe5ee),shine=material(0xffffff,.12),blush=material(0xee8e9c);
+      const root=new THREE.Group();scene.add(root);
+      function ball(parent,r,x,y,z,mat,sx=1,sy=1,sz=1){const o=new THREE.Mesh(new THREE.SphereGeometry(r,40,28),mat);o.position.set(x,y,z);o.scale.set(sx,sy,sz);o.castShadow=true;parent.add(o);return o;}
+      function block(parent,w,h,d,x,y,z,mat){const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;parent.add(o);return o;}
+      // Soft nursery scene and floor, separate from the animated baby.
+      const floor=new THREE.Mesh(new THREE.CylinderGeometry(2.8,2.9,.13,64),material(0xffedf1));floor.position.y=-1.43;floor.receiveShadow=true;scene.add(floor);
+      const rug=new THREE.Mesh(new THREE.CylinderGeometry(1.62,1.62,.045,64),material(0xf6c7d5));rug.position.set(0,-1.33,.1);rug.receiveShadow=true;scene.add(rug);
+      for(const x of [-1.55,1.55]){ball(scene,.35,x,-.98,-.55,material(0xfff5db),1,.85,1);ball(scene,.22,x,-.61,-.55,material(0xffe7c1),1,1.25,.8);}
+      // Large nursery background: walls, cot, curtains, framed art and lamp.
+      block(scene,5.5,3.6,.14,0,.20,-2.0,material(0xffe6ee));
+      block(scene,5.5,.16,.25,0,-1.33,-1.87,material(0xe8b8c8));
+      block(scene,1.3,1.35,.08,-1.55,.68,-1.86,material(0xffffff));
+      block(scene,1.13,1.15,.09,-1.55,.68,-1.80,material(0xb8ddea));
+      block(scene,.09,1.22,.11,-1.55,.68,-1.73,material(0xffffff));
+      block(scene,1.2,.09,.11,-1.55,.68,-1.73,material(0xffffff));
+      block(scene,.28,1.4,.16,-2.27,.67,-1.67,material(0xf3a9bd));
+      block(scene,.28,1.4,.16,-.82,.67,-1.67,material(0xf3a9bd));
+      block(scene,.88,1.0,.08,1.5,.66,-1.83,material(0xd49db6));
+      block(scene,.72,.84,.09,1.5,.66,-1.76,material(0xfff7e6));
+      ball(scene,.19,1.5,.7,-1.65,material(0xf7c3d3));
+      block(scene,1.25,.18,.6,1.65,-.94,-.92,material(0xf5d5ae));
+      for(const x of [1.12,2.18])block(scene,.09,.9,.09,x,-.60,-.92,material(0xc89d81));
+      ball(scene,.27,1.72,-.49,-.92,material(0xffd8a4));
+      ball(scene,.18,1.6,-.27,-.85,material(0xf7b6c8));
+      // Proportional cartoon baby: large face, small rounded body, fully clothed.
+      ball(root,.72,0,.10,0,outfit,1,.99,.77);
+      ball(root,.69,0,-.28,.03,outfitLight,.96,.55,.78);
+      ball(root,.88,0,1.25,.06,skin,1,1.06,.87);
+      for(const x of [-1,1]){
+        ball(root,.19,x*.82,1.18,.04,skin,.65,1,.6);
+        ball(root,.17,x*.37,1.08,.79,blush,1.2,.5,.19);
+        ball(root,.17,x*.34,1.38,.75,shine,.95,1.15,.4);
+        ball(root,.126,x*.34,1.39,.84,dark,1,1.2,.46);
+        ball(root,.048,x*.30,1.46,.9,shine);
+        ball(root,.085,x*.37,1.65,.76,hair,1.7,.22,.35);
+      }
+      ball(root,.12,0,1.17,.87,skin,.85,.65,.45);
+      const mouth=ball(root,.13,0,.93,.83,pink,.85,.34,.32);
+      ball(root,.76,0,1.98,-.12,hair,1,.35,.77);
+      for(const x of [-1,1])ball(root,.23,x*.40,2.08,.09,hair,.83,.54,1);
+      // Bonnet and bow.
+      ball(root,.25,-.25,2.14,.32,outfitLight,1.1,.36,.55);
+      ball(root,.25,.25,2.14,.32,outfitLight,1.1,.36,.55);
+      ball(root,.12,0,2.14,.43,pink);
+      ball(root,.21,0,.27,.63,outfitLight,1.2,.9,.18);
+      const arms=[],legs=[];
+      for(const x of [-1,1]){
+        const arm=new THREE.Group();arm.position.set(x*.57,.48,0);root.add(arm);
+        ball(arm,.24,x*.17,-.25,.1,outfit,.87,1.3,.84);
+        ball(arm,.18,x*.24,-.49,.16,skin,1,.85,1);arms.push(arm);
+        const leg=new THREE.Group();leg.position.set(x*.31,-.42,0);root.add(leg);
+        ball(leg,.27,0,-.25,.05,outfitLight,.95,1.15,.95);
+        ball(leg,.27,0,-.49,.23,material(0xfff8fa),1.25,.63,1.3);legs.push(leg);
+      }
+      // Nursery decorative stars.
+      for(let i=0;i<9;i++){const a=i*Math.PI*2/9;const star=ball(scene,.065,Math.cos(a)*2.15,1.15+Math.sin(a)*1.05,-1.4,material(i%2?0xffdf8e:0xffc7dd));star.castShadow=false;}
+      function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();}
+      resize();new ResizeObserver(resize).observe(stage);
+      const clock=new THREE.Clock();
+      function frame(){requestAnimationFrame(frame);const t=clock.getElapsedTime();root.position.y=.055*Math.sin(t*2.2);root.rotation.y=.09*Math.sin(t*.7);mouth.scale.y=(baby?.hunger<35?.72: .32)+.12*Math.abs(Math.sin(t*2.1));arms.forEach((a,i)=>a.rotation.z=(i?1:-1)*(.12+Math.sin(t*(animateAction==='play'?8:2)+i)*.16));legs.forEach((l,i)=>l.rotation.x=Math.sin(t*(animateAction==='play'?8:2)+i*2)*.13);renderer.render(scene,camera);}
+      frame();
+    }catch(e){$b('baby3dStatus').textContent='3D model yüklenemedi: '+e.message;modelReady=false;}
+  }
+})();
+
+// EVIMIZ 2.0: 56 mobilya, sunucu tarafinda satin alma, 4 oda, ortak yerlesim ve gorevler.
+(()=>{
+ const catalog=[{"id":"sofa","emoji":"🛋️","name":"Pembe koltuk","price":200,"level":2,"shape":"sofa","room":"salon"},{"id":"tv","emoji":"📺","name":"Akıllı televizyon","price":350,"level":3,"shape":"tv","room":"salon"},{"id":"plant","emoji":"🪴","name":"Salon çiçeği","price":100,"level":1,"shape":"plant","room":"salon"},{"id":"desk","emoji":"🎮","name":"Oyun köşesi","price":1200,"level":10,"shape":"desk","room":"salon"},{"id":"coffee_table","emoji":"☕","name":"Orta sehpa","price":130,"level":1,"shape":"table","room":"salon"},{"id":"armchair","emoji":"💺","name":"Kadife berjer","price":230,"level":2,"shape":"chair","room":"salon"},{"id":"bookshelf","emoji":"📚","name":"Kitaplık","price":300,"level":3,"shape":"shelf","room":"salon"},{"id":"floor_lamp","emoji":"💡","name":"Ayaklı lamba","price":160,"level":2,"shape":"lamp","room":"salon"},{"id":"carpet","emoji":"🧶","name":"Yumuşak halı","price":170,"level":2,"shape":"rug","room":"salon"},{"id":"clock","emoji":"🕰️","name":"Duvar saati","price":95,"level":1,"shape":"clock","room":"salon"},{"id":"fireplace","emoji":"🔥","name":"Şömine","price":650,"level":7,"shape":"fireplace","room":"salon"},{"id":"piano","emoji":"🎹","name":"Piyano","price":1100,"level":9,"shape":"piano","room":"salon"},{"id":"aquarium","emoji":"🐠","name":"Akvaryum","price":480,"level":5,"shape":"aquarium","room":"salon"},{"id":"mirror","emoji":"🪞","name":"Boy aynası","price":210,"level":3,"shape":"mirror","room":"salon"},{"id":"bed","emoji":"🛏️","name":"Çift kişilik yatak","price":500,"level":4,"shape":"bed","room":"yatak"},{"id":"nightstand","emoji":"🗄️","name":"Komodin","price":120,"level":4,"shape":"cabinet","room":"yatak"},{"id":"wardrobe","emoji":"👗","name":"Gardırop","price":420,"level":5,"shape":"wardrobe","room":"yatak"},{"id":"vanity","emoji":"💄","name":"Makyaj masası","price":390,"level":5,"shape":"table","room":"yatak"},{"id":"bed_lamp","emoji":"🌙","name":"Gece lambası","price":110,"level":4,"shape":"lamp","room":"yatak"},{"id":"bed_rug","emoji":"🧸","name":"Peluş halı","price":180,"level":4,"shape":"rug","room":"yatak"},{"id":"dresser","emoji":"🧺","name":"Şifonyer","price":330,"level":5,"shape":"cabinet","room":"yatak"},{"id":"bed_plant","emoji":"🌷","name":"Pembe lale","price":115,"level":4,"shape":"plant","room":"yatak"},{"id":"heart_art","emoji":"💗","name":"Kalpli tablo","price":150,"level":4,"shape":"art","room":"yatak"},{"id":"bench","emoji":"🪑","name":"Yatak ucu pufu","price":260,"level":5,"shape":"bench","room":"yatak"},{"id":"curtain","emoji":"🎀","name":"Pembe perde","price":210,"level":4,"shape":"curtain","room":"yatak"},{"id":"jewelry","emoji":"💎","name":"Takı standı","price":175,"level":5,"shape":"decor","room":"yatak"},{"id":"love_lights","emoji":"✨","name":"Yıldız ışıkları","price":275,"level":6,"shape":"lights","room":"yatak"},{"id":"balcony_chair","emoji":"🌸","name":"Dinlenme koltuğu","price":370,"level":6,"shape":"chair","room":"yatak"},{"id":"dining_table","emoji":"🍽️","name":"Yemek masası","price":460,"level":6,"shape":"table","room":"mutfak"},{"id":"dining_chair","emoji":"🪑","name":"Yemek sandalyesi","price":160,"level":6,"shape":"chair","room":"mutfak"},{"id":"fridge","emoji":"🧊","name":"Buzdolabı","price":720,"level":7,"shape":"fridge","room":"mutfak"},{"id":"oven","emoji":"🍳","name":"Fırın","price":580,"level":7,"shape":"oven","room":"mutfak"},{"id":"kitchen_counter","emoji":"🥣","name":"Mutfak tezgâhı","price":520,"level":6,"shape":"counter","room":"mutfak"},{"id":"coffee_machine","emoji":"☕","name":"Kahve makinesi","price":290,"level":6,"shape":"coffee","room":"mutfak"},{"id":"sink","emoji":"🚰","name":"Evye","price":340,"level":6,"shape":"sink","room":"mutfak"},{"id":"kitchen_shelf","emoji":"🥫","name":"Baharat rafı","price":135,"level":6,"shape":"shelf","room":"mutfak"},{"id":"fruit_bowl","emoji":"🍎","name":"Meyve kasesi","price":100,"level":6,"shape":"decor","room":"mutfak"},{"id":"bar_stool","emoji":"🥤","name":"Bar taburesi","price":190,"level":7,"shape":"chair","room":"mutfak"},{"id":"kitchen_plant","emoji":"🌿","name":"Fesleğen","price":105,"level":6,"shape":"plant","room":"mutfak"},{"id":"dish_cabinet","emoji":"🍶","name":"Tabak dolabı","price":385,"level":7,"shape":"cabinet","room":"mutfak"},{"id":"microwave","emoji":"📦","name":"Mikrodalga","price":275,"level":7,"shape":"oven","room":"mutfak"},{"id":"kitchen_rug","emoji":"🧡","name":"Mutfak kilimi","price":150,"level":6,"shape":"rug","room":"mutfak"},{"id":"crib","emoji":"🍼","name":"Bebek beşiği","price":750,"level":8,"shape":"crib","room":"bebek"},{"id":"changing_table","emoji":"👶","name":"Alt değiştirme masası","price":380,"level":8,"shape":"table","room":"bebek"},{"id":"toy_box","emoji":"🧸","name":"Oyuncak sandığı","price":230,"level":8,"shape":"box","room":"bebek"},{"id":"rocking_chair","emoji":"🪑","name":"Sallanan koltuk","price":390,"level":8,"shape":"chair","room":"bebek"},{"id":"baby_rug","emoji":"🌈","name":"Bulut halı","price":180,"level":8,"shape":"rug","room":"bebek"},{"id":"baby_lamp","emoji":"🌟","name":"Yıldız lamba","price":165,"level":8,"shape":"lamp","room":"bebek"},{"id":"baby_shelf","emoji":"📚","name":"Masal kitaplığı","price":270,"level":8,"shape":"shelf","room":"bebek"},{"id":"teddy","emoji":"🧸","name":"Peluş ayıcık","price":125,"level":8,"shape":"teddy","room":"bebek"},{"id":"mobile","emoji":"🎠","name":"Dönen oyuncak","price":210,"level":8,"shape":"mobile","room":"bebek"},{"id":"baby_dresser","emoji":"🧺","name":"Bebek şifonyeri","price":350,"level":8,"shape":"cabinet","room":"bebek"},{"id":"baby_art","emoji":"☁️","name":"Bulut tablosu","price":110,"level":8,"shape":"art","room":"bebek"},{"id":"baby_chair","emoji":"🪑","name":"Mama sandalyesi","price":325,"level":8,"shape":"chair","room":"bebek"},{"id":"playmat","emoji":"🧩","name":"Oyun minderi","price":240,"level":8,"shape":"rug","room":"bebek"},{"id":"night_sky","emoji":"🌙","name":"Gece yıldızları","price":290,"level":8,"shape":"lights","room":"bebek"}];
+ const roomLevels={salon:1,yatak:4,mutfak:6,bebek:8};
+ const $=id=>document.getElementById(id);
+ let world=null,couple=null,loading=false,activeRoom='salon',editing=false,channel=null;
+ const money=n=>Number(n||0).toLocaleString('tr-TR');
+ const message=t=>{$('houseStatus').textContent=t;};
+ const owns=id=>(world?.items||[]).includes(id);
+ function shop(){if(!world)return;
+  const q=($('ev2Search').value||'').trim().toLocaleLowerCase('tr-TR'),f=$('ev2Filter').value;
+  const filtered=catalog.filter(i=>(f==='all'||(f==='owned'?owns(i.id):i.room===f))&&(`${i.name} ${i.room}`.toLocaleLowerCase('tr-TR').includes(q)));
+  $('ev2ShopCount').textContent=`${filtered.length} eşya gösteriliyor · ${world.items.length}/56 satın alındı`;
+  const target=$('houseShop');target.replaceChildren();
+  for(const i of filtered){const card=document.createElement('div');card.className='house-product';
+   const emoji=document.createElement('div');emoji.className='ev2-emoji';emoji.textContent=i.emoji;
+   const name=document.createElement('strong');name.textContent=i.name;
+   const info=document.createElement('p');info.className='muted';info.textContent=`🪙 ${money(i.price)} · Seviye ${i.level}`;
+   const btn=document.createElement('button');btn.type='button';
+   btn.textContent=owns(i.id)?'✓ Bizim':world.level<i.level?`🔒 Seviye ${i.level}`:world.coins<i.price?'🪙 Para yetersiz':'Satın al';
+   btn.disabled=owns(i.id)||world.level<i.level||world.coins<i.price;
+   btn.onclick=async()=>{btn.disabled=true;try{const {error}=await db.rpc('muly_house_buy_v4',{p_couple_id:coupleInfo.couple_id,p_item:i.id});if(error)throw error;await load();message(`💗 ${i.name} evinize eklendi!`);}catch(e){message('❌ '+e.message);btn.disabled=false;}};
+   card.append(emoji,name,info,btn);target.append(card);
+  }
+ }
+ function tasks(){const data=[['tidy','🧹','Evi toparla',8,8],['water','🌿','Çiçekleri sula',6,6],['cook','🍳','Birlikte yemek yap',10,10]];const target=$('ev2Tasks');target.replaceChildren();
+  for(const [id,icon,name,xp,coins] of data){const done=(world.tasks||[]).includes(id),card=document.createElement('div');card.className='ev2-task';const sym=document.createElement('span');sym.textContent=icon;const title=document.createElement('strong');title.textContent=name;const btn=document.createElement('button');btn.textContent=done?'✓ Tamamlandı':`+${xp} XP · +${coins} 🪙`;btn.disabled=done;btn.onclick=async()=>{btn.disabled=true;try{const {error}=await db.rpc('muly_house_task_v4',{p_couple_id:coupleInfo.couple_id,p_task:id});if(error)throw error;await load();message('🎉 Görev tamamlandı, ortak ödül eklendi!');}catch(e){message('❌ '+e.message);btn.disabled=false;}};card.append(sym,title,btn);target.append(card);}
+ }
+ async function load(){if(!db||!user||!coupleInfo?.couple_id||loading)return;loading=true;try{
+  const cid=coupleInfo.couple_id;
+  if(couple!==cid){if(channel)await db.removeChannel(channel);couple=cid;channel=db.channel('muly-house-v4-'+cid).on('postgres_changes',{event:'*',schema:'public',table:'muly_houses',filter:'couple_id=eq.'+cid},()=>load()).subscribe();}
+  const {data,error}=await db.rpc('muly_house_world_v4',{p_couple_id:cid});if(error)throw error;
+  world=typeof data==='string'?JSON.parse(data):data;
+  $('houseLevel').textContent=world.level;$('houseXp').textContent=`${world.xp} XP`;$('houseCoins').textContent=money(world.coins);
+  $('houseRoom').value=activeRoom;shop();tasks();window.mulyRenderHouse?.(world.items||[],world.layout||[],activeRoom);
+  message('💗 Ortak ev hazır. Alışveriş ve yerleşim ikiniz için de kaydedilir.');
+ }catch(e){message('❌ '+e.message+' · Evimiz 2.0 SQL kurulumunu kontrol et.');}finally{loading=false;}}
+ $('ev2Search').oninput=shop;$('ev2Filter').onchange=shop;
+ $('houseRoom').onchange=()=>{const room=$('houseRoom').value;if(!world||world.level<roomLevels[room]){$('houseRoom').value=activeRoom;message('🔒 Bu oda seviye '+roomLevels[room]+' ile açılır.');return;}activeRoom=room;window.mulyRenderHouse?.(world.items||[],world.layout||[],room);message('🏡 '+({salon:'Salon',yatak:'Yatak odası',mutfak:'Mutfak',bebek:'Bebek odası'}[room])+' hazır.');};
+ $('houseEdit').onclick=()=>{editing=!editing;$('houseEdit').textContent=editing?'✓ Düzenlemeyi bitir':'🪑 Düzenle';window.mulyHouseEdit?.(editing);$('houseEditHint').textContent=editing?'Mobilyaya basılı tutup sürükle, ↻ ile döndür. Kaydet butonuna basmayı unutma.':'Düzenleme kapalı.';};
+ $('houseTurn').onclick=()=>window.mulyHouseTurn?.();$('houseRotate').onclick=()=>window.mulyRotateHouse?.();
+ $('houseSave').onclick=async()=>{const b=$('houseSave');b.disabled=true;try{if(!world)throw Error('Önce evin yüklenmesini bekle');const layout=window.mulyHouseLayout?.()||[];const {error}=await db.rpc('muly_house_layout_save_v4',{p_couple_id:coupleInfo.couple_id,p_layout:layout});if(error)throw error;await load();message('💾 Tüm odaların yerleşimi ortak hesaba kaydedildi!');}catch(e){message('❌ '+e.message);}finally{b.disabled=false;}};
+ $('houseDaily').onclick=async()=>{const b=$('houseDaily');b.disabled=true;try{const {error}=await db.rpc('muly_house_daily',{p_couple_id:coupleInfo.couple_id});if(error)throw error;await load();message('🎁 Günlük ödül alındı!');}catch(e){message('❌ '+e.message);}finally{b.disabled=false;}};
+ window.mulyRefreshHouse=load;
+ document.querySelector('[data-tab="house"]').addEventListener('click',()=>{window.mulyInitHouse?.();load();});
+ setInterval(()=>{if(user&&coupleInfo?.couple_id&&!$('house').classList.contains('hidden'))load();},18000);
+})();
+</script>
+
 <script type="module">
-import {createClient} from 'https://esm.sh/@supabase/supabase-js@2?bundle';
-const SUPABASE_URL='https://crzuvunoaudedqtdmmbs.supabase.co';
-const KEY='sb_publishable_9vSoBw8_xxpx2o6ajKwWBw_fIH_gywn';
-const db=createClient(SUPABASE_URL,KEY);
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js';
+const stage=document.getElementById('houseStage');
+let scene,camera,renderer,roomGroup,objects={},owned=[],positions=[],room='salon',editing=false,selected=null,started=false,angle=.7;
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+const material=c=>new THREE.MeshStandardMaterial({color:c,roughness:.77});
+function box(g,w,h,d,c,x=0,y=0,z=0){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material(c));m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;g.add(m);return m;}
+function ball(g,r,c,x=0,y=0,z=0,sx=1,sy=1,sz=1){const m=new THREE.Mesh(new THREE.SphereGeometry(r,20,14),material(c));m.position.set(x,y,z);m.scale.set(sx,sy,sz);m.castShadow=true;g.add(m);return m;}
+const color={salon:0xe6a0b7,yatak:0xc9a4d6,mutfak:0xb5cbb5,bebek:0xe8b5cc};
+function furniture(id){const g=new THREE.Group();g.userData.itemId=id;roomGroup.add(g);
+ const item=[{"id":"sofa","room":"salon","shape":"sofa"},{"id":"tv","room":"salon","shape":"tv"},{"id":"plant","room":"salon","shape":"plant"},{"id":"desk","room":"salon","shape":"desk"},{"id":"coffee_table","room":"salon","shape":"table"},{"id":"armchair","room":"salon","shape":"chair"},{"id":"bookshelf","room":"salon","shape":"shelf"},{"id":"floor_lamp","room":"salon","shape":"lamp"},{"id":"carpet","room":"salon","shape":"rug"},{"id":"clock","room":"salon","shape":"clock"},{"id":"fireplace","room":"salon","shape":"fireplace"},{"id":"piano","room":"salon","shape":"piano"},{"id":"aquarium","room":"salon","shape":"aquarium"},{"id":"mirror","room":"salon","shape":"mirror"},{"id":"bed","room":"yatak","shape":"bed"},{"id":"nightstand","room":"yatak","shape":"cabinet"},{"id":"wardrobe","room":"yatak","shape":"wardrobe"},{"id":"vanity","room":"yatak","shape":"table"},{"id":"bed_lamp","room":"yatak","shape":"lamp"},{"id":"bed_rug","room":"yatak","shape":"rug"},{"id":"dresser","room":"yatak","shape":"cabinet"},{"id":"bed_plant","room":"yatak","shape":"plant"},{"id":"heart_art","room":"yatak","shape":"art"},{"id":"bench","room":"yatak","shape":"bench"},{"id":"curtain","room":"yatak","shape":"curtain"},{"id":"jewelry","room":"yatak","shape":"decor"},{"id":"love_lights","room":"yatak","shape":"lights"},{"id":"balcony_chair","room":"yatak","shape":"chair"},{"id":"dining_table","room":"mutfak","shape":"table"},{"id":"dining_chair","room":"mutfak","shape":"chair"},{"id":"fridge","room":"mutfak","shape":"fridge"},{"id":"oven","room":"mutfak","shape":"oven"},{"id":"kitchen_counter","room":"mutfak","shape":"counter"},{"id":"coffee_machine","room":"mutfak","shape":"coffee"},{"id":"sink","room":"mutfak","shape":"sink"},{"id":"kitchen_shelf","room":"mutfak","shape":"shelf"},{"id":"fruit_bowl","room":"mutfak","shape":"decor"},{"id":"bar_stool","room":"mutfak","shape":"chair"},{"id":"kitchen_plant","room":"mutfak","shape":"plant"},{"id":"dish_cabinet","room":"mutfak","shape":"cabinet"},{"id":"microwave","room":"mutfak","shape":"oven"},{"id":"kitchen_rug","room":"mutfak","shape":"rug"},{"id":"crib","room":"bebek","shape":"crib"},{"id":"changing_table","room":"bebek","shape":"table"},{"id":"toy_box","room":"bebek","shape":"box"},{"id":"rocking_chair","room":"bebek","shape":"chair"},{"id":"baby_rug","room":"bebek","shape":"rug"},{"id":"baby_lamp","room":"bebek","shape":"lamp"},{"id":"baby_shelf","room":"bebek","shape":"shelf"},{"id":"teddy","room":"bebek","shape":"teddy"},{"id":"mobile","room":"bebek","shape":"mobile"},{"id":"baby_dresser","room":"bebek","shape":"cabinet"},{"id":"baby_art","room":"bebek","shape":"art"},{"id":"baby_chair","room":"bebek","shape":"chair"},{"id":"playmat","room":"bebek","shape":"rug"},{"id":"night_sky","room":"bebek","shape":"lights"}].find(x=>x.id===id);if(!item)return g;
+ const c=color[item.room],wood=0xb99481,white=0xfff3e9,dark=0x5c5363;
+ switch(item.shape){
+ case 'sofa':box(g,1.4,.36,.7,c,0,.45,0);box(g,1.4,.62,.16,0xb77b99,0,.79,-.3);for(const x of [-.62,.62])box(g,.17,.48,.7,0xb77b99,x,.57,0);for(const x of [-.32,.32])box(g,.48,.16,.47,white,x,.69,.09);break;
+ case 'bed':box(g,1.35,.28,1.7,wood,0,.3,0);box(g,1.4,.65,.15,c,0,.58,-.82);box(g,1.22,.11,1.4,white,0,.49,.1);for(const x of [-.34,.34])box(g,.47,.11,.3,0xffffff,x,.59,-.47);break;
+ case 'crib':box(g,1.05,.17,.78,wood,0,.42,0);box(g,.9,.1,.61,white,0,.54,0);for(const x of [-.49,.49])for(const z of [-.35,.35])box(g,.065,.72,.065,wood,x,.57,z);for(const z of [-.34,.34])box(g,.97,.06,.06,wood,0,.9,z);break;
+ case 'tv':box(g,1.1,.67,.07,dark,0,1,0);box(g,.98,.54,.01,0x91b8cb,0,1,.043);box(g,.11,.43,.1,wood,0,.52,0);box(g,.55,.08,.3,wood,0,.29,0);break;
+ case 'plant':box(g,.34,.4,.34,0xc99b86,0,.2,0);for(let k=0;k<6;k++)ball(g,.22,k%2?0x7aa88c:0x518e75,Math.sin(k*2)*.15,.55+(k%3)*.14,Math.cos(k*2)*.13);break;
+ case 'desk':case 'table':box(g,1.12,.11,.65,wood,0,.72,0);for(const x of [-.48,.48])for(const z of [-.24,.24])box(g,.08,.68,.08,dark,x,.34,z);if(item.shape==='desk')box(g,.5,.36,.05,0x7183b4,0,1,-.12);break;
+ case 'chair':box(g,.56,.14,.54,c,0,.49,0);box(g,.56,.7,.1,wood,0,.79,-.24);for(const x of [-.22,.22])for(const z of [-.2,.2])box(g,.065,.47,.065,wood,x,.23,z);break;
+ case 'bench':box(g,.9,.23,.48,c,0,.49,0);for(const x of [-.35,.35])box(g,.09,.42,.09,wood,x,.22,0);break;
+ case 'shelf':case 'wardrobe':case 'cabinet':box(g,item.shape==='wardrobe'?1.05:.85,item.shape==='wardrobe'?1.6:item.shape==='shelf'?1.48:.85,.4,wood,0,item.shape==='wardrobe'?.8:item.shape==='shelf'?.74:.43,0);if(item.shape==='shelf')for(const y of [.36,.72,1.08])box(g,.79,.07,.43,white,0,y,.03);else for(const x of [-.19,.19])ball(g,.045,white,x,.65,.23);break;
+ case 'lamp':box(g,.1,1.05,.1,wood,0,.52,0);ball(g,.34,0xffdca9,0,1.13,0,1,.6,1);box(g,.44,.06,.44,wood,0,.05,0);break;
+ case 'rug':{const m=new THREE.Mesh(new THREE.CylinderGeometry(.84,.84,.035,48),material(c));m.scale.set(1,.8,.67);m.position.y=.03;g.add(m);break;}
+ case 'clock':case 'art':box(g,.72,.78,.08,wood,0,.85,0);box(g,.61,.67,.02,item.shape==='clock'?white:c,0,.85,.052);if(item.shape==='clock'){ball(g,.08,dark,0,.85,.07);box(g,.03,.28,.03,dark,0,.98,.09);}break;
+ case 'fireplace':box(g,1.1,1.2,.5,wood,0,.6,0);box(g,.73,.72,.06,dark,0,.55,.28);ball(g,.2,0xffa449,0,.48,.33,1,1.5,.4);break;
+ case 'piano':box(g,1.4,.52,.76,dark,0,.7,0);for(let x=-.55;x<.58;x+=.12)box(g,.085,.03,.3,white,x,.45,.25);for(const x of [-.55,.55])box(g,.1,.55,.1,dark,x,.26,0);break;
+ case 'aquarium':box(g,1,.65,.53,0x91c8cf,0,.75,0);box(g,1.1,.08,.6,wood,0,.38,0);for(let k=0;k<3;k++)ball(g,.08,0xf6b17b,-.3+k*.3,.73,.29);break;
+ case 'mirror':box(g,.75,1.3,.08,wood,0,.82,0);box(g,.63,1.16,.02,0xb4dce8,0,.82,.05);break;
+ case 'curtain':box(g,1.12,1.3,.12,c,0,.83,0);for(let x=-.45;x<.5;x+=.22)box(g,.08,1.25,.15,0xf3d2e2,x,.83,.09);break;
+ case 'decor':case 'teddy':case 'mobile':case 'lights':if(item.shape==='teddy'){ball(g,.36,0xc99d7e,0,.47,0);ball(g,.26,0xc99d7e,0,.9,0);for(const x of [-.2,.2])ball(g,.12,0xc99d7e,x,1.08,0);}else{box(g,.38,.35,.3,wood,0,.18,0);for(let k=0;k<5;k++)ball(g,.08,k%2?0xffd789:c,Math.sin(k*2)*.23,.45+(k%3)*.1,Math.cos(k*2)*.14);}break;
+ case 'fridge':box(g,.77,1.65,.68,0xe3eff2,0,.83,0);box(g,.07,.33,.07,dark,.3,1.12,.37);break;
+ case 'oven':box(g,.76,.85,.65,0xa3a2ac,0,.43,0);box(g,.59,.42,.02,dark,0,.42,.34);for(const x of [-.2,.2])ball(g,.05,white,x,.77,.36);break;
+ case 'counter':case 'sink':box(g,1.3,.82,.65,wood,0,.41,0);box(g,1.36,.1,.7,white,0,.87,0);if(item.shape==='sink')box(g,.5,.04,.35,0xa7c7cf,0,.94,0);break;
+ case 'coffee':box(g,.46,.55,.43,dark,0,.42,0);box(g,.3,.15,.28,0xd5b5a6,0,.72,.05);break;
+ case 'box':box(g,.83,.52,.6,wood,0,.26,0);box(g,.87,.1,.64,c,0,.56,0);break;
+ default:box(g,.75,.7,.5,c,0,.35,0);
+ }
+ objects[id]=g;return g;
+}
+function drawRoom(){if(!started)return;if(roomGroup)scene.remove(roomGroup);roomGroup=new THREE.Group();scene.add(roomGroup);objects={};selected=null;
+ const tint={salon:0xffe8ed,yatak:0xf1e5f5,mutfak:0xf5f4e7,bebek:0xffe8f4}[room];scene.background=new THREE.Color(tint);
+ box(roomGroup,7,.16,5.6,0xe5c7af,0,-.1,0);box(roomGroup,7,3.2,.14,tint,0,1.5,-2.8);box(roomGroup,.14,3.2,5.6,tint,-3.5,1.5,0);
+ box(roomGroup,1.65,1.38,.08,0xffffff,-1.5,1.75,-2.67);box(roomGroup,1.45,1.2,.09,0xa8d6e9,-1.5,1.75,-2.6);box(roomGroup,.08,1.25,.1,0xffffff,-1.5,1.75,-2.51);box(roomGroup,1.5,.08,.1,0xffffff,-1.5,1.75,-2.51);
+ box(roomGroup,1.1,.09,.25,0xc49d90,1.5,1.5,-2.54);ball(roomGroup,.17,0xf6c8d9,1.5,1.8,-2.5);
+ const all=positions.filter(p=>p.room===room);for(const p of all){if(!owned.includes(p.item_id))continue;const g=furniture(p.item_id);g.position.set(Number(p.x),0,Number(p.z));g.rotation.y=Number(p.rotation)||0;}
+}
+function renderItems(list,layout,newRoom){owned=[...list];room=newRoom;const saved=new Map((layout||[]).map(p=>[p.item_id,p]));const old=new Map(positions.map(p=>[p.item_id,p]));
+ positions=owned.map((id,i)=>{const p=saved.get(id)||old.get(id);if(p)return {...p};const item=[{"id":"sofa","room":"salon","shape":"sofa"},{"id":"tv","room":"salon","shape":"tv"},{"id":"plant","room":"salon","shape":"plant"},{"id":"desk","room":"salon","shape":"desk"},{"id":"coffee_table","room":"salon","shape":"table"},{"id":"armchair","room":"salon","shape":"chair"},{"id":"bookshelf","room":"salon","shape":"shelf"},{"id":"floor_lamp","room":"salon","shape":"lamp"},{"id":"carpet","room":"salon","shape":"rug"},{"id":"clock","room":"salon","shape":"clock"},{"id":"fireplace","room":"salon","shape":"fireplace"},{"id":"piano","room":"salon","shape":"piano"},{"id":"aquarium","room":"salon","shape":"aquarium"},{"id":"mirror","room":"salon","shape":"mirror"},{"id":"bed","room":"yatak","shape":"bed"},{"id":"nightstand","room":"yatak","shape":"cabinet"},{"id":"wardrobe","room":"yatak","shape":"wardrobe"},{"id":"vanity","room":"yatak","shape":"table"},{"id":"bed_lamp","room":"yatak","shape":"lamp"},{"id":"bed_rug","room":"yatak","shape":"rug"},{"id":"dresser","room":"yatak","shape":"cabinet"},{"id":"bed_plant","room":"yatak","shape":"plant"},{"id":"heart_art","room":"yatak","shape":"art"},{"id":"bench","room":"yatak","shape":"bench"},{"id":"curtain","room":"yatak","shape":"curtain"},{"id":"jewelry","room":"yatak","shape":"decor"},{"id":"love_lights","room":"yatak","shape":"lights"},{"id":"balcony_chair","room":"yatak","shape":"chair"},{"id":"dining_table","room":"mutfak","shape":"table"},{"id":"dining_chair","room":"mutfak","shape":"chair"},{"id":"fridge","room":"mutfak","shape":"fridge"},{"id":"oven","room":"mutfak","shape":"oven"},{"id":"kitchen_counter","room":"mutfak","shape":"counter"},{"id":"coffee_machine","room":"mutfak","shape":"coffee"},{"id":"sink","room":"mutfak","shape":"sink"},{"id":"kitchen_shelf","room":"mutfak","shape":"shelf"},{"id":"fruit_bowl","room":"mutfak","shape":"decor"},{"id":"bar_stool","room":"mutfak","shape":"chair"},{"id":"kitchen_plant","room":"mutfak","shape":"plant"},{"id":"dish_cabinet","room":"mutfak","shape":"cabinet"},{"id":"microwave","room":"mutfak","shape":"oven"},{"id":"kitchen_rug","room":"mutfak","shape":"rug"},{"id":"crib","room":"bebek","shape":"crib"},{"id":"changing_table","room":"bebek","shape":"table"},{"id":"toy_box","room":"bebek","shape":"box"},{"id":"rocking_chair","room":"bebek","shape":"chair"},{"id":"baby_rug","room":"bebek","shape":"rug"},{"id":"baby_lamp","room":"bebek","shape":"lamp"},{"id":"baby_shelf","room":"bebek","shape":"shelf"},{"id":"teddy","room":"bebek","shape":"teddy"},{"id":"mobile","room":"bebek","shape":"mobile"},{"id":"baby_dresser","room":"bebek","shape":"cabinet"},{"id":"baby_art","room":"bebek","shape":"art"},{"id":"baby_chair","room":"bebek","shape":"chair"},{"id":"playmat","room":"bebek","shape":"rug"},{"id":"night_sky","room":"bebek","shape":"lights"}].find(x=>x.id===id);const k=[{"id":"sofa","room":"salon","shape":"sofa"},{"id":"tv","room":"salon","shape":"tv"},{"id":"plant","room":"salon","shape":"plant"},{"id":"desk","room":"salon","shape":"desk"},{"id":"coffee_table","room":"salon","shape":"table"},{"id":"armchair","room":"salon","shape":"chair"},{"id":"bookshelf","room":"salon","shape":"shelf"},{"id":"floor_lamp","room":"salon","shape":"lamp"},{"id":"carpet","room":"salon","shape":"rug"},{"id":"clock","room":"salon","shape":"clock"},{"id":"fireplace","room":"salon","shape":"fireplace"},{"id":"piano","room":"salon","shape":"piano"},{"id":"aquarium","room":"salon","shape":"aquarium"},{"id":"mirror","room":"salon","shape":"mirror"},{"id":"bed","room":"yatak","shape":"bed"},{"id":"nightstand","room":"yatak","shape":"cabinet"},{"id":"wardrobe","room":"yatak","shape":"wardrobe"},{"id":"vanity","room":"yatak","shape":"table"},{"id":"bed_lamp","room":"yatak","shape":"lamp"},{"id":"bed_rug","room":"yatak","shape":"rug"},{"id":"dresser","room":"yatak","shape":"cabinet"},{"id":"bed_plant","room":"yatak","shape":"plant"},{"id":"heart_art","room":"yatak","shape":"art"},{"id":"bench","room":"yatak","shape":"bench"},{"id":"curtain","room":"yatak","shape":"curtain"},{"id":"jewelry","room":"yatak","shape":"decor"},{"id":"love_lights","room":"yatak","shape":"lights"},{"id":"balcony_chair","room":"yatak","shape":"chair"},{"id":"dining_table","room":"mutfak","shape":"table"},{"id":"dining_chair","room":"mutfak","shape":"chair"},{"id":"fridge","room":"mutfak","shape":"fridge"},{"id":"oven","room":"mutfak","shape":"oven"},{"id":"kitchen_counter","room":"mutfak","shape":"counter"},{"id":"coffee_machine","room":"mutfak","shape":"coffee"},{"id":"sink","room":"mutfak","shape":"sink"},{"id":"kitchen_shelf","room":"mutfak","shape":"shelf"},{"id":"fruit_bowl","room":"mutfak","shape":"decor"},{"id":"bar_stool","room":"mutfak","shape":"chair"},{"id":"kitchen_plant","room":"mutfak","shape":"plant"},{"id":"dish_cabinet","room":"mutfak","shape":"cabinet"},{"id":"microwave","room":"mutfak","shape":"oven"},{"id":"kitchen_rug","room":"mutfak","shape":"rug"},{"id":"crib","room":"bebek","shape":"crib"},{"id":"changing_table","room":"bebek","shape":"table"},{"id":"toy_box","room":"bebek","shape":"box"},{"id":"rocking_chair","room":"bebek","shape":"chair"},{"id":"baby_rug","room":"bebek","shape":"rug"},{"id":"baby_lamp","room":"bebek","shape":"lamp"},{"id":"baby_shelf","room":"bebek","shape":"shelf"},{"id":"teddy","room":"bebek","shape":"teddy"},{"id":"mobile","room":"bebek","shape":"mobile"},{"id":"baby_dresser","room":"bebek","shape":"cabinet"},{"id":"baby_art","room":"bebek","shape":"art"},{"id":"baby_chair","room":"bebek","shape":"chair"},{"id":"playmat","room":"bebek","shape":"rug"},{"id":"night_sky","room":"bebek","shape":"lights"}].filter(x=>x.room===item.room).findIndex(x=>x.id===id);return {item_id:id,room:item.room,x:Number((-2+(k%5)*.95).toFixed(2)),z:Number((-1.35+Math.floor(k/5)*1.1).toFixed(2)),rotation:0};});drawRoom();}
+function init(){if(started)return;started=true;scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(43,1,.1,100);renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;stage.append(renderer.domElement);document.getElementById('house3dStatus')?.remove();scene.add(new THREE.HemisphereLight(0xffffff,0xd2b3b6,2));const sun=new THREE.DirectionalLight(0xffffff,2.4);sun.position.set(3,7,5);sun.castShadow=true;scene.add(sun);
+ const resize=()=>{if(!stage.clientWidth)return;renderer.setSize(stage.clientWidth,stage.clientHeight);camera.aspect=stage.clientWidth/stage.clientHeight;camera.updateProjectionMatrix();};new ResizeObserver(resize).observe(stage);resize();drawRoom();
+ function loop(){requestAnimationFrame(loop);camera.position.set(7.7*Math.sin(angle),5.8,7.7*Math.cos(angle));camera.lookAt(0,.6,0);renderer.render(scene,camera);}loop();
+ renderer.domElement.style.touchAction='none';const ray=new THREE.Raycaster(),pointer=new THREE.Vector2(),plane=new THREE.Plane(new THREE.Vector3(0,1,0),0);
+ function point(e){const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(pointer,camera);}
+ renderer.domElement.addEventListener('pointerdown',e=>{if(!editing)return;point(e);const hits=ray.intersectObjects(Object.values(objects),true);if(!hits.length)return;let o=hits[0].object;while(o.parent&&!o.userData.itemId)o=o.parent;selected=o.userData.itemId||null;if(selected)renderer.domElement.setPointerCapture(e.pointerId);});
+ renderer.domElement.addEventListener('pointermove',e=>{if(!editing||!selected)return;point(e);const v=new THREE.Vector3();if(!ray.ray.intersectPlane(plane,v))return;const o=objects[selected];if(!o)return;o.position.x=clamp(v.x,-2.5,2.5);o.position.z=clamp(v.z,-2,2);const p=positions.find(p=>p.item_id===selected);if(p){p.x=Number(o.position.x.toFixed(2));p.z=Number(o.position.z.toFixed(2));}});
+ renderer.domElement.addEventListener('pointerup',()=>{selected=null;});
+}
+window.mulyInitHouse=init;window.mulyRenderHouse=renderItems;window.mulyRotateHouse=()=>{angle+=Math.PI/4;};window.mulyHouseEdit=v=>{editing=v;};window.mulyHouseTurn=()=>{if(!editing){document.getElementById('houseEditHint').textContent='Önce Düzenle butonuna bas.';return;}const id=selected||Object.keys(objects)[0];if(!id)return;const o=objects[id],p=positions.find(p=>p.item_id===id);if(o&&p){o.rotation.y+=Math.PI/4;p.rotation=Number(o.rotation.y.toFixed(3));}};window.mulyHouseLayout=()=>positions.map(p=>({...p}));
+</script>
+<script>
+/* Sade gezinme: mevcut sekme işlevlerini aynen kullanır */
+(()=>{
+ const panel=document.getElementById('mulyNavPanel');
+ const toggle=document.getElementById('mulyNavToggle');
+ const arrow=document.getElementById('mulyNavArrow');
+ const settings=document.getElementById('mulySettingsToggle');
+ toggle.addEventListener('click',()=>{const open=panel.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));arrow.textContent=open?'⌃':'⌄';});
+ settings.addEventListener('click',()=>{const box=document.getElementById('pushSettings');const open=box.classList.toggle('muly-settings-open');settings.textContent=open?'✕ Ayarları kapat':'⚙️ Ayarlar';if(open)box.scrollIntoView({behavior:'smooth',block:'nearest'});});
+ document.querySelectorAll('[data-open-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+  const target=document.querySelector('#featureNav [data-tab="'+btn.dataset.openTab+'"]');
+  if(target){target.click();document.getElementById(btn.dataset.openTab)?.scrollIntoView({behavior:'smooth',block:'start'});}
+ }));
+ document.querySelectorAll('#featureNav [data-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+  panel.classList.remove('open');toggle.setAttribute('aria-expanded','false');arrow.textContent='⌄';
+  document.getElementById(btn.dataset.tab)?.scrollIntoView({behavior:'smooth',block:'start'});
+ }));
+})();
+</script>
+<nav class="muly-bottom-bar" id="mulyBottomBar" aria-label="Uygulama gezinmesi"><button type="button" data-app-screen="home" class="active"><span>♡</span>Ana Sayfa</button><button type="button" data-app-screen="chat"><span>💬</span>Sohbet</button><button type="button" data-app-screen="house"><span>🏠</span>Evimiz</button><button type="button" data-app-screen="baby"><span>🍼</span>Bebek</button><button type="button" data-app-screen="menu"><span>☷</span>Menü</button></nav><script>
+/* Existing handlers stay in place; the app shell only changes navigation and visibility. */
+(()=>{
+ const app=document.getElementById('app');
+ const bar=document.getElementById('mulyBottomBar');
+ const title=document.createElement('h2');title.className='muly-screen-heading';title.id='mulyScreenHeading';app.insertBefore(title,app.firstChild);
+ let screen='home';
+ function navigate(next){
+  screen=next;
+  document.body.classList.add('muly-app-mode');
+  document.body.classList.toggle('muly-home',next==='home');
+  document.body.classList.toggle('muly-menu',next==='menu');
+  document.body.classList.remove('muly-settings');
+  bar.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.appScreen===next || (next==='memories' && b.dataset.appScreen==='menu')));
+  document.querySelectorAll('#app .tab').forEach(el=>el.classList.toggle('hidden',el.id!==next));
+  const labels={chat:'💌 Sohbet',house:'🏠 Evimiz',baby:'🍼 Bebeğimiz',vending:'🎁 Muly Otomatı',newspaper:'📰 Muly Gazetesi',widget:'📱 Muly Widget',menu:'♡ Tüm bölümler'};
+  title.textContent=labels[next]||'';
+  title.style.display=next==='home'||next==='menu'?'none':'block';
+  if(next==='menu'){document.getElementById('mulyNavPanel').classList.add('open');}
+  window.scrollTo({top:0,behavior:'instant'});
+ }
+ bar.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+  const next=b.dataset.appScreen;
+  if(next!=='home'&&next!=='menu'){const original=document.querySelector('#featureNav [data-tab="'+next+'"]');original?.click();}
+  navigate(next);
+ }));
+ document.querySelectorAll('#featureNav [data-tab]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.tab)));
+ document.querySelectorAll('[data-open-tab]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.openTab)));
+ const settings=document.getElementById('mulySettingsToggle');
+ settings?.addEventListener('click',()=>document.body.classList.toggle('muly-settings'));
+ // Keep login/signup and pairing screens unaffected.
+ const observer=new MutationObserver(()=>{document.body.classList.toggle('muly-app-mode',!app.classList.contains('hidden'));if(!app.classList.contains('hidden')&&!document.body.classList.contains('muly-initialized')){document.body.classList.add('muly-initialized');navigate('home');}if(app.classList.contains('hidden'))document.body.classList.remove('muly-initialized','muly-home','muly-menu');});
+ observer.observe(app,{attributes:true,attributeFilter:['class']});
+ if(!app.classList.contains('hidden'))navigate('home');
+})();
+</script><script>
+(()=>{
+ const defs=[
+  {id:'first_memory',icon:'📸',name:'İlk anımız',desc:'İlk ortak anınızı kaydedin',field:'memories',goal:1,coins:20},
+  {id:'ten_memories',icon:'📷',name:'Anı koleksiyoncusu',desc:'10 ortak anı biriktirin',field:'memories',goal:10,coins:100},
+  {id:'ten_hearts',icon:'💌',name:'Kalpten kalbe',desc:'10 kalp gönderin',field:'hearts',goal:10,coins:30},
+  {id:'hundred_hearts',icon:'💗',name:'100 kalp',desc:'100 kalbe ulaşın',field:'hearts',goal:100,coins:150},
+  {id:'thirty_days',icon:'🌷',name:'Bir ay beraber',desc:'30 günü geride bırakın',field:'days',goal:30,coins:50},
+  {id:'level_five',icon:'🏠',name:'Aşkımız büyüyor',desc:'Aşk seviyeniz 5 olsun',field:'level',goal:5,coins:80}
+ ];
+ const status=document.getElementById('mulyAchievementStatus'),root=document.getElementById('mulyAchievementGrid');
+ async function load(){
+  if(!window.db && typeof db==='undefined')return;
+  if(!coupleInfo?.couple_id)return;
+  status.textContent='Başarımlar kontrol ediliyor…';
+  const {data,error}=await db.rpc('muly_achievement_progress',{p_couple_id:coupleInfo.couple_id});
+  if(error){status.textContent='Başarımlar SQL kurulumu gerekli: '+error.message;return;}
+  status.textContent='Ödüller ortaktır; ikinizden biri aldığında ikinize de yansır.';
+  root.replaceChildren();
+  for(const d of defs){
+   const count=Math.max(0,Number(data[d.field])||0),claimed=(data.claimed||[]).includes(d.id),ready=count>=d.goal;
+   const card=document.createElement('div');card.className='muly-achievement'+(claimed?' done':'');
+   const icon=document.createElement('div');icon.className='medal';icon.textContent=d.icon;
+   const h=document.createElement('h3');h.textContent=d.name;
+   const desc=document.createElement('p');desc.textContent=d.desc;
+   const prog=document.createElement('div');prog.className='progress';const fill=document.createElement('i');fill.style.width=Math.min(100,count/d.goal*100)+'%';prog.append(fill);
+   const countEl=document.createElement('p');countEl.textContent=Math.min(count,d.goal)+' / '+d.goal+' · 🪙 '+d.coins;
+   const btn=document.createElement('button');btn.type='button';btn.disabled=claimed||!ready;btn.textContent=claimed?'✓ Ödül alındı':ready?'🎁 Ödülü al':'🔒 Henüz kilitli';
+   btn.onclick=async()=>{btn.disabled=true;const {error}=await db.rpc('muly_claim_achievement',{p_couple_id:coupleInfo.couple_id,p_id:d.id});if(error){status.textContent='Ödül alınamadı: '+error.message;}else{status.textContent='🎉 '+d.coins+' aşk parası ortak hesabınıza eklendi!';window.mulyRefreshHouse?.();}await load();};
+   card.append(icon,h,desc,prog,countEl,btn);root.append(card);
+  }
+ }
+ document.querySelectorAll('[data-tab="achievements"]').forEach(b=>b.addEventListener('click',load));
+ window.mulyLoadAchievements=load;
+})();
+</script><script>
+(()=>{
+'use strict';
 const $=id=>document.getElementById(id);
-let session=null,me=null,selected=null,channel=null,register=false,resetMode=false,friendRows=[],profileRows=[],currentTab='Chats';
-const err=(id,t)=>$(id).textContent=t||'';
-const name=s=>s.trim().toLowerCase();
-const avatarUrl=p=>p?.avatar_path?db.storage.from('vexa-avatars').getPublicUrl(p.avatar_path).data.publicUrl:null;
-function avatar(p){const d=document.createElement('div');d.className='avatar';const url=avatarUrl(p);if(url){const i=document.createElement('img');i.src=url;i.alt='Profil fotoğrafı';d.append(i)}else d.textContent=(p?.display_name||p?.username||'?')[0].toUpperCase();return d}
-function showAuth(){ $('auth').classList.remove('hide');$('main').classList.add('hide') }
-function showMain(){ $('auth').classList.add('hide');$('main').classList.remove('hide') }
-function setAuthMode(mode){resetMode=mode==='reset';register=mode==='register';$('username').classList.toggle('hide',!register);$('username').required=register;$('password').classList.toggle('hide',resetMode);$('password').required=!resetMode;$('authSubmit').textContent=resetMode?'Şifre sıfırlama bağlantısı gönder':register?'Kayıt ol':'Giriş yap';$('toggleAuth').classList.toggle('hide',resetMode);$('forgotPassword').classList.toggle('hide',resetMode||register);$('backToLogin').classList.toggle('hide',!resetMode);$('toggleAuth').textContent=register?'Zaten hesabın var mı? Giriş yap':'Hesabın yok mu? Kayıt ol';err('authError','')}
-$('toggleAuth').onclick=()=>setAuthMode(register?'login':'register');$('forgotPassword').onclick=()=>setAuthMode('reset');$('backToLogin').onclick=()=>setAuthMode('login');
-$('authForm').onsubmit=async e=>{e.preventDefault();try{const email=$('email').value.trim(),password=$('password').value;if(resetMode){const {error}=await db.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});if(error)throw error;return err('authError','E-posta kayıtlıysa sıfırlama bağlantısı gönderildi.')}if(register){const username=name($('username').value);if(!/^[a-z0-9_]{3,20}$/.test(username))throw Error('Kullanıcı adı 3-20 küçük harf, sayı veya _ olmalı.');const {data,error}=await db.auth.signUp({email,password,options:{data:{username}}});if(error)throw error;if(!data.session)return err('authError','E-posta doğrulama bağlantısını aç, ardından giriş yap.')}else{const {error}=await db.auth.signInWithPassword({email,password});if(error)throw error}await init()}catch(e){err('authError',e.message)}};
-async function ensureProfile(user){let {data,error}=await db.from('profiles').select('*').eq('id',user.id).maybeSingle();if(error)throw error;if(!data){const username=name(user.user_metadata?.username||'');if(!/^[a-z0-9_]{3,20}$/.test(username))throw Error('Profil oluşturmak için geçerli kullanıcı adı gerekli.');const result=await db.from('profiles').insert({id:user.id,username}).select().single();if(result.error)throw result.error;data=result.data}return data}
-async function init(){const {data:{session:s}}=await db.auth.getSession();session=s;if(!session){showAuth();return}try{me=await ensureProfile(session.user);$('me').textContent='@'+me.username;$('displayName').value=me.display_name||'';$('bio').value=me.bio||'';$('profileUsername').textContent='@'+me.username;$('myAvatar').replaceWith(Object.assign(avatar(me),{id:'myAvatar'}));showMain();await refresh();}catch(e){showAuth();err('authError',e.message)}}
-function tab(t){currentTab=t;for(const v of ['Chats','Find','Requests','Profile']){$('view'+v).classList.toggle('hide',v!==t);$('tab'+v).classList.toggle('on',v===t)}}
-for(const t of ['Chats','Find','Requests','Profile'])$('tab'+t).onclick=()=>{tab(t);if(t==='Find')searchUsers()};
-const friendship=f=>f.status==='accepted';const otherId=f=>f.sender_id===session.user.id?f.recipient_id:f.sender_id;
-const getProfile=id=>profileRows.find(p=>p.id===id);
-function makeUser(p,action,caption){const row=document.createElement('div');row.className='user';row.append(avatar(p));const text=document.createElement('div');text.className='user-text';const title=document.createElement('strong');title.textContent=p.display_name||p.username;const small=document.createElement('div');small.className='tiny';small.textContent='@'+p.username+(caption?' · '+caption:'');text.append(title,small);row.append(text);if(action){const btn=document.createElement('button');btn.type='button';btn.textContent=action.label;btn.disabled=!!action.disabled;btn.onclick=async e=>{e.stopPropagation();try{await action.run();await refresh()}catch(ex){alert(ex.message?.includes('Arkadaşlık isteği zaten mevcut')?'Bu kişiye zaten istek gönderdin.':ex.message)}};row.append(btn)}return row}
-async function refresh(){if(!session)return;const [f,p]=await Promise.all([db.from('friend_requests').select('*').or(`sender_id.eq.${session.user.id},recipient_id.eq.${session.user.id}`),db.from('profiles').select('id,username,display_name,bio,avatar_path').limit(500)]);if(f.error)throw f.error;if(p.error)throw p.error;friendRows=f.data||[];profileRows=p.data||[];renderFriends();renderRequests();if(currentTab==='Find')searchUsers()}
-function renderFriends(){const box=$('friends');box.replaceChildren();const friends=friendRows.filter(friendship);if(!friends.length){box.innerHTML='<div class="empty-list">Henüz arkadaşın yok. Kişi ara bölümünden istek gönder.</div>';return}friends.forEach(f=>{const p=getProfile(otherId(f));if(!p)return;const row=makeUser(p,{label:'Sohbet',run:()=>openChat(p)});row.onclick=()=>openChat(p);box.append(row)})}
-function renderRequests(){const incoming=$('incoming'),outgoing=$('outgoing');incoming.replaceChildren();outgoing.replaceChildren();const inc=friendRows.filter(f=>f.recipient_id===session.user.id&&f.status==='pending');const out=friendRows.filter(f=>f.sender_id===session.user.id&&f.status==='pending');$('requestCount').textContent=inc.length?'('+inc.length+')':'';if(!inc.length)incoming.innerHTML='<div class="empty-list">Gelen istek yok.</div>';if(!out.length)outgoing.innerHTML='<div class="empty-list">Bekleyen istek yok.</div>';for(const f of inc){const p=getProfile(f.sender_id);if(!p)continue;const r=makeUser(p,{label:'Kabul et',run:async()=>{const {error}=await db.rpc('vexa_respond_friend_request',{p_id:f.id,p_accept:true});if(error)throw error}});const reject=document.createElement('button');reject.textContent='Reddet';reject.onclick=async()=>{const {error}=await db.rpc('vexa_respond_friend_request',{p_id:f.id,p_accept:false});if(error)alert(error.message);else refresh()};r.append(reject);incoming.append(r)}for(const f of out){const p=getProfile(f.recipient_id);if(p)outgoing.append(makeUser(p,{label:'İptal et',run:async()=>{const {error}=await db.from('friend_requests').delete().eq('id',f.id);if(error)throw error}},'İstek bekliyor'))}}
-let searchTimer; $('search').oninput=()=>{clearTimeout(searchTimer);searchTimer=setTimeout(searchUsers,250)};
-async function searchUsers(){const q=name($('search').value);const box=$('users');box.replaceChildren();if(q.length<2){box.innerHTML='<div class="empty-list">En az 2 karakter yaz.</div>';return}const {data,error}=await db.from('profiles').select('id,username,display_name,avatar_path').ilike('username','%'+q.replace(/[%_,]/g,'')+'%').neq('id',session.user.id).limit(30);if(error){box.textContent=error.message;return}if(!data.length)box.innerHTML='<div class="empty-list">Kullanıcı bulunamadı.</div>';for(const p of data){const f=friendRows.find(f=>otherId(f)===p.id);let action;if(f?.status==='accepted')action={label:'Sohbet',run:()=>openChat(p)};else if(f?.status==='pending'&&f.sender_id===session.user.id)action={label:'Bekliyor',disabled:true,run:()=>{}};else if(f?.status==='pending')action={label:'İsteklerde',run:()=>tab('Requests')};else action={label:'Arkadaş ekle',run:async()=>{const {error}=await db.rpc('vexa_send_friend_request',{p_recipient_id:p.id});if(error)throw error}};box.append(makeUser(p,action))}}
-async function openChat(p){if(!friendRows.some(f=>friendship(f)&&otherId(f)===p.id)){alert('Önce arkadaşlık isteği kabul edilmeli.');return}selected=p;$('chatTitle').textContent=p.display_name||'@'+p.username;$('chatAvatar').replaceWith(Object.assign(avatar(p),{id:'chatAvatar'}));$('messageInput').disabled=false;$('mediaFile').disabled=false;$('send').disabled=false;$('side').classList.add('mobile-hide');$('chat').classList.remove('mobile-hide');await loadMessages();await subscribe()}
-$('back').onclick=()=>{$('chat').classList.add('mobile-hide');$('side').classList.remove('mobile-hide')};
-async function mediaLink(path){const {data,error}=await db.storage.from('vexa-media').createSignedUrl(path,3600);if(error)throw error;return data.signedUrl}
-async function loadMessages(){if(!selected)return;const other=selected.id,meId=session.user.id;const {data,error}=await db.from('messages').select('id,sender_id,recipient_id,body,media_path,media_type,created_at').or(`and(sender_id.eq.${meId},recipient_id.eq.${other}),and(sender_id.eq.${other},recipient_id.eq.${meId})`).order('created_at',{ascending:true}).limit(200);const box=$('messages');box.replaceChildren();if(error){box.textContent=error.message;return}for(const m of data||[]){const b=document.createElement('div');b.className='bubble'+(m.sender_id===meId?' mine':'');if(m.body){const t=document.createElement('div');t.textContent=m.body;b.append(t)}if(m.media_path){try{const url=await mediaLink(m.media_path);const el=document.createElement(m.media_type==='video'?'video':'img');el.className='chat-media';el.src=url;if(m.media_type==='video')el.controls=true;else{el.alt='Gönderilen fotoğraf';el.style.cursor='pointer';el.onclick=()=>window.open(url,'_blank','noopener')}b.append(el)}catch(e){const t=document.createElement('small');t.textContent='Medya açılamadı: '+e.message;b.append(t)}}const t=document.createElement('small');t.textContent=new Date(m.created_at).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});b.append(t);box.append(b)}box.scrollTop=box.scrollHeight}
-async function subscribe(){if(channel)await db.removeChannel(channel);channel=db.channel('vexa-'+session.user.id+'-'+selected.id).on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},payload=>{const m=payload.new;if(selected&&((m.sender_id===session.user.id&&m.recipient_id===selected.id)||(m.recipient_id===session.user.id&&m.sender_id===selected.id)))loadMessages()}).subscribe()}
-$('compose').onsubmit=async e=>{e.preventDefault();if(!selected||!session)return;const body=$('messageInput').value.trim(),file=$('mediaFile').files[0];if(!body&&!file)return;$('send').disabled=true;let path=null,type=null;try{if(file){type=file.type.startsWith('image/')?'image':file.type.startsWith('video/')?'video':null;const allowed=['image/jpeg','image/png','image/webp','image/gif','video/mp4','video/webm','video/quicktime'];if(!type||!allowed.includes(file.type))throw Error('Desteklenmeyen dosya türü.');if(file.size>25*1024*1024)throw Error('Dosya 25 MB sınırını aşıyor.');path=session.user.id+'/'+crypto.randomUUID()+'.'+(file.name.split('.').pop()||'bin').toLowerCase();err('uploadStatus','Medya yükleniyor...');const {error}=await db.storage.from('vexa-media').upload(path,file,{contentType:file.type,upsert:false});if(error)throw error}const {error}=await db.from('messages').insert({sender_id:session.user.id,recipient_id:selected.id,body:body||null,media_path:path,media_type:type});if(error)throw error;$('messageInput').value='';$('mediaFile').value='';err('uploadStatus','');await loadMessages()}catch(e){err('uploadStatus','Hata: '+e.message)}finally{$('send').disabled=false}};
-$('saveProfile').onclick=async()=>{const btn=$('saveProfile');btn.disabled=true;try{const patch={display_name:$('displayName').value.trim().slice(0,40),bio:$('bio').value.trim().slice(0,160)};const file=$('avatarFile').files[0];if(file){if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5*1024*1024)throw Error('Profil fotoğrafı JPG/PNG/WebP ve en fazla 5 MB olmalı.');const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';const path=session.user.id+'/'+crypto.randomUUID()+'.'+ext;const {error}=await db.storage.from('vexa-avatars').upload(path,file,{contentType:file.type});if(error)throw error;patch.avatar_path=path}const {data,error}=await db.from('profiles').update(patch).eq('id',session.user.id).select().single();if(error)throw error;me=data;$('myAvatar').replaceWith(Object.assign(avatar(me),{id:'myAvatar'}));$('avatarFile').value='';err('profileStatus','Profil kaydedildi.');await refresh()}catch(e){err('profileStatus','Hata: '+e.message)}finally{btn.disabled=false}};
-$('logout').onclick=async()=>{if(channel)await db.removeChannel(channel);selected=null;await db.auth.signOut();session=null;showAuth()};
-db.auth.onAuthStateChange((event)=>{if(event==='PASSWORD_RECOVERY'){showAuth();setAuthMode('reset');$('password').classList.remove('hide');$('password').required=true;$('authSubmit').textContent='Yeni şifreyi kaydet';$('authForm').onsubmit=async e=>{e.preventDefault();const {error}=await db.auth.updateUser({password:$('password').value});err('authError',error?error.message:'Şifren güncellendi. Sayfayı yenileyerek giriş yap.')}}});
-init().catch(e=>err('authError',e.message));
-</script></body></html>
+const active=()=>typeof db!=='undefined'&&db&&typeof user!=='undefined'&&user&&typeof coupleInfo!=='undefined'&&coupleInfo?.couple_id;
+const say=(id,t)=>{$(id).textContent=t;};
+const prizes={
+rose:['🌹','Sonsuz Gül'],letter:['💌','Minik Mektup'],bear:['🧸','Peluş Ayıcık'],candy:['🍬','Kalpli Şeker'],
+moon:['🌙','Ay Işığı'],peony:['🌺','Şakayık Buketi'],bracelet:['📿','Yıldız Bileklik'],music:['🎼','Müzik Kutusu'],
+crystal:['🔮','Kalp Kristali'],comet:['☄️','Kayan Yıldız'],crown:['👑','Prenses Tacı'],unicorn:['🦄','Rüya Atı'],
+castle:['🏰','Aşk Şatosu'],galaxy:['🌌','Bizim Galaksimiz'],diamond:['💎','Sonsuzluk Elması'],phoenix:['🔥','Anka Kalbi']};
+const rarity={common:'🌸 Yaygın',special:'💎 Özel',rare:'🌟 Nadir',legendary:'👑 Efsanevi'};
+let loading=false;
+function paint(d){
+ $('mvCoins').textContent=String(d.coins??0);$('mvRemaining').textContent=String(d.remaining??0);
+ $('mvOpen').disabled=(Number(d.remaining)||0)<1||(Number(d.coins)||0)<40;
+ const root=$('mvCollection');root.replaceChildren();
+ const collection=d.collection||[];
+ if(!collection.length){const p=document.createElement('p');p.className='muted';p.textContent='Henüz koleksiyonunuz yok. İlk kutunuzu açın!';root.append(p);}
+ for(const v of collection){const item=prizes[v.prize_id]||['🎁',v.prize_id],card=document.createElement('div');card.className='mv-item '+(v.rarity==='legendary'?'mv-legendary':v.rarity==='rare'?'mv-rare':'');const emoji=document.createElement('div');emoji.className='mv-emoji';emoji.textContent=item[0];const name=document.createElement('strong');name.textContent=item[1];const meta=document.createElement('small');meta.textContent=(rarity[v.rarity]||v.rarity)+' · x'+v.quantity;card.append(emoji,name,meta);root.append(card);}
+ const history=$('mvHistory');history.replaceChildren();
+ for(const v of d.history||[]){const el=document.createElement('div');const prize=prizes[v.prize_id]||['🎁',v.prize_id];el.textContent=prize[0]+' '+prize[1]+' · '+(rarity[v.rarity]||v.rarity)+' · '+new Date(v.opened_at).toLocaleString('tr-TR');history.append(el);}
+ if(!(d.history||[]).length){const p=document.createElement('p');p.className='muted';p.textContent='Henüz açılan kutu yok.';history.append(p);}
+}
+async function refresh(){if(!active())return;say('mvStatus','Koleksiyon yükleniyor…');const {data,error}=await db.rpc('muly_vending_state_v6',{p_couple_id:coupleInfo.couple_id});if(error)throw error;paint(data);say('mvStatus','💗 Ortak koleksiyon güncel.');}
+$('mvRefresh').addEventListener('click',()=>refresh().catch(e=>say('mvStatus','❌ '+e.message)));
+$('mvOpen').addEventListener('click',async()=>{if(loading||!active())return;loading=true;const b=$('mvOpen');b.disabled=true;say('mvStatus','🎁 Sürpriz kutusu açılıyor…');try{const {data,error}=await db.rpc('muly_vending_open_v6',{p_couple_id:coupleInfo.couple_id});if(error)throw error;const p=prizes[data.prize_id]||['🎁',data.prize_id];const gift=$('mvGift');gift.classList.remove('mv-pop');void gift.offsetWidth;gift.textContent=p[0];gift.classList.add('mv-pop');say('mvStatus','🎉 '+p[1]+' kazandınız! '+(rarity[data.rarity]||'')+' · İkinizin koleksiyonuna eklendi.');paint(data.state);if(typeof window.mulyRefreshHouse==='function')window.mulyRefreshHouse();}catch(e){say('mvStatus','❌ '+e.message);await refresh().catch(()=>{});}finally{loading=false;b.disabled=false;if(active()){const c=Number($('mvCoins').textContent)||0,r=Number($('mvRemaining').textContent)||0;b.disabled=r<1||c<40;}}});
+document.querySelectorAll('[data-tab="vending"]').forEach(b=>b.addEventListener('click',()=>refresh().catch(e=>say('mvStatus','❌ '+e.message))));
+async function newspaper(){if(!active())return;say('m5PaperStatus','Gazete hazırlanıyor…');try{const {data,error}=await db.rpc('muly_newspaper_v5',{p_couple_id:coupleInfo.couple_id});if(error)throw error;const d=data||{},stats=[['💬 Mesaj',d.messages],['📸 Anı',d.memories],['💗 Kalp',d.hearts],['🪙 Görev',d.tasks]];const paper=$('m5Paper');paper.replaceChildren();const title=document.createElement('h3');title.textContent='THE MULY TIMES ♡';const date=document.createElement('p');date.style.textAlign='center';date.textContent='Haftalık sayı · '+new Date(d.week_start).toLocaleDateString('tr-TR')+' – '+new Date(d.week_end).toLocaleDateString('tr-TR');const headline=document.createElement('h2');headline.textContent='Bu hafta birlikte yazdığımız hikâye';const grid=document.createElement('div');grid.className='m5-grid';for(const [name,value] of stats){const cell=document.createElement('div');cell.className='m5-stat';const strong=document.createElement('strong');strong.textContent=String(value??0);const span=document.createElement('span');span.textContent=name;cell.append(strong,span);grid.append(cell);}const end=document.createElement('p');end.style.textAlign='center';end.textContent='14.03.2026’dan beri, her yeni hafta bizim hikâyemizin yeni sayfası. ♡';paper.append(title,date,headline,grid,end);say('m5PaperStatus','📰 Bu haftanın istatistikleri yüklendi.');}catch(e){say('m5PaperStatus','❌ '+e.message);}}
+$('m5PaperRefresh').onclick=newspaper;
+$('m5PaperPrint').onclick=()=>{const w=window.open('','_blank');if(!w){say('m5PaperStatus','Tarayıcı yeni pencereyi engelledi.');return;}const styles='body{font-family:Georgia,serif;padding:24px;color:#60483e}.m5-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.m5-stat{border:1px solid #ddd;padding:14px}h3{text-align:center;font-size:30px}strong{font-size:24px;display:block}';w.document.write('<!doctype html><html lang="tr"><meta charset="utf-8"><title>Muly Gazetesi</title><style>'+styles+'</style><body>'+$('m5Paper').innerHTML+'<script id="muly-widget-script">(()=>{const $=id=>document.getElementById(id);const start=new Date('2026-03-14T00:08:00+03:00').getTime();const anniversary=new Date('2027-03-14T00:08:00+03:00').getTime();function tick(){const now=Date.now(),diff=Math.max(0,now-start),days=Math.floor(diff/86400000),hours=Math.floor(diff/3600000)%24,mins=Math.floor(diff/60000)%60;$('mwDays').textContent=days;$('mwHours').textContent=String(hours).padStart(2,'0');$('mwMins').textContent=String(mins).padStart(2,'0');$('mwClock').textContent=new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});const left=Math.max(0,anniversary-now);$('mwAnniv').textContent=left?'İlk yıl dönümüne '+Math.ceil(left/86400000)+' gün kaldı ♡':'İlk yıl dönümümüz kutlu olsun! ♡'}try{const saved=localStorage.getItem('muly_widget_message');if(saved){$('mwNote').textContent=saved;$('mwMessageInput').value=saved}}catch(e){}$('mwSave').addEventListener('click',()=>{const msg=$('mwMessageInput').value.trim()||'İyi ki sen, iyi ki biz. ♡';$('mwNote').textContent=msg;try{localStorage.setItem('muly_widget_message',msg);$('mwStatus').textContent='Mesaj bu cihazda kaydedildi.'}catch(e){$('mwStatus').textContent='Mesaj gösterildi ancak cihazda saklanamadı.'}});$('mwShare').addEventListener('click',async()=>{const preview=$('mwPreview');const text='Love Call Muly ♡\n'+$('mwDays').textContent+' gündür birlikteyiz!\n'+$('mwNote').textContent;try{if(navigator.share){await navigator.share({title:'Love Call Muly',text});$('mwStatus').textContent='Paylaşım ekranı açıldı.'}else if(navigator.clipboard){await navigator.clipboard.writeText(text);$('mwStatus').textContent='Widget metni kopyalandı. Görsel paylaşımı için ekran görüntüsü alabilirsin.'}else{$('mwStatus').textContent='Paylaşmak için widget ekranının görüntüsünü alabilirsin.'}}catch(e){$('mwStatus').textContent='Paylaşım iptal edildi veya desteklenmiyor.'}});tick();setInterval(tick,30000);const memoryList=$('memoryList');if(memoryList){const observer=new MutationObserver(()=>{const photo=memoryList.querySelector('img');if(photo&&!$('mwPhoto').querySelector('img')){const img=document.createElement('img');img.src=photo.src;img.alt='Ortak anı fotoğrafı';$('mwPhoto').replaceChildren(img)}});observer.observe(memoryList,{childList:true,subtree:true});}})();</script></body></html>');w.document.close();w.focus();setTimeout(()=>w.print(),300);};
+document.querySelectorAll('[data-tab="newspaper"]').forEach(b=>b.addEventListener('click',newspaper));
+})();
+</script>
+<script id="muly-polish-v7-js">
+(()=>{
+  'use strict';
+  // Browser-native lazy image decoding, without changing image URLs or data.
+  document.querySelectorAll('img').forEach(img=>{
+    if(!img.hasAttribute('decoding')) img.decoding='async';
+    if(!img.hasAttribute('loading') && !img.closest('header')) img.loading='lazy';
+  });
+  // Animate only a confirmed prize result. Does not alter purchase requests.
+  const status=document.getElementById('mvStatus');
+  const machine=document.querySelector('.mv-machine');
+  if(status&&machine&&typeof MutationObserver!=='undefined'){
+    let clearTimer;
+    const observer=new MutationObserver(()=>{
+      if(!status.textContent.trim().startsWith('🎉')) return;
+      if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+      machine.classList.remove('muly-celebrate');
+      void machine.offsetWidth;
+      machine.classList.add('muly-celebrate');
+      clearTimeout(clearTimer);
+      clearTimer=setTimeout(()=>machine.classList.remove('muly-celebrate'),850);
+    });
+    observer.observe(status,{childList:true,characterData:true,subtree:true});
+  }
+})();
+</script>
+<script id="muly-ui-v8-js">(()=>{const nav=document.getElementById('mulyNavPanel');const feature=document.getElementById('featureNav');if(!nav||!feature)return;const input=document.createElement('input');input.id='m8Search';input.type='search';input.placeholder='Bölüm ara… (ör. Otomat, Gazete)';input.setAttribute('aria-label','Bölüm ara');const empty=document.createElement('p');empty.id='m8Empty';empty.hidden=true;empty.textContent='Bu isimde bölüm bulunamadı.';nav.insertBefore(input,feature);nav.appendChild(empty);const buttons=[...feature.querySelectorAll('button[data-tab]')];input.addEventListener('input',()=>{const q=input.value.toLocaleLowerCase('tr-TR').trim();let count=0;buttons.forEach(b=>{const visible=b.textContent.toLocaleLowerCase('tr-TR').includes(q);b.style.display=visible?'':'none';if(visible)count++});empty.hidden=count>0});buttons.forEach(b=>b.addEventListener('click',()=>{input.value='';input.dispatchEvent(new Event('input'))}));})();</script>
+</body>
+</html>
