@@ -1450,4 +1450,67 @@ function init(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
-</script></body></html>
+</script>
+<style id="vexa41-clean-ui">
+:root{--v-page:#0d1115;--v-surface:#151b20;--v-chat:#10161b;--v-incoming:#232d34;--v-outgoing:#365e50;--v-accent:#8fc7a7;--v-text:#edf3f0;--v-incoming-text:#edf3f0;--v-outgoing-text:#fff;--v-accent-text:#101b15;--v-border:#2c383e;--v-field:#202a30;--v-sub:#9baeb0}
+#main>header{background:#151b20!important;border-bottom:1px solid var(--v-border)!important}
+#main>.layout{background:var(--v-page)!important}
+#side{background:#151b20!important;border-right:1px solid var(--v-border)!important}
+#chat{background:var(--v-chat)!important}
+#chatHead{display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:12px!important;min-height:72px!important;max-height:85px!important;padding:10px 19px!important;overflow:visible!important;background:#151b20!important}
+#chatHead .chat-title-wrap{flex:1 1 auto!important;min-width:0!important;max-width:none!important}
+#chatHead #chatTitle{font-size:15px;font-weight:750}
+#chatHead .v15-tools{order:0!important;flex:0 0 auto!important;margin:0!important;overflow:visible!important;padding:0!important;gap:7px!important}
+#chatHead .chat-actions{order:0!important;flex:0 0 auto!important;margin:0!important}
+#chatHead .v21-tool{min-width:40px!important;width:40px!important;height:40px!important;min-height:40px!important;padding:8px!important;border-radius:12px!important;background:transparent!important;border:1px solid transparent!important;box-shadow:none!important;color:var(--v-text)!important}
+#chatHead .v21-tool:hover{background:var(--v-field)!important;border-color:var(--v-border)!important}
+#chatHead .v21-tool-label{display:none!important}
+#chatHead #v15Wallpaper,#chatHead #v15Schedule,#chatHead #v20Gallery,#chatHead #v15More,#chatHead #pinChat{display:none!important}
+#chatHead #v27Settings{width:40px!important;min-width:40px!important;height:40px!important;padding:8px!important;border:0!important;font-size:0!important}
+#chatHead #v27Settings span:not(.v27-icon){display:none!important}
+#chatHead #v27Settings .v27-icon{font-size:0!important;display:flex}
+#chatHead #v27Settings .v27-icon svg{width:20px;height:20px}
+#chat.v27-no-chat #chatHead{display:none!important}
+#chat.v27-no-chat #compose,#chat.v27-no-chat #uploadStatus,#chat.v27-no-chat #replyPreview{display:none!important}
+#chat.v27-no-chat #messages{height:auto!important;flex:1!important;display:grid!important;place-items:center!important}
+#chat.v27-no-chat .v29-welcome{width:min(460px,90%);padding:22px;gap:13px}
+#chat.v27-no-chat .v29-welcome h2{font-size:clamp(22px,3vw,30px)}
+#chat.v27-no-chat .v29-features{display:none!important}
+#side .tabs button::before{content:none!important}
+#side .tabs button{font-size:12px!important;display:flex!important;align-items:center!important;gap:10px!important}
+#side .tabs button .v41-nav-icon{display:inline-flex;flex:0 0 22px;align-items:center;justify-content:center}
+#side .tabs button .v41-nav-icon svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(min-width:651px) and (hover:hover){#main>.layout{grid-template-columns:76px minmax(0,1fr)!important}#main>.layout:has(#side:hover){grid-template-columns:292px minmax(0,1fr)!important}#side:not(:hover) .tabs button{font-size:0!important;width:55px!important;min-width:55px!important;max-width:55px!important;padding:10px 16px!important}#side:not(:hover) .tabs button .v41-nav-icon{flex-basis:22px}#side:hover .tabs button{font-size:12px!important}}
+#viewProfile .panel{padding:18px!important;border:0!important;background:transparent!important}
+#viewProfile .panel>label{margin-top:17px}
+#viewProfile .vexa-theme-editor{border-radius:12px;overflow:hidden}
+.vexa-modal-content:has(.v352-contact-settings){width:min(480px,100%)!important;max-height:88dvh!important;overflow-y:auto!important;border-radius:22px!important;padding:22px!important}
+.vexa-modal-content .v352-contact-settings{border-top:1px solid var(--v-border);padding-top:15px;margin-top:18px;display:grid;gap:7px}
+.vexa-modal-content .v352-contact-settings button{min-height:44px!important;font-size:13px!important;border-radius:11px!important}
+.v41-contact-details{margin-top:15px;border-top:1px solid var(--v-border);padding-top:10px}
+.v41-contact-details summary{cursor:pointer;padding:10px 0;font-weight:700;color:var(--v-text)}
+.v41-contact-details .v352-contact-settings{border:0!important;margin:0!important;padding:0!important}
+#v40TagPanel{border:1px solid var(--v-border)!important;background:var(--v-surface)!important}
+@media(max-width:650px){#chatHead{min-height:65px!important;max-height:65px!important;padding:7px 10px!important;gap:7px!important}#chatHead .v15-tools{gap:2px!important}#chatHead .v21-tool{width:37px!important;min-width:37px!important;height:37px!important;min-height:37px!important}#chatHead #v27Settings{width:37px!important;min-width:37px!important;height:37px!important}#side .tabs button{justify-content:center!important;flex-direction:column!important;font-size:10px!important;gap:3px!important}#side .tabs button .v41-nav-icon svg{width:19px;height:19px}}
+</style>
+<script id="vexa41-clean-ui-script">
+(()=>{
+const glyphs={chat:'<path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H5l-2 2v-9.5a7.5 7.5 0 0 1 7.5-7.5h2A7.5 7.5 0 0 1 20 11.5Z"/>',users:'<path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',person:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',settings:'<circle cx="12" cy="12" r="3"/><path d="M19 13.5a7 7 0 0 0 0-3l2-1.5-2-3.5-2.5 1a7 7 0 0 0-2.5-1.5L13.5 2h-4L9 5a7 7 0 0 0-2.5 1.5l-2.5-1L2 9l2 1.5a7 7 0 0 0 0 3L2 15l2 3.5 2.5-1A7 7 0 0 0 9 19l.5 3h4l.5-3a7 7 0 0 0 2.5-1.5l2.5 1 2-3.5Z"/>',mic:'<rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5m-4 0h8"/>',phone:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72l.6 2.81a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45l2.81.66A2 2 0 0 1 22 16.92Z"/>',video:'<rect x="2" y="5" width="15" height="14" rx="2"/><path d="m17 10 5-3v10l-5-3"/>'};
+const icon=k=>'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+glyphs[k]+'</svg>';
+function init(){
+const nav=[['tabChats','chat'],['tabGroups','users'],['tabFind','search'],['tabRequests','bell'],['tabProfile','person']];
+for(const [id,k] of nav){const b=document.getElementById(id);if(b&&!b.querySelector('.v41-nav-icon')){const span=document.createElement('span');span.className='v41-nav-icon';span.innerHTML=icon(k);b.prepend(span)}}
+const settings=document.querySelector('#v27Settings .v27-icon');if(settings)settings.innerHTML=icon('settings');
+const selected=()=>{const t=document.getElementById('chatTitle')?.textContent?.trim();return !!t&&t!=='Sohbet seç'};
+const sync=()=>{document.getElementById('chat')?.classList.toggle('v27-no-chat',!selected())};
+const title=document.getElementById('chatTitle');if(title)new MutationObserver(sync).observe(title,{childList:true,subtree:true,characterData:true});sync();
+const notify=document.getElementById('notifyBtn');if(notify){notify.innerHTML=icon('bell');notify.title='Bildirimler';notify.setAttribute('aria-label','Bildirimler')}
+const record=document.getElementById('recordBtn');if(record){record.innerHTML=icon('mic');record.setAttribute('aria-label','Ses kaydı')}
+const panel=document.getElementById('viewProfile');if(panel){const theme=document.getElementById('vexaThemeEditor');if(theme&&!theme.closest('details')){const d=document.createElement('details');d.className='v41-contact-details';const sm=document.createElement('summary');sm.textContent='Görünüm ve renk ayarları';theme.parentNode.insertBefore(d,theme);d.append(sm,theme);const actions=document.querySelector('.vexa-theme-actions');if(actions)d.append(actions)}}
+function tidyContact(){document.querySelectorAll('.vexa-modal-content .v352-contact-settings').forEach(t=>{if(t.closest('details'))return;const d=document.createElement('details');d.className='v41-contact-details';const sm=document.createElement('summary');sm.textContent='Sohbet seçenekleri ve gizlilik';t.parentNode.insertBefore(d,t);d.append(sm,t);const h=t.querySelector('h4');if(h)h.remove()})}
+const mo=new MutationObserver(()=>{mo.disconnect();tidyContact();mo.observe(document.body,{childList:true,subtree:true})});mo.observe(document.body,{childList:true,subtree:true});tidyContact();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+</body></html>
