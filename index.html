@@ -1285,8 +1285,11 @@ if(!host||!profile||typeof db==='undefined')return;
 host.classList.add('v37-ad-host');
 host.replaceChildren();
 const panel=document.createElement('section');
-panel.className='v37-panel';panel.id='v37AdminPanel';panel.hidden=true;
+panel.className='v37-panel';panel.id='v37AdminPanel';panel.hidden=false;
 panel.innerHTML=`<h3>📣 Vexa Reklam Yönetimi</h3>
+<p id="v37AccessStatus" role="status">Yönetici yetkisi kontrol ediliyor...</p>
+<button type="button" id="v37Retry" class="secondary">Yetkiyi yeniden kontrol et</button>
+<div id="v37AdminContent" hidden>
 <p>Yalnızca yetkili yönetici kampanya ekleyebilir. Reklamlar ücretsiz hesaplara gösterilir.</p>
 <form id="v37Form">
 <input type="hidden" id="v37Id">
@@ -1298,7 +1301,7 @@ panel.innerHTML=`<h3>📣 Vexa Reklam Yönetimi</h3>
 <label>Bitiş <input id="v37End" type="datetime-local" required></label>
 <label style="display:flex;align-items:center;gap:7px"><input id="v37Enabled" type="checkbox"> Yayında olsun</label>
 <div class="v37-actions"><button type="submit" id="v37Save">Kaydet</button><button type="button" class="secondary" id="v37New">Yeni kampanya</button><button type="button" class="secondary" id="v37Refresh">Listeyi yenile</button></div>
-</form><div class="v37-note" id="v37Message" role="status"></div><div id="v37Ads"></div>`;
+</form><div class="v37-note" id="v37Message" role="status"></div><div id="v37Ads"></div></div>`;
 profile.append(panel);
 const byId=id=>document.getElementById(id);
 const msg=s=>{byId('v37Message').textContent=s};
@@ -1325,7 +1328,7 @@ async function loadAudience(){
 const ticket=++fetchCounter;
 const user=(typeof session!=='undefined'&&session?.user?.id)||null;
 activeUser=user;activeAd=null;
-if(!user){showAd(null);panel.hidden=true;return}
+if(!user){showAd(null);byId('v37AdminContent').hidden=true;byId('v37AccessStatus').textContent='Yönetim paneli için giriş yapmalısın.';return}
 try{
 const [{data:sub,error:subErr},{data:admins,error:adminErr}]=await Promise.all([
  db.from('vexa_subscriptions').select('plan,status,current_period_end').eq('user_id',user).maybeSingle(),
@@ -1333,7 +1336,7 @@ const [{data:sub,error:subErr},{data:admins,error:adminErr}]=await Promise.all([
 ]);
 if(ticket!==fetchCounter)return;
 if(subErr)throw subErr;
-admin=!adminErr&&admins===true;panel.hidden=!admin;
+admin=!adminErr&&admins===true;byId('v37AdminContent').hidden=!admin;byId('v37AccessStatus').textContent=admin?'Yönetici yetkisi doğrulandı.':(adminErr?'Yetki sorgusu başarısız: '+adminErr.message:'Bu hesap reklam yöneticisi olarak doğrulanamadı. Giriş yaptığın hesabın UID değerini ve vexa_ad_admins kaydını kontrol et.');
 if(admin)void listAds();
 if(isPlus(sub)){showAd(null);return}
 const {data:ads,error}=await db.from('vexa_ads').select('id,title,description,image_url,target_url,starts_at,ends_at,enabled').eq('enabled',true).lte('starts_at',new Date().toISOString()).gt('ends_at',new Date().toISOString()).limit(20);
@@ -1342,7 +1345,7 @@ if(ticket!==fetchCounter)return;
 const safe=(ads||[]).filter(a=>validHttps(a.target_url));
 const chosen=safe.length?safe[Math.floor(Math.random()*safe.length)]:null;
 activeAd=chosen;showAd(chosen);
-}catch(e){if(ticket!==fetchCounter)return;showAd(null);panel.hidden=true;console.warn('Vexa reklam verisi okunamadı:',e)}
+}catch(e){if(ticket!==fetchCounter)return;showAd(null);byId('v37AccessStatus').textContent='Reklam verileri yüklenemedi: '+e.message;console.warn('Vexa reklam verisi okunamadı:',e)}
 }
 function fill(row){byId('v37Id').value=row.id;byId('v37Title').value=row.title;byId('v37Desc').value=row.description||'';byId('v37Url').value=row.target_url;byId('v37Image').value=row.image_url||'';byId('v37Start').value=isoLocal(new Date(row.starts_at));byId('v37End').value=isoLocal(new Date(row.ends_at));byId('v37Enabled').checked=!!row.enabled;msg('Kampanyayı düzenliyorsun: '+row.title);byId('v37Form').scrollIntoView({behavior:'smooth',block:'nearest'});}
 async function listAds(){if(!admin)return;
@@ -1353,6 +1356,7 @@ const info=document.createElement('em');const s=stats.get(ad.id);info.textConten
 const actions=document.createElement('div');actions.className='v37-actions';const edit=document.createElement('button');edit.type='button';edit.className='secondary';edit.textContent='Düzenle';edit.onclick=()=>fill(ad);
 const del=document.createElement('button');del.type='button';del.className='secondary';del.textContent='Sil';del.onclick=async()=>{if(!confirm('Bu reklamı kalıcı silmek istiyor musun?'))return;const {error}=await db.from('vexa_ads').delete().eq('id',ad.id);if(error)msg(error.message);else{msg('Reklam silindi.');void listAds();void loadAudience()}};actions.append(edit,del);wrap.append(actions);box.append(wrap)}
 }catch(e){msg('Liste alınamadı: '+e.message)}}
+byId('v37Retry').onclick=()=>void loadAudience();
 byId('v37New').onclick=reset;byId('v37Refresh').onclick=()=>{void listAds();void loadAudience()};
 byId('v37Form').addEventListener('submit',async e=>{e.preventDefault();if(!admin){msg('Yetkin yok.');return}
 const start=byId('v37Start').value,end=byId('v37End').value,url=byId('v37Url').value.trim(),image=byId('v37Image').value.trim();
