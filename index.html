@@ -1605,4 +1605,45 @@ const observer=new MutationObserver(m=>{for(const mutation of m){for(const node 
 observer.observe(document.documentElement,{subtree:true,childList:true});
 })();
 </script>
+<style id="vexa5-style">
+.v5-menu{position:fixed;z-index:200001;min-width:230px;background:var(--v-surface,#19241e);border:1px solid var(--v-border,#455);border-radius:16px;padding:7px;box-shadow:0 18px 55px #0008;display:grid;gap:3px;animation:v5pop .15s ease}
+.v5-menu button{background:transparent!important;color:var(--v-text,#fff)!important;text-align:left;padding:10px 12px;border-radius:9px;font-size:13px}.v5-menu button:hover{background:var(--v-field,#28382d)!important}
+.v5-menu .v5-reactions{display:flex;gap:5px;padding:7px 5px;border-bottom:1px solid var(--v-border)}.v5-menu .v5-reactions button{font-size:18px;padding:5px!important}
+.v5-profile-card{background:var(--v-field,#263329);border:1px solid var(--v-border,#455);border-radius:18px;overflow:hidden;margin:10px 0 16px}.v5-banner{height:100px;background:#253b30;transition:background .2s}.v5-profile-body{padding:0 17px 17px}.v5-profile-body .avatar{margin-top:-26px;border:3px solid var(--v-surface);width:64px;height:64px}.v5-profile-body h3{margin:10px 0 3px}.v5-profile-body p{margin:5px 0;color:var(--v-sub);font-size:13px;white-space:pre-wrap}.v5-profile-body .v5-tag{font-size:12px;color:var(--v-accent)}
+.v5-frame-glow{box-shadow:0 0 0 3px var(--v-accent),0 0 20px var(--v-accent)!important}.v5-frame-pulse{animation:v5pulse 2.2s infinite}
+.v5-style-settings{display:grid;gap:10px;margin:15px 0;padding:14px;border:1px solid var(--v-border);border-radius:15px;background:var(--v-field)}.v5-style-settings label{display:grid;gap:5px;font-size:12px}.v5-style-settings input,.v5-style-settings select{width:100%;background:var(--v-surface);color:var(--v-text);border:1px solid var(--v-border);padding:10px;border-radius:10px}.v5-style-settings input[type=color]{height:42px;padding:4px}.v5-style-settings .v5-help{font-size:12px;color:var(--v-sub)}
+.v5-message-context{cursor:context-menu}.v5-message-context:hover{background:color-mix(in srgb,var(--v-accent) 5%,transparent)}
+@keyframes v5pop{from{opacity:0;transform:translateY(6px) scale(.97)}to{opacity:1;transform:none}}@keyframes v5pulse{50%{box-shadow:0 0 0 5px var(--v-accent),0 0 28px var(--v-accent)}}
+@media(prefers-reduced-motion:reduce){.v5-menu,.v5-frame-pulse{animation:none}}
+@media(max-width:650px){.v5-menu{left:12px!important;right:12px!important;bottom:12px!important;top:auto!important;max-width:none}}
+</style>
+<script id="vexa5-features">
+(()=>{
+'use strict';
+const icons={reply:'↩',forward:'↗',pin:'⌖',copy:'⧉',delete:'×'};
+let menu=null,styleCache=new Map();
+const close=()=>{menu?.remove();menu=null};
+function menuAt(x,y,actions){close();menu=document.createElement('div');menu.className='v5-menu';menu.setAttribute('role','menu');
+ const reactions=document.createElement('div');reactions.className='v5-reactions';for(const emoji of ['❤️','👍','😂','😮','🔥']){const b=document.createElement('button');b.textContent=emoji;b.title='Tepki: '+emoji;b.onclick=()=>{const old=actions.querySelector('button')?.parentElement?.querySelector('button');const target=actions.querySelector('button[data-v5-react]')||[...actions.querySelectorAll('button')].find(a=>/Tepki/.test(a.textContent));if(target){close();const original=window.prompt;window.prompt=()=>emoji;try{target.click()}finally{window.prompt=original}}};reactions.append(b)}menu.append(reactions);
+ for(const a of [...actions.querySelectorAll('button')]){const text=a.textContent.trim();if(!text)continue;const b=document.createElement('button');b.textContent=text.replace(/^\s*[↩↗😊]\s*/, '');b.onclick=()=>{close();a.click()};menu.append(b)}
+ document.body.append(menu);const w=menu.offsetWidth,h=menu.offsetHeight;menu.style.left=Math.max(8,Math.min(x,innerWidth-w-8))+'px';menu.style.top=Math.max(8,Math.min(y,innerHeight-h-8))+'px';}
+function enhanceMessages(root=document){root.querySelectorAll('.vexa-message-wrap:not([data-v5])').forEach(w=>{w.dataset.v5='1';w.classList.add('v5-message-context');const actions=w.querySelector('.message-actions');if(!actions)return;const bubble=w.querySelector('.bubble');if(!bubble)return;w.addEventListener('contextmenu',e=>{e.preventDefault();menuAt(e.clientX,e.clientY,actions)});
+ let timer;w.addEventListener('touchstart',e=>{const t=e.touches[0];timer=setTimeout(()=>menuAt(t.clientX,t.clientY,actions),550)},{passive:true});for(const evt of ['touchend','touchmove','touchcancel'])w.addEventListener(evt,()=>clearTimeout(timer),{passive:true});
+ });}
+async function getStyle(id){if(!id)return null;if(styleCache.has(id))return styleCache.get(id);try{const {data,error}=await db.from('vexa_profile_style').select('*').eq('user_id',id).maybeSingle();if(error)throw error;styleCache.set(id,data||{});return data||{}}catch{return {}}}
+function avatarFor(p){const a=document.createElement('div');a.className='avatar';const label=p?.display_name||p?.username||'V';a.textContent=label[0]?.toUpperCase()||'V';if(p?.avatar_url){const img=document.createElement('img');img.src=p.avatar_url;img.alt='';a.replaceChildren(img)}return a}
+function card(p,style){const c=document.createElement('section');c.className='v5-profile-card';const banner=document.createElement('div');banner.className='v5-banner';banner.style.background=style?.banner_color||'#253b30';const body=document.createElement('div');body.className='v5-profile-body';const a=avatarFor(p);if(style?.frame_style==='glow'||style?.frame_style==='pulse')a.classList.add('v5-frame-'+style.frame_style);body.append(a);const h=document.createElement('h3');h.textContent=p?.display_name||'Vexa kullanıcısı';body.append(h);const tag=document.createElement('div');tag.className='v5-tag';tag.textContent='#'+(window.v45Tags?.get(p?.id)||'etiket');body.append(tag);const bio=document.createElement('p');bio.textContent=style?.bio_line||p?.bio||'Henüz durum eklenmedi.';body.append(bio);c.append(banner,body);return c}
+async function setup(){const profile=document.getElementById('viewProfile');if(!profile||document.getElementById('v5StyleSettings'))return;
+ const title=document.createElement('h2');title.textContent='Profil kartım';title.id='v5ProfileTitle';const holder=document.createElement('div');holder.id='v5MyCard';holder.textContent='Profil yükleniyor…';profile.prepend(holder);profile.prepend(title);
+ const settings=document.createElement('section');settings.className='v5-style-settings';settings.id='v5StyleSettings';settings.innerHTML='<strong>Profil görünümü</strong><label>Kapak rengi (Plus)<input id="v5Color" type="color" value="#253b30"></label><label>Durum / biyografi<input id="v5Bio" maxlength="120" placeholder="Kendinden bahset..."></label><label>Profil çerçevesi (Plus)<select id="v5Frame"><option value="none">Standart</option><option value="glow">Işıltılı</option><option value="pulse">Hareketli</option></select></label><button type="button" id="v5Save">Kaydet</button><span class="v5-help" id="v5Status">Plus özellikleri yalnızca sunucuda doğrulanmış üyelikle açılır.</span>';
+ holder.after(settings);
+ async function refresh(){if(typeof me==='undefined'||!me?.id)return;const st=await getStyle(me.id);holder.replaceChildren(card(me,st));settings.querySelector('#v5Color').value=st.banner_color||'#253b30';settings.querySelector('#v5Bio').value=st.bio_line||'';settings.querySelector('#v5Frame').value=st.frame_style||'none'}
+ settings.querySelector('#v5Save').onclick=async()=>{const status=settings.querySelector('#v5Status');status.textContent='Kaydediliyor…';try{if(typeof me==='undefined'||!me?.id)throw Error('Önce giriş yap.');const {error}=await db.rpc('vexa_save_profile_style',{p_banner_color:settings.querySelector('#v5Color').value,p_bio_line:settings.querySelector('#v5Bio').value,p_frame_style:settings.querySelector('#v5Frame').value});if(error)throw error;styleCache.delete(me.id);await refresh();status.textContent='Profil güncellendi.'}catch(e){status.textContent=e.message||'Kaydedilemedi.'}};
+ const btn=document.getElementById('tabProfile');btn?.addEventListener('click',()=>setTimeout(refresh,80));setTimeout(refresh,500);
+}
+document.addEventListener('click',e=>{if(menu&&!menu.contains(e.target))close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);else setup();
+const obs=new MutationObserver(ms=>{if(ms.some(m=>m.addedNodes.length))enhanceMessages()});obs.observe(document.body||document.documentElement,{subtree:true,childList:true});enhanceMessages();
+})();
+</script>
 </body></html>
