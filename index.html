@@ -442,6 +442,29 @@ const authStorage={
  removeItem(key){localStorage.removeItem(key);sessionStorage.removeItem(key)}
 };
 const db=createClient(SUPABASE_URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storage:authStorage}});
+// Vexa Plus: authenticated checkout entry point. Never grant premium in the browser.
+document.addEventListener('DOMContentLoaded',()=>{
+ const btn=document.getElementById('v36Subscribe');
+ if(!btn)return;
+ btn.addEventListener('click',async()=>{
+  const info=document.getElementById('v36PlanInfo');
+  btn.disabled=true;btn.textContent='Ödeme kontrol ediliyor...';
+  try{
+   const {data:{session:currentSession}}=await db.auth.getSession();
+   if(!currentSession)throw new Error('Önce giriş yapmalısın.');
+   const {data,error}=await db.functions.invoke('vexa-plus-checkout',{body:{plan:'plus_monthly'}});
+   if(error){
+    let message='Ödeme servisi henüz hazır değil.';
+    try{const details=await error.context?.json?.();message=details?.error||message}catch{}
+    throw new Error(message);
+   }
+   if(!data?.checkout_url||!/^https:\/\//.test(data.checkout_url))throw new Error('Güvenli ödeme bağlantısı alınamadı.');
+   window.location.assign(data.checkout_url);
+  }catch(e){if(info)info.textContent=e.message||'Ödeme başlatılamadı.';}
+  finally{btn.disabled=false;btn.textContent='Plus satın al';}
+ });
+});
+
 const $=id=>document.getElementById(id);
 let recoveryActive=false;let session=null,me=null,selected=null,channel=null,globalChannel=null,register=false,resetMode=false,friendRows=[],profileRows=[],currentTab='Chats',replyTo=null,recorder=null,audioChunks=[],typingTimer=null,typingClear=null,online=false,roomToken=0,pinnedIds=new Set(),unreadCounts=new Map(),reactionRows=[];
 const err=(id,t)=>$(id).textContent=t||'';
@@ -1258,7 +1281,7 @@ panel.innerHTML=`<span class="v36-chip" id="v36PlanBadge">Üyelik kontrol ediliy
 <div class="v36-price">15 TL <small>/ ay</small></div>
 <p>Free üyelikle sohbetler ve temel aramalar ücretsiz kalır. Plus üyeleri reklam görmez; premium özellikler aşamalı olarak açılır.</p>
 <ul class="v36-features"><li>Reklamsız Vexa deneyimi</li><li>Özel rozetler ve profil efektleri (yakında)</li><li>Özel sohbet temaları (yakında)</li><li>Yüksek Vexa Drop limiti (yakında)</li></ul>
-<button class="v36-button" id="v36Subscribe" type="button" disabled>Ödeme sistemi hazırlanıyor</button>
+<button class="v36-button" id="v36Subscribe" type="button">Plus satın al</button>
 <p id="v36PlanInfo" role="status">Üyelik bilgisi yükleniyor...</p>
 <p>Ödeme bağlantısı kurulmadan ücret tahsil edilmez. Plus hakkı yalnızca güvenilir sunucu işlemiyle etkinleştirilir.</p>`;
 profile.append(panel);
