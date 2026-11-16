@@ -1803,4 +1803,71 @@ html,body{max-width:100%;overflow-x:hidden!important;scroll-behavior:auto!import
 .vexa-modal-content{max-height:calc(100dvh - 22px)!important}
 }
 @media(prefers-reduced-motion:reduce){#v5MyCard *,#chat *,#side *{animation:none!important;transition:none!important}}
-</style></body></html>
+</style>
+<style id="vexa62-real-layout-fix">
+/* Replace the broken sidebar-as-fullscreen layout with a real responsive app shell. */
+html,body{max-width:100%;overflow-x:hidden!important}
+#main{width:100%!important;max-width:none!important;min-width:0!important;height:100dvh!important;overflow:hidden!important}
+#main>header{flex:0 0 64px!important;height:64px!important;min-height:64px!important;padding:0 22px!important;box-sizing:border-box!important}
+#main>.layout{flex:1 1 auto!important;display:grid!important;grid-template-columns:minmax(315px,360px) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;height:calc(100dvh - 64px)!important;min-height:0!important;width:100%!important;max-width:none!important;overflow:hidden!important;gap:0!important}
+#main>.layout>#side{grid-column:1!important;grid-row:1!important;display:flex!important;flex-direction:column!important;width:100%!important;max-width:none!important;min-width:0!important;box-sizing:border-box!important;overflow-y:auto!important;padding:16px!important;border-right:1px solid #34483c!important}
+#main>.layout>#chat{grid-column:2!important;grid-row:1!important;width:100%!important;max-width:none!important;min-width:0!important;height:100%!important;display:flex!important;flex-direction:column!important;box-sizing:border-box!important}
+#side .tabs{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;position:relative!important;width:100%!important;margin:0 0 18px!important;gap:4px!important;padding:5px!important;box-sizing:border-box!important}
+#side .tabs button{font-size:10px!important;min-width:0!important;width:100%!important;min-height:62px!important;padding:8px 2px!important;overflow:visible!important}
+#side .tabs .v42-nav-label{font-size:10px!important;overflow-wrap:normal!important}
+#viewChats,#viewGroups,#viewFind,#viewRequests,#viewProfile{min-width:0!important;width:100%!important;box-sizing:border-box!important}
+#friends{display:flex!important;flex-direction:column!important;width:100%!important;min-width:0!important}
+#friends .v15-chatrow,#friends .user{min-width:0!important;width:100%!important;box-sizing:border-box!important}
+#chatHead{flex-wrap:nowrap!important;min-width:0!important;max-width:100%!important}
+#messages{width:100%!important;box-sizing:border-box!important;flex:1!important;min-height:0!important}
+#messages .vexa-message-wrap{width:100%!important;max-width:100%!important;box-sizing:border-box!important;min-width:0!important}
+#chat .compose{width:100%!important;min-width:0!important;box-sizing:border-box!important}
+/* Rebuild profile cards rather than stacking old previews on top of them. */
+#viewProfile>.v42-profile-card{display:none!important}
+#v5MyCard{display:block!important;width:100%!important;min-width:0!important;margin:8px 0 18px!important}
+#v5MyCard .v5-profile-card{width:100%!important;box-sizing:border-box!important;border-radius:22px!important;background:#17271e!important;overflow:hidden!important;border:1px solid #42614c!important;box-shadow:0 12px 30px #0005!important}
+#v5MyCard .v5-banner{height:150px!important;background:radial-gradient(ellipse at 80% 20%,#71b18b55,transparent 52%),linear-gradient(125deg,#315b40,#14271d)!important}
+#v5MyCard .v5-profile-body{padding:0 20px 24px!important}
+#v5MyCard .v5-profile-body .avatar{width:88px!important;height:88px!important;border-radius:24px!important;transform:translateY(-13px)!important;margin-bottom:-12px!important}
+#v5MyCard .v5-profile-body h3{font-size:25px!important;font-weight:850!important;margin:0 0 4px!important}
+#v5MyCard .v52-badges{display:flex!important;flex-wrap:wrap!important;gap:7px!important}
+#viewProfile .v42-section{border-radius:15px!important;margin:9px 0!important;box-shadow:none!important}
+#viewProfile .v42-section>summary{font-size:14px!important;font-weight:750!important}
+#viewProfile #editUsername,#viewProfile #profileUsername{display:none!important}
+#viewProfile .panel>label[style*="display:none"]{display:none!important}
+/* Contact profiles: larger cover and avatar, coherent typography. */
+.vexa-modal-content{width:min(590px,calc(100vw - 24px))!important;box-sizing:border-box!important}
+.vexa-modal-content .v15-cover{min-height:125px!important;border-radius:17px!important;background-color:#315541!important}
+.vexa-modal-content .vexa-profile-head{display:flex!important;align-items:center!important;gap:14px!important;padding:16px 5px!important}
+.vexa-modal-content .vexa-profile-head .avatar{width:74px!important;height:74px!important;border-radius:21px!important;flex-shrink:0!important}
+.vexa-modal-content .vexa-profile-head h3{font-size:23px!important;line-height:1.2!important}
+.vexa-modal-content .vexa-profile-bio{border-radius:14px!important;background:#23372a!important;border:1px solid #3c5b45!important}
+/* Cut expensive animations while keeping snappy interactions. */
+#side button,#chat button,.vexa-modal-content button{transition:background-color .12s ease,border-color .12s ease,opacity .12s ease!important;animation-duration:.16s!important}
+#messages .vexa-message-wrap{animation:none!important;transition:none!important}
+@media(min-width:1100px){#main>.layout{grid-template-columns:365px minmax(0,1fr)!important}}
+@media(max-width:650px){
+#main{height:100dvh!important;min-height:0!important;overflow:hidden!important}
+#main>header{height:58px!important;min-height:58px!important;flex-basis:58px!important;padding:0 15px!important}
+#main>.layout{display:block!important;height:calc(100dvh - 58px)!important;min-height:0!important;overflow:hidden!important}
+#main>.layout>#side{width:100%!important;height:100%!important;max-height:100%!important;padding:10px 12px 85px!important;border:0!important;overflow-y:auto!important}
+#side .tabs{position:fixed!important;left:0!important;right:0!important;bottom:0!important;z-index:150!important;width:100%!important;height:calc(68px + env(safe-area-inset-bottom))!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:2px!important;margin:0!important;padding:5px 7px max(5px,env(safe-area-inset-bottom))!important;border-radius:0!important;border:0!important;border-top:1px solid #405647!important;background:#1a2a20!important;box-shadow:0 -8px 25px #0005!important}
+#side .tabs button{height:55px!important;min-height:55px!important;display:flex!important;flex-direction:column!important;gap:3px!important;justify-content:center!important;align-items:center!important;font-size:10px!important;padding:5px 1px!important;border-radius:12px!important}
+#side .tabs button .v42-nav-label{display:block!important;font-size:10px!important;white-space:nowrap!important}
+#main>.layout>#chat{height:100%!important;width:100%!important;max-width:100%!important}
+#main>.layout>#chat.mobile-hide{display:none!important}
+#main>.layout>#chat:not(.mobile-hide){display:flex!important;position:absolute!important;inset:58px 0 0!important;z-index:160!important;height:calc(100dvh - 58px)!important;background:#121e17!important}
+#main>.layout:has(>#chat:not(.mobile-hide))>#side .tabs{display:none!important}
+#chatHead{min-height:60px!important;max-height:60px!important;padding:7px 9px!important}
+#chatHead .v15-tools{max-width:48%!important}
+#chatHead .v21-tool{width:35px!important;height:35px!important;min-width:35px!important}
+#messages{padding:12px!important}
+#chat .compose{padding:9px 9px max(9px,env(safe-area-inset-bottom))!important;gap:6px!important}
+#chat .compose #messageInput{font-size:16px!important}
+#v5MyCard .v5-banner{height:112px!important}
+#v5MyCard .v5-profile-body{padding:0 16px 20px!important}
+#viewProfile{padding-bottom:90px!important}
+}
+</style>
+<script id="vexa62-username-cleanup">(()=>{function clean(){const field=document.getElementById('editUsername');if(field){field.style.display='none';let n=field.previousElementSibling;if(n&&n.tagName==='LABEL')n.style.display='none';n=field.nextElementSibling;if(n&&n.classList.contains('tiny'))n.style.display='none'}const profile=document.getElementById('viewProfile');if(profile){for(const el of profile.querySelectorAll('.tiny,.v42-account-note')){if(/kullanıcı adın benzersiz|kullanıcı adı giriş|teknik kimlik/i.test(el.textContent||''))el.style.display='none'}}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clean);else clean()})();</script>
+</body></html>
